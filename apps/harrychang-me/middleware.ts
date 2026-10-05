@@ -18,7 +18,7 @@ import {
  * robots.txt, sitemap.xml).
  */
 function isPagePath(pathname: string): boolean {
-  if (/^\/(api|_next|slides|ingest|locales|images|fonts)(\/|$)/.test(pathname))
+  if (/^\/(api|_next|slides|locales|images|fonts)(\/|$)/.test(pathname))
     return false;
   const lastSegment = pathname.slice(pathname.lastIndexOf("/") + 1);
   return !lastSegment.includes(".");
@@ -112,6 +112,6 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    "/((?!_next/static|_next/image|favicon.ico|images|locales|fonts|ingest).*)",
+    "/((?!_next/static|_next/image|favicon.ico|images|locales|fonts).*)",
   ],
 };

@@ -4,7 +4,6 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { ArrowRight, ArrowUpRight, Loader2, Check } from "lucide-react";
 import { useLanguage } from "@portfolio/lib/contexts/language-context";
-import { track, events } from "@portfolio/lib/analytics";
 import {
   GUESTBOOK_MAX_LENGTH,
   GUESTBOOK_COUNTER_THRESHOLD,
@@ -71,7 +70,6 @@ export default function GuestbookWidget({
       }
 
       setStatus("success");
-      track(events.GUESTBOOK_SUBMITTED, { anonymous: true });
       setMessage("");
       setTimeout(() => {
         setStatus("idle");

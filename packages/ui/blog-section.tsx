@@ -9,7 +9,6 @@ import {
   type Language,
 } from "@portfolio/lib/contexts/language-context";
 import NavigationLink from "@portfolio/ui/navigation-link";
-import { track, events } from "@portfolio/lib/analytics";
 import { motion } from "motion/react";
 
 interface BlogSectionProps {
@@ -130,9 +129,6 @@ export default function BlogSection({
               <NavigationLink
                 href={`/blog`}
                 className="group flex items-center gap-2"
-                onClick={() =>
-                  track(events.SEE_ALL_CLICKED, { section: "blog" })
-                }
               >
                 <span className="font-body text-sg text-secondary group-hover:text-accent transition-colors">
                   {t("blog.seeAll")}

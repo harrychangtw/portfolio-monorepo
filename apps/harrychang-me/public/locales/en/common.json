@@ -254,7 +254,7 @@
     },
     "analytics": {
       "title": "Analytics",
-      "body": "<strong>PostHog</strong> collects anonymous page views, session duration, and general device info. No IP addresses are stored. <strong>Vercel Analytics</strong> measures Core Web Vitals for performance monitoring. No cookies, no personal data. Neither service collects personally identifiable information."
+      "body": "<strong>Vercel Analytics</strong> counts anonymous page views and measures Core Web Vitals for performance monitoring. No cookies, no personal data, and nothing that identifies you."
     },
     "guestbook": {
       "title": "Guestbook",

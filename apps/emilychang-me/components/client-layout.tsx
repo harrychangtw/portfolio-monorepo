@@ -4,8 +4,6 @@ import type React from "react";
 import { Suspense } from "react";
 import EmilyHeader from "./emily-header";
 import { Analytics } from "@vercel/analytics/react";
-import ClickSpark from "@portfolio/ui/ui/click-spark";
-import { useIsMobile } from "@portfolio/lib/hooks/use-mobile";
 import { LanguageProvider } from "@portfolio/lib/contexts/language-context";
 import { NavigationProvider } from "@portfolio/lib/contexts/navigation-context";
 import VideoInitializer from "@portfolio/ui/video-initializer";
@@ -17,28 +15,13 @@ export default function ClientLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const isMobile = useIsMobile();
-
   useStableAnchor(["design", "creation", "art", "sketches"], "header");
 
   return (
     <NavigationProvider>
       <LanguageProvider englishOnly namespaces={["common", "about", "uses"]}>
         <EmilyHeader />
-        {isMobile ? (
-          children
-        ) : (
-          <ClickSpark
-            sparkColor="hsl(var(--accent))"
-            sparkSize={8}
-            sparkRadius={15}
-            sparkCount={4}
-            duration={500}
-            extraScale={1.2}
-          >
-            {children}
-          </ClickSpark>
-        )}
+        {children}
         <VideoInitializer />
         <Suspense fallback={null}>
           <NotificationProvider />

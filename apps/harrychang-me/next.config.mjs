@@ -166,6 +166,7 @@ const nextConfig = {
         '/favicon.ico',
         '/apple-icon.png',
         '/chinese_name_icon.png',
+        '/chinese_name_icon.webp',
         '/site.webmanifest',
       ].map((source) => ({
         source,
@@ -222,18 +223,6 @@ const nextConfig = {
           destination: `/slides/${slug}/index.html`,
         },
       ]),
-      {
-        source: '/ingest/static/:path*',
-        destination: 'https://us-assets.i.posthog.com/static/:path*',
-      },
-      {
-        source: '/ingest/decide',
-        destination: 'https://us.i.posthog.com/decide',
-      },
-      {
-        source: '/ingest/:path*',
-        destination: 'https://us.i.posthog.com/:path*',
-      },
     ]
   },
 }

@@ -14,7 +14,6 @@ import { scrollToSection } from "@portfolio/lib/lib/scrolling";
 import NavigationLink from "@portfolio/ui/navigation-link";
 import GuestbookWidget from "@/components/guestbook-widget";
 import { ArrowUpRight } from "lucide-react";
-import { track, events } from "@portfolio/lib/analytics";
 
 const LanguageSwitcher = dynamic(
   () => import("@portfolio/ui/language-switcher"),
@@ -203,19 +202,6 @@ export default function Footer() {
               href={href}
               className={linkClassName}
               onClick={(e) => {
-                track(events.FOOTER_LINK_CLICK, {
-                  link_id: link.id,
-                  link_type: "internal",
-                  href: link.href,
-                });
-                if (link.id === "music") {
-                  track(events.SPOTIFY_WIDGET_CLICKED, {
-                    music_playing: !!nowPlaying?.isPlaying,
-                  });
-                }
-                if (link.id === "resume") {
-                  track(events.CV_DOWNLOAD_CLICKED, { source: "footer" });
-                }
                 if (isAnchorLink(link.href)) handleNavClick(e, link.href);
               }}
               onMouseEnter={(e) => handleMouseEnter(e, link.id)}
@@ -230,13 +216,6 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               className={linkClassName}
-              onClick={() =>
-                track(events.FOOTER_LINK_CLICK, {
-                  link_id: link.id,
-                  link_type: "external",
-                  href,
-                })
-              }
               onMouseEnter={(e) => handleMouseEnter(e, link.id)}
               onMouseMove={handleMouseMove}
               onMouseLeave={handleMouseLeave}
@@ -265,13 +244,17 @@ export default function Footer() {
                 className="relative h-12 mb-6 block cursor-pointer group"
                 aria-label="Return to home page"
               >
+                {/*
+                  Pre-sized WebP (3x the 48px display height). Not `priority`:
+                  the footer is never above the fold, and preloading the old
+                  1784px PNG put 52 KB on every page's critical path.
+                */}
                 <Image
-                  src="/chinese_name_icon.png"
+                  src="/chinese_name_icon.webp"
                   alt="Harry Chang/Chi-Wei Chang 張祺煒 Logo"
-                  width={357}
-                  height={120}
+                  width={428}
+                  height={144}
                   className="object-contain transition-opacity group-hover:opacity-80 footer-logo"
-                  priority
                   unoptimized
                   style={{ width: "auto", height: "48px" }}
                 />

@@ -11,7 +11,6 @@ import {
 } from "@portfolio/lib/contexts/language-context";
 import { motion } from "motion/react";
 import NavigationLink from "@portfolio/ui/navigation-link";
-import { track, events } from "@portfolio/lib/analytics";
 interface GallerySectionProps {
   section?: string;
   title?: string;
@@ -219,9 +218,6 @@ export default function GallerySection({
               <NavigationLink
                 href={`/gallery`}
                 className="group flex items-center gap-2"
-                onClick={() =>
-                  track(events.SEE_ALL_CLICKED, { section: "gallery" })
-                }
               >
                 <span className="font-body text-sg text-secondary group-hover:text-accent transition-colors">
                   {t("gallery.seeAll")}

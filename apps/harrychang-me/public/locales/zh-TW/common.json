@@ -254,7 +254,7 @@
     },
     "analytics": {
       "title": "分析工具",
-      "body": "<strong>PostHog</strong> 蒐集匿名頁面瀏覽、工作階段時長及一般裝置資訊，不儲存 IP 位址。<strong>Vercel Analytics</strong> 測量 Core Web Vitals 以監控效能，無 Cookie，無個人資料。兩者皆不蒐集個人可識別資訊。"
+      "body": "<strong>Vercel Analytics</strong> 統計匿名頁面瀏覽並測量 Core Web Vitals 以監控效能，無 Cookie，無個人資料，不蒐集任何個人可識別資訊。"
     },
     "guestbook": {
       "title": "留言板",
