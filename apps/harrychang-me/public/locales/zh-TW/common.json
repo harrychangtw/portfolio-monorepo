@@ -254,7 +254,7 @@
     },
     "analytics": {
       "title": "分析工具",
-      "body": "<strong>Vercel Analytics</strong> 統計匿名頁面瀏覽並測量 Core Web Vitals 以監控效能，無 Cookie，無個人資料，不蒐集任何個人可識別資訊。"
+      "body": "<strong>Vercel Web Analytics</strong> 統計匿名頁面瀏覽，<strong>Vercel Speed Insights</strong> 測量 Core Web Vitals 以監控效能。無 Cookie，無個人資料，不蒐集任何個人可識別資訊。"
     },
     "guestbook": {
       "title": "留言板",

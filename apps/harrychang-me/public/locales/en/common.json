@@ -254,7 +254,7 @@
     },
     "analytics": {
       "title": "Analytics",
-      "body": "<strong>Vercel Analytics</strong> counts anonymous page views and measures Core Web Vitals for performance monitoring. No cookies, no personal data, and nothing that identifies you."
+      "body": "<strong>Vercel Web Analytics</strong> counts anonymous page views, and <strong>Vercel Speed Insights</strong> measures Core Web Vitals for performance monitoring. No cookies, no personal data, and nothing that identifies you."
     },
     "guestbook": {
       "title": "Guestbook",
