@@ -9,7 +9,6 @@ import { useNavigation } from "@portfolio/lib/contexts/navigation-context";
 import NavigationLink from "@portfolio/ui/navigation-link";
 import { useStableHashScroll } from "@portfolio/lib/hooks/use-stable-hash-scroll";
 import { scrollToSection as utilScrollToSection } from "@portfolio/lib/lib/scrolling";
-import { track, events } from "@portfolio/lib/analytics";
 import StaggeredMenu, {
   type SocialGroup,
   type SocialItem,
@@ -453,11 +452,6 @@ export default function SiteHeader({
         ? `/#${sectionId}`
         : pagePath;
     const onClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-      track(events.HEADER_NAV_LINK_CLICK, {
-        section_id: sectionId,
-        path: pagePath,
-        is_home_page: isHomePage,
-      });
       if (isHomePage) scrollToSection(sectionId, e);
     };
     const scroll = !isHomePage;
@@ -537,11 +531,6 @@ export default function SiteHeader({
 
   const scrollToFooter = useCallback(() => {
     closeMore();
-    track(events.HEADER_NAV_LINK_CLICK, {
-      section_id: "more",
-      path: `#${FOOTER_ELEMENT_ID}`,
-      is_home_page: isHomePage,
-    });
     utilScrollToSection(FOOTER_ELEMENT_ID);
   }, [closeMore, isHomePage]);
 
@@ -594,8 +583,22 @@ export default function SiteHeader({
   // Reading progress
   useEffect(() => {
     if (!matchesReadingProgress || isLab || isGraph) return;
-    let animationFrameId: number;
+    // The damping loop only runs while the bar is catching up to the scroll
+    // position. It used to run every frame for the life of the page, which
+    // kept the main thread busy (and the CPU awake) even while idle.
+    let animationFrameId: number | null = null;
     let targetProgress = 0;
+    let currentProgress = 0;
+    const animate = () => {
+      const diff = targetProgress - currentProgress;
+      currentProgress =
+        Math.abs(diff) < 0.1 ? targetProgress : currentProgress + diff * 0.15;
+      setReadingProgress(currentProgress);
+      animationFrameId =
+        currentProgress === targetProgress
+          ? null
+          : requestAnimationFrame(animate);
+    };
     const handleScroll = () => {
       const windowHeight = window.innerHeight;
       const documentHeight = document.documentElement.scrollHeight;
@@ -603,21 +606,15 @@ export default function SiteHeader({
       const scrollableHeight = documentHeight - windowHeight;
       targetProgress =
         scrollableHeight > 0 ? (scrollTop / scrollableHeight) * 100 : 0;
-    };
-    const animate = () => {
-      setReadingProgress((current) => {
-        const diff = targetProgress - current;
-        const damped = current + diff * 0.15;
-        return Math.abs(diff) < 0.1 ? targetProgress : damped;
-      });
-      animationFrameId = requestAnimationFrame(animate);
+      if (animationFrameId === null) {
+        animationFrameId = requestAnimationFrame(animate);
+      }
     };
     handleScroll();
-    animationFrameId = requestAnimationFrame(animate);
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      cancelAnimationFrame(animationFrameId);
+      if (animationFrameId !== null) cancelAnimationFrame(animationFrameId);
     };
   }, [matchesReadingProgress, isLab, isGraph]);
 

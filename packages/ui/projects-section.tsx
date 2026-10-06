@@ -8,7 +8,6 @@ import {
   useLanguage,
   type Language,
 } from "@portfolio/lib/contexts/language-context";
-import { track, events } from "@portfolio/lib/analytics";
 import NavigationLink from "@portfolio/ui/navigation-link";
 import { motion } from "motion/react";
 
@@ -140,9 +139,6 @@ export default function ProjectsSection({
               <NavigationLink
                 href={`/projects`}
                 className="group flex items-center gap-2"
-                onClick={() =>
-                  track(events.SEE_ALL_CLICKED, { section: "projects" })
-                }
               >
                 <span className="font-body text-sg text-secondary group-hover:text-accent transition-colors">
                   {t("projects.seeAll")}

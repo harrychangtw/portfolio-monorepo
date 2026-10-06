@@ -178,7 +178,7 @@ export default function ProjectPostClient({
               src={project.imageUrl}
               alt={project.title}
               priority={true}
-              quality={95}
+              quality={85}
               noInsetPadding={true}
               aspectRatio={1.5}
             />

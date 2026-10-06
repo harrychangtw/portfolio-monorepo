@@ -41,11 +41,13 @@ jobs:
 
       # Audit the canonical public domain — the URL real users hit (custom
       # domain + Vercel CDN edge), with no preview-auth or deployment-protection
-      # redirects.
+      # redirects. Use the www host: the apex 308-redirects to it, which cost
+      # every audited page ~870 ms of simulated mobile load time that visitors
+      # arriving via search or canonical links never pay.
       - name: Build URL list
         id: urls
         env:
-          DEPLOY_URL: https://harrychang.me
+          DEPLOY_URL: https://www.harrychang.me
         run: |
           PATHS=(
             "/"
@@ -114,7 +116,7 @@ jobs:
 
       - name: Update README with production Lighthouse badges
         env:
-          DEPLOYMENT_URL: https://harrychang.me
+          DEPLOYMENT_URL: https://www.harrychang.me
         run: node .github/scripts/update-lighthouse-readme.js --mode=prod --site=harry
 
       - name: Format README with Prettier

@@ -12,7 +12,6 @@ export * from "./ui/card";
 export * from "./ui/carousel";
 export * from "./ui/chart";
 export * from "./ui/checkbox";
-export * from "./ui/click-spark";
 export * from "./ui/collapsible";
 export * from "./ui/command";
 export * from "./ui/context-menu";
