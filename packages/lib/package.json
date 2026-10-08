@@ -34,7 +34,7 @@
     "fast-xml-parser": "^5.8.0",
     "gray-matter": "latest",
     "i18next": "^25.10.10",
-    "image-size": "^2.0.2",
+    "image-size": "^2.0.4",
     "mdast": "^3.0.0",
     "next": "15.5.25",
     "next-i18next": "^15.4.3",
