@@ -23,6 +23,16 @@ APP_DIR="${1:?usage: vercel-ignore-build.sh <app-dir>}"
 # are repo-relative, so move to the repo root first.
 cd "$(git rev-parse --show-toplevel)" || exit 1
 
+# Opt-in rebuild marker. /cal snapshots Google Calendar at build time, so the
+# site goes stale unless something rebuilds it. lighthouse-prod.yml tags its
+# every-3-days README commit with "[rebuild: <app>]" to piggyback a refresh.
+# Unlike a skip marker this can only cause an extra build, never a missed one.
+APP_NAME="$(basename "$APP_DIR")"
+if git log -1 --format=%B HEAD | grep -qF "[rebuild: $APP_NAME]"; then
+  echo "build: commit requests a rebuild of $APP_NAME"
+  exit 1
+fi
+
 # SHA of the last *successful* deployment of this project and branch. Vercel
 # only exposes it when an Ignored Build Step is configured, which is how this
 # script runs. Using it (rather than HEAD^) keeps the diff correct when several

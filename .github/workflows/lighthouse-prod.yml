@@ -137,6 +137,8 @@ jobs:
       - name: Commit production Lighthouse changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "chore: update lighthouse scores in README [skip ci]"
+          # "[rebuild: harrychang-me]" makes scripts/vercel-ignore-build.sh let
+          # this commit through, so /cal's calendar snapshot refreshes every run.
+          commit_message: "chore: update lighthouse scores in README [rebuild: harrychang-me] [skip ci]"
           file_pattern: "apps/harrychang-me/README.md .github/lighthouse-data/harry-prod.json"
           branch: main

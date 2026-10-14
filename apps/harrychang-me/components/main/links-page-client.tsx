@@ -68,21 +68,26 @@ export default function LinksPageClient() {
       href: "/",
     },
     {
+      icon: <PenTool className="w-5 h-5" />,
+      label: t("resources.blog"),
+      href: "/blog",
+    },
+    {
       icon: <Github className="w-5 h-5" />,
       label: t("social.github"),
       href: "/github",
       external: true,
     },
     {
-      icon: <Instagram className="w-5 h-5" />,
-      label: t("social.instagram"),
-      href: "/instagram",
-      external: true,
-    },
-    {
       icon: <Linkedin className="w-5 h-5" />,
       label: t("social.linkedin"),
       href: "/linkedin",
+      external: true,
+    },
+    {
+      icon: <Instagram className="w-5 h-5" />,
+      label: t("social.instagram"),
+      href: "/instagram",
       external: true,
     },
     {
@@ -108,11 +113,6 @@ export default function LinksPageClient() {
       label: t("social.discord"),
       href: "/discord",
       external: true,
-    },
-    {
-      icon: <PenTool className="w-5 h-5" />,
-      label: t("resources.blog"),
-      href: "/blog",
     },
     {
       icon: <FileText className="w-5 h-5" />,
@@ -208,16 +208,6 @@ export default function LinksPageClient() {
           >
             Harry Chang 張祺煒
           </motion.h1>
-
-          {/* Role */}
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-base font-heading sm:text-lg text-muted-foreground mb-2"
-          >
-            {t("links.hero")}
-          </motion.p>
         </motion.div>
 
         {/* ── Links ────────────────────────────────────────── */}
