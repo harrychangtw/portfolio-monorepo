@@ -1450,5 +1450,93 @@
       "致謝": "致謝柯爾〈生命之旅：青年〉封面畫作"
     },
     "tldr": "從它預言的校園裡，替一份小六虛擬自傳打分數"
+  },
+  "project/castor/en": {
+    "title": "CASTOR: Identically Trained Language Models Break on Different Jailbreaks",
+    "locale": "en",
+    "sections": {
+      "The Short Version": "Twin models break alike; reruns of same data diverge",
+      "Why It Matters": "Single-checkpoint red-teaming describes one run, not its data",
+      "How CASTOR Works: A Twin Study for Language Models": "Behavioral-genetics twin design applied to language models",
+      "1. Building 150 Models": "25 DataDecide recipes, 3 pretraining seeds, Tülu 3 twice",
+      "2. Measuring Each Model's Vulnerability": "20 samples on 3,212 jailbreaks, judged by WildGuard",
+      "3. Comparing Pairs of Models": "MZ twins versus same-recipe pairs define the ancestry gap",
+      "Key Results": "Gap holds across recipes, sizes and human labels",
+      "The Pretraining Run Dominates in Every Data Recipe": "Ancestry gap 0.173, positive in all 25 recipes",
+      "It Is the Run, Not the Seed": "Same-seed reruns diverge like new runs from GPU nondeterminism",
+      "What It Costs to Test One Checkpoint": "Best attacks rarely transfer; profiles fingerprint each run",
+      "Conclusion and Future Work": "Red-team across runs; weights, labels and code released",
+      "Acknowledgments": "Co-authors, Prof. Meng-Hsun Tsai and NCHC compute"
+    },
+    "tldr": "150-model twin study: jailbreaks follow the pretraining run",
+    "shortName": "CASTOR Twin Study"
+  },
+  "project/castor/zh-TW": {
+    "title": "CASTOR: Identically Trained Language Models Break on Different Jailbreaks",
+    "locale": "zh-TW",
+    "sections": {
+      "一句話總結": "雙胞胎模型被同樣越獄攻破，同資料重訓則不同",
+      "為什麼這很重要": "單一 checkpoint 紅隊結果只代表那一次訓練",
+      "CASTOR 如何運作：語言模型的雙胞胎研究": "借用行為遺傳學的雙胞胎設計比較語言模型",
+      "1. 建立 150 個模型": "25 種資料配方、3 個預訓練種子、兩次 Tülu 3",
+      "2. 量測每個模型的脆弱度": "3,212 個越獄提示各取 20 個回應判斷拒絕",
+      "3. 比較模型配對": "MZ 雙胞胎對比同配方配對，定義血緣差距",
+      "主要結果": "差距跨配方、模型大小與人工標註皆成立",
+      "預訓練過程在每一種資料配方中都佔主導": "血緣差距 0.173，25 種配方全部為正",
+      "關鍵是那次訓練，而不是種子": "同種子重跑因 GPU 非確定性而如新訓練般分歧",
+      "只測試一個 checkpoint 的代價": "最佳攻擊難以轉移，脆弱度剖面可辨識訓練",
+      "結論與未來展望": "跨多次訓練做紅隊測試，並釋出權重與程式碼",
+      "致謝": "感謝共同作者、蔡孟勳老師與 NCHC 計算資源"
+    },
+    "tldr": "150 個模型的雙胞胎研究：越獄取決於預訓練過程"
+  },
+  "post/17-noticing/en": {
+    "title": "What Did You Almost Not Write Down?",
+    "locale": "en",
+    "sections": {
+      "March 2025": "Journal day one: Dad heads out for pho",
+      "April 2025": "Underwhelming fist rock, alarm scarier than the earthquake",
+      "May 2025": "Pistachio gelato ordered from Italians by pointing",
+      "June 2025": "Spicy-oil ice cream, golden-hour traffic with Dad",
+      "July 2025": "Lens lost mid-intersection; mystery charge was Duolingo",
+      "August 2025": "Earthquake strikes just as the entry begins",
+      "October 2025": "Classroom seats chosen with suction-cup arrows",
+      "December 2025": "Volleyball under a bus; network dies on cue",
+      "January 2026": "Rome host warns against Termini, never on the way",
+      "February 2026": "Lockless pizza bathroom, singing metro, new glasses",
+      "April 2026": "Seat-kicking kid to Newark, a $2.25 donut",
+      "May 2026": "Ice-run excuse yields sparkling water and rice balls",
+      "June 2026": "Mong Kok glasses wash, durian before mango sago",
+      "July 2026": "Typing against car sickness on the 14 bus",
+      "August 2026": "Sun-shower driving lesson, grandma at soba, bitter melon",
+      "September 2026": "Stolen umbrella returns; pho owner asks when to show up",
+      "October 2026": "Coffee clerks, a circling duck, Dad's pomelo and melon",
+      "Acknowledgments": "Remps's unlabeled Cabinet of Curiosities as cover"
+    },
+    "tldr": "Day 600 of a journal: 37 small moments nearly unrecorded",
+    "shortName": "Day 600 Journal"
+  },
+  "post/17-noticing/zh-TW": {
+    "title": "有什麼是你差點沒寫下來的？",
+    "locale": "zh-TW",
+    "sections": {
+      "2025 年 4 月": "看不出像拳頭的石頭，警報比地震嚇人",
+      "2025 年 5 月": "跟不會中文的義大利人用手指點冰淇淋",
+      "2025 年 6 月": "辣油香草冰淇淋，和爸爸一起塞在魔幻時刻",
+      "2025 年 7 月": "鏡片掉在路口中央，神秘扣款原來是 Duolingo",
+      "2025 年 10 月": "用吸盤玩具弓射箭選座位",
+      "2025 年 12 月": "排球滾進公車底，網路斷線呼應作文題",
+      "2026 年 1 月": "羅馬房東叫我們晚上別去車站",
+      "2026 年 2 月": "沒鎖的披薩店廁所、地鐵歌聲與新眼鏡",
+      "2026 年 4 月": "踢椅背的小孩，一個 2.25 美元的甜甜圈",
+      "2026 年 5 月": "以買冰塊為由出校門，帶回氣泡水和飯糰",
+      "2026 年 6 月": "旺角店員幫洗眼鏡，楊枝甘露前先來榴槤",
+      "2026 年 7 月": "在 14 號公車上邊打字邊跟暈車對賭",
+      "2026 年 8 月": "太陽雨駕訓、阿嬤陪吃蕎麥麵、朋友的苦瓜",
+      "2026 年 9 月": "被偷的傘回來了，河粉店老闆問何時該出現",
+      "2026 年 10 月": "超商咖啡、繞圈的鴨子、爸爸剝的柚子與苦瓜",
+      "致謝": "Remps 沒有標籤的珍奇櫃作為封面"
+    },
+    "tldr": "日記第六百天：三十七件差點沒寫下的小事"
   }
 }
