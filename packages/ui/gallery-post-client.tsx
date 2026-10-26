@@ -2,25 +2,18 @@
 
 import { useEffect, useLayoutEffect, useState } from "react";
 import parse, { Element } from "html-react-parser";
-import dynamic from "next/dynamic";
 import {
   useLanguage,
   type Language,
 } from "@portfolio/lib/contexts/language-context";
 import TextSkeleton from "@portfolio/ui/text-skeleton";
 
-const LanguageSwitcher = dynamic(
-  () => import("@portfolio/ui/language-switcher"),
-  { ssr: false },
-);
-const ThemeSwitcher = dynamic(() => import("@portfolio/ui/theme-switcher"), {
-  ssr: false,
-});
 import { ImageContainer } from "@portfolio/ui/image-container";
 import { CompareSlider } from "@portfolio/ui/compare-slider";
 import NextUpCard from "@portfolio/ui/next-up-card";
 import type { GalleryItemMetadata } from "@portfolio/lib/lib/markdown";
 import NavigationLink from "@portfolio/ui/navigation-link";
+import { MetaList } from "@portfolio/ui/meta-list";
 
 interface GalleryPostClientProps {
   initialItem: GalleryItemMetadata & { contentHtml: string };
@@ -193,111 +186,71 @@ export default function GalleryPostClient({
             {/* Left column */}
             <div className="md:col-span-4 mb-10 md:mb-0">
               <div className="md:sticky md:top-24">
-                <div className="relative">
-                  {/* Mobile: Flex row for Nav + Switchers */}
-                  <div className="flex items-center justify-between md:block">
+                <div>
+                  <h1 className="font-heading text-3xl md:text-4xl font-bold leading-tight text-primary">
+                    {isSwitchingLanguage ? (
+                      <TextSkeleton paragraphs={1} linesPerParagraph={1} />
+                    ) : (
+                      item.title
+                    )}
+                  </h1>
+                  {/* Breadcrumb kicker */}
+                  <p className="mt-4 font-heading uppercase text-xs tracking-wider text-secondary">
                     <NavigationLink
                       href="/#gallery"
-                      className="inline-flex items-center text-secondary hover:text-accent transition-colors font-body"
+                      className="hover:text-accent transition-colors"
                     >
-                      <span className="mr-2 font-heading">←</span>
-                      <span className="font-heading">
-                        {t("gallery.backToGallery")}
-                      </span>
+                      {t("gallery.section")}
                     </NavigationLink>
-
-                    {/* Mobile-only Switchers */}
-                    <div className="flex md:hidden items-center gap-4">
-                      <LanguageSwitcher />
-                    </div>
-                  </div>
-                  <div className="mt-8">
-                    <h1 className="font-heading text-3xl md:text-4xl font-bold mb-4 md:mb-8 text-primary">
-                      {isSwitchingLanguage ? (
-                        <TextSkeleton paragraphs={1} linesPerParagraph={1} />
-                      ) : (
-                        item.title
-                      )}
-                    </h1>
-                    <p className="text-secondary mb-6 md:mb-12 font-body">
-                      {new Date(item.date).toLocaleDateString(
-                        language === "zh-TW" ? "zh-TW" : "en-US",
-                        {
-                          year: "numeric",
-                          month: "long",
-                          day: "numeric",
-                        },
-                      )}
-                    </p>
-                  </div>
-                </div>
-                <div className="hidden md:flex items-center gap-6 mt-8 pt-8 border-t border-border">
-                  <LanguageSwitcher />
-                  <ThemeSwitcher />
+                    <span className="mx-2" aria-hidden="true">
+                      /
+                    </span>
+                    {new Date(item.date).toLocaleDateString(
+                      language === "zh-TW" ? "zh-TW" : "en-US",
+                      {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      },
+                    )}
+                  </p>
                 </div>
               </div>
             </div>
 
             {/* Right column - aligned with title */}
             <div className="md:col-span-8">
-              <div className="md:mt-14">
-                {/* Description area and attributes */}
+              <div>
+                {/* Metadata — its top rule sits level with the title */}
                 <div className="mb-16 md:mb-24">
-                  {hasDescription && (
-                    <p className="text-lg md:text-xl mb-10 md:mb-16 font-body text-primary">
-                      {isSwitchingLanguage ? (
-                        <TextSkeleton paragraphs={1} linesPerParagraph={2} />
-                      ) : (
-                        item.description
-                      )}
-                    </p>
-                  )}
-
-                  {/* Additional attributes in a grid */}
-                  <div
-                    className={`grid grid-cols-1 sm:grid-cols-2 gap-y-6 gap-x-8 md:gap-x-12 ${
-                      hasDescription ? "mb-16 md:mb-24" : "mt-0"
-                    } text-secondary`}
-                  >
-                    {item.camera && (
-                      <div>
-                        <p className="uppercase text-xs mb-1 font-heading text-secondary">
-                          {t("gallery.camera")}
-                        </p>
-                        <p className="font-body text-secondary">
-                          {item.camera}
-                        </p>
-                      </div>
-                    )}
-                    {item.lens && (
-                      <div>
-                        <p className="uppercase text-xs mb-1 font-heading text-secondary">
-                          {t("gallery.lens")}
-                        </p>
-                        <p className="font-body text-secondary">{item.lens}</p>
-                      </div>
-                    )}
-                    {item.location && (
-                      <div>
-                        <p className="uppercase text-xs mb-1 font-heading text-secondary">
-                          {t("gallery.location")}
-                        </p>
-                        <p className="font-body text-secondary">
-                          {item.location}
-                        </p>
-                      </div>
-                    )}
-                    {item.tags && item.tags.length > 0 && (
-                      <div>
-                        <p className="uppercase text-xs mb-1 font-heading text-secondary">
-                          {t("gallery.tags")}
-                        </p>
-                        <p className="font-body text-secondary">
-                          {item.tags.join(", ")}
-                        </p>
-                      </div>
-                    )}
-                  </div>
+                  <MetaList
+                    items={[
+                      hasDescription && {
+                        label: t("gallery.overview"),
+                        value: isSwitchingLanguage ? (
+                          <TextSkeleton paragraphs={1} linesPerParagraph={2} />
+                        ) : (
+                          item.description
+                        ),
+                      },
+                      item.camera && {
+                        label: t("gallery.camera"),
+                        value: item.camera,
+                      },
+                      item.lens && {
+                        label: t("gallery.lens"),
+                        value: item.lens,
+                      },
+                      item.location && {
+                        label: t("gallery.location"),
+                        value: item.location,
+                      },
+                      item.tags?.length && {
+                        label: t("gallery.tags"),
+                        value: item.tags.join(", "),
+                      },
+                    ]}
+                  />
                 </div>
 
                 {/* Main content */}

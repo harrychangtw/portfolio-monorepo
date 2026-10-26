@@ -60,17 +60,22 @@
   "projects": {
     "title": "精選專案",
     "backToProjects": "回到專案",
+    "section": "專案",
+    "overview": "概述",
     "noProjectsFound": "未找到專案。",
     "year": "年份",
     "role": "角色",
     "technologies": "技術",
     "client": "客戶",
     "website": "網站",
+    "links": "連結",
     "seeAll": "查看全部"
   },
   "gallery": {
     "title": "攝影作品",
     "backToGallery": "回到攝影作品",
+    "section": "攝影",
+    "overview": "概述",
     "noGalleryFound": "未找到攝影作品項目。",
     "camera": "相機",
     "lens": "鏡頭",
@@ -81,6 +86,9 @@
   "blog": {
     "title": "部落格",
     "backToBlog": "返回部落格",
+    "titleLabel": "標題",
+    "date": "日期",
+    "overview": "概述",
     "tags": "標籤",
     "noPostsFound": "尚無文章。",
     "latestWriting": "最新文章",

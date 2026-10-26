@@ -60,17 +60,22 @@
   "projects": {
     "title": "Projects",
     "backToProjects": "Back to projects",
+    "section": "Projects",
+    "overview": "Overview",
     "noProjectsFound": "No projects found.",
     "year": "Year",
     "role": "Role",
     "technologies": "Technologies",
     "client": "Client",
     "website": "Website",
+    "links": "Links",
     "seeAll": "See All"
   },
   "gallery": {
     "title": "Photo Gallery",
     "backToGallery": "Back to gallery",
+    "section": "Gallery",
+    "overview": "Overview",
     "noGalleryFound": "No gallery items found.",
     "camera": "Camera",
     "lens": "Lens",
@@ -81,6 +86,9 @@
   "blog": {
     "title": "Blog",
     "backToBlog": "Back to Blog",
+    "titleLabel": "Title",
+    "date": "Date",
+    "overview": "Overview",
     "tags": "Tags",
     "noPostsFound": "No posts found.",
     "latestWriting": "Latest Writing",

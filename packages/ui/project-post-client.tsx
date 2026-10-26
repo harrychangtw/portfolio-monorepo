@@ -22,6 +22,7 @@ import { CompareSlider } from "@portfolio/ui/compare-slider";
 import type { ProjectMetadata } from "@portfolio/lib/lib/markdown";
 import NextUpCard from "@portfolio/ui/next-up-card";
 import NavigationLink from "@portfolio/ui/navigation-link";
+import { MetaList } from "@portfolio/ui/meta-list";
 import { TableOfContents } from "@portfolio/ui/table-of-contents";
 
 interface ProjectPostClientProps {
@@ -191,34 +192,30 @@ export default function ProjectPostClient({
             <div className="md:col-span-4 mb-10 md:mb-0">
               <div className="md:sticky md:top-24 md:h-[calc(100vh-8rem)] md:flex md:flex-col md:justify-between">
                 <div>
-                  {/* Mobile: Flex row for Nav + Switchers. Desktop: Block */}
-                  <div className="flex items-center justify-between md:block">
-                    <NavigationLink
-                      href="/#projects"
-                      className="inline-flex items-center text-secondary hover:text-accent transition-colors"
-                    >
-                      <span className="mr-2 font-heading">←</span>
-                      <span className="font-heading">
-                        {t("projects.backToProjects")}
+                  <h1 className="font-heading text-3xl md:text-4xl font-bold leading-tight text-primary">
+                    {isSwitchingLanguage ? (
+                      <TextSkeleton paragraphs={1} linesPerParagraph={1} />
+                    ) : (
+                      project.title
+                    )}
+                  </h1>
+                  {/* Breadcrumb kicker; mobile shares the row with the language switcher */}
+                  <div className="flex items-center justify-between mt-4 md:mb-12">
+                    <p className="font-heading uppercase text-xs tracking-wider text-secondary">
+                      <NavigationLink
+                        href="/#projects"
+                        className="hover:text-accent transition-colors"
+                      >
+                        {t("projects.section")}
+                      </NavigationLink>
+                      <span className="mx-2" aria-hidden="true">
+                        /
                       </span>
-                    </NavigationLink>
-
-                    {/* Mobile-only Switchers in Nav Row */}
+                      {project.category}
+                    </p>
                     <div className="flex md:hidden items-center gap-4">
                       <LanguageSwitcher />
                     </div>
-                  </div>
-                  <div className="mt-8">
-                    <h1 className="font-heading text-3xl md:text-4xl font-bold mb-4 md:mb-8 text-primary">
-                      {isSwitchingLanguage ? (
-                        <TextSkeleton paragraphs={1} linesPerParagraph={1} />
-                      ) : (
-                        project.title
-                      )}
-                    </h1>
-                    <p className="font-body text-secondary uppercase text-sm mb-6 md:mb-12">
-                      {project.category}
-                    </p>
                   </div>
                 </div>
 
@@ -234,78 +231,69 @@ export default function ProjectPostClient({
 
             {/* Right column - aligned with title */}
             <div className="md:col-span-8">
-              <div className="md:mt-14">
-                {/* Description area */}
+              <div>
+                {/* Metadata — its top rule sits level with the title */}
                 <div className="mb-16 md:mb-24">
-                  <p className="font-body text-lg md:text-xl mb-10 md:mb-16 text-primary">
-                    {isSwitchingLanguage ? (
-                      <TextSkeleton paragraphs={1} linesPerParagraph={2} />
-                    ) : (
-                      project.description
-                    )}
-                  </p>
-
-                  {/* Additional attributes in a grid */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-y-6 gap-x-8 md:gap-x-4 mb-16 md:mb-24 text-secondary">
-                    {project.year && (
-                      <div>
-                        <p className="font-heading uppercase text-xs mb-1 text-secondary">
-                          {t("projects.year")}
-                        </p>
-                        <p className="font-body text-secondary">
-                          {project.year}
-                        </p>
-                      </div>
-                    )}
-                    {project.role && (
-                      <div>
-                        <p className="font-heading uppercase text-xs mb-1 text-secondary">
-                          {t("projects.role")}
-                        </p>
-                        <p className="font-body text-secondary">
-                          {project.role}
-                        </p>
-                      </div>
-                    )}
-                    {project.technologies &&
-                      project.technologies.length > 0 && (
-                        <div>
-                          <p className="font-heading uppercase text-xs mb-1 text-secondary">
-                            {t("projects.technologies")}
-                          </p>
-                          <p className="font-body text-secondary">
-                            {project.technologies.join(", ")}
-                          </p>
-                        </div>
-                      )}
-                    {project.client && (
-                      <div>
-                        <p className="font-heading uppercase text-xs mb-1 text-secondary">
-                          {t("projects.client")}
-                        </p>
-                        <p className="font-body text-secondary">
-                          {project.client}
-                        </p>
-                      </div>
-                    )}
-                    {project.website && (
-                      <div>
-                        <p className="font-heading uppercase text-xs mb-1 text-secondary">
-                          {t("projects.website")}
-                        </p>
-                        <p className="font-body text-secondary">
+                  <MetaList
+                    items={[
+                      project.description && {
+                        label: t("projects.overview"),
+                        value: isSwitchingLanguage ? (
+                          <TextSkeleton paragraphs={1} linesPerParagraph={2} />
+                        ) : (
+                          project.description
+                        ),
+                      },
+                      project.year && {
+                        label: t("projects.year"),
+                        value: project.year,
+                      },
+                      project.role && {
+                        label: t("projects.role"),
+                        value: project.role,
+                      },
+                      project.technologies?.length && {
+                        label: t("projects.technologies"),
+                        value: project.technologies.join(", "),
+                      },
+                      project.client && {
+                        label: t("projects.client"),
+                        value: project.client,
+                      },
+                      project.website && {
+                        label: t("projects.website"),
+                        value: (
                           <a
                             href={project.website}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="hover:underline hover:text-primary transition-colors"
+                            className="link-external"
                           >
                             {project.website.replace(/^https?:\/\//, "")}
                           </a>
-                        </p>
-                      </div>
-                    )}
-                  </div>
+                        ),
+                      },
+                      project.links?.length && {
+                        label: t("projects.links"),
+                        value: (
+                          <ul className="flex flex-wrap gap-x-5 gap-y-1">
+                            {project.links.map((link) => (
+                              <li key={link.url}>
+                                <a
+                                  href={link.url}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="link-external"
+                                >
+                                  {link.label}
+                                </a>
+                              </li>
+                            ))}
+                          </ul>
+                        ),
+                      },
+                    ]}
+                  />
                 </div>
 
                 {/* Main content */}

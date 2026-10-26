@@ -168,6 +168,8 @@ export interface ProjectMetadata {
   technologies?: string[];
   client?: string;
   website?: string;
+  // Artifacts behind the project (paper, code, dataset…), shown in the header
+  links?: { label: string; url: string }[];
   featured?: boolean;
   pinned?: number; // Changed from boolean to number, -1 for not pinned, positive numbers for pinning order
   locked?: boolean;
