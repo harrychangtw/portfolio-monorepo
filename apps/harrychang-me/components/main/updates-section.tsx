@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useLayoutEffect } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { useLanguage } from "@portfolio/lib/contexts/language-context";
 
@@ -52,13 +52,10 @@ export default function UpdatesSection() {
   const { t, getTranslationData } = useLanguage();
   const [currentPage, setCurrentPage] = useState(0);
 
-  // Stable container element (never unmounts)
-  const [containerEl, setContainerEl] = useState<HTMLDivElement | null>(null);
-  const setContainerRef = (node: HTMLDivElement | null) => setContainerEl(node);
-
-  const [height, setHeight] = useState<number>(0);
-  const [ready, setReady] = useState(false);
-  const [transitionsOn, setTransitionsOn] = useState(false);
+  // Measured content height. `null` until the first client measurement, so the
+  // server-rendered HTML lays out at its natural height (no CLS on hydration).
+  const [contentEl, setContentEl] = useState<HTMLDivElement | null>(null);
+  const [height, setHeight] = useState<number | null>(null);
 
   const updatesNamespaceData = getTranslationData("", "updates");
   const updates = updatesNamespaceData?.entries || [];
@@ -75,31 +72,18 @@ export default function UpdatesSection() {
       text: entry.text?.replace(/^\[.*?\]\s*/, "") || "",
     }));
 
-  // Initial measure (no transition) once content exists
-  useLayoutEffect(() => {
-    if (!containerEl) return;
-    // If we have updates, measure synchronously
-    if (updates.length > 0) {
-      const next = containerEl.scrollHeight;
-      setHeight(next); // eslint-disable-line react-hooks/set-state-in-effect
-      if (!ready) {
-        setReady(true);
-        const id = requestAnimationFrame(() => setTransitionsOn(true));
-        return () => cancelAnimationFrame(id);
-      }
-    }
-  }, [containerEl, updates.length, ready]);
-
-  // Observe the stable container for any size changes (enter/exit/new data/fonts)
+  // Track the inner content's natural height; the outer wrapper animates to it.
   useEffect(() => {
-    if (!containerEl) return;
-    const ro = new ResizeObserver(() => {
-      const next = containerEl.scrollHeight;
+    if (!contentEl) return;
+    const ro = new ResizeObserver(([entry]) => {
+      const next = Math.ceil(
+        entry.borderBoxSize?.[0]?.blockSize ?? contentEl.offsetHeight,
+      );
       setHeight((prev) => (prev !== next ? next : prev));
     });
-    ro.observe(containerEl);
+    ro.observe(contentEl);
     return () => ro.disconnect();
-  }, [containerEl]);
+  }, [contentEl]);
 
   // Optional: prefers-reduced-motion
   const [reduceMotion, setReduceMotion] = useState(false);
@@ -114,13 +98,6 @@ export default function UpdatesSection() {
   const handlePrevPage = () => setCurrentPage((p) => (p > 0 ? p - 1 : p));
   const handleNextPage = () =>
     setCurrentPage((p) => (p < totalPages - 1 ? p + 1 : p));
-
-  // Helper re-measure after animation completes (extra safety)
-  const handleAnimationComplete = () => {
-    if (!containerEl) return;
-    const next = containerEl.scrollHeight;
-    setHeight((prev) => (prev !== next ? next : prev));
-  };
 
   return (
     <section id="updates" className="py-12 md:py-16 border-b border-border">
@@ -155,48 +132,49 @@ export default function UpdatesSection() {
           </div>
         </div>
 
-        {/* Stable container that never unmounts */}
+        {/* Outer wrapper animates height; inner wrapper is measured */}
         <div
-          ref={setContainerRef}
           style={{
-            height: height,
+            height: height ?? "auto",
             overflow: "hidden",
-            visibility: ready ? "visible" : "hidden",
             transition:
-              transitionsOn && !reduceMotion
-                ? "height 0.4s ease-in-out"
+              height !== null && !reduceMotion
+                ? "height 0.35s cubic-bezier(0.22, 1, 0.36, 1)"
                 : "none",
-            willChange: "height",
           }}
         >
-          {/* Keyed page content lives inside, but the container remains stable */}
-          <AnimatePresence initial={false} mode="wait">
-            <motion.div
-              key={currentPage}
-              className="space-y-0"
-              initial={{ opacity: 0, y: 4 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -4 }}
-              transition={{ duration: reduceMotion ? 0 : 0.2, ease: "easeOut" }}
-              onAnimationComplete={handleAnimationComplete}
-            >
-              {currentEntries.map(
-                (entry: { text?: string; date?: string }, index: number) => (
-                  <div
-                    key={index}
-                    className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 sm:gap-4 py-3 first:pt-0 divider-subtle last:border-b-0"
-                  >
-                    <p className="font-ibm-plex text-sm text-primary leading-relaxed">
-                      {parseHtmlToReact(entry.text || "")}
-                    </p>
-                    <span className="font-mono text-xs text-secondary/50 whitespace-nowrap shrink-0">
-                      {entry.date || ""}
-                    </span>
-                  </div>
-                ),
-              )}
-            </motion.div>
-          </AnimatePresence>
+          <div ref={setContentEl}>
+            {/* Keyed page content lives inside, but the container remains stable */}
+            <AnimatePresence initial={false} mode="wait">
+              <motion.div
+                key={currentPage}
+                className="space-y-0"
+                initial={{ opacity: 0, y: 4 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -4 }}
+                transition={{
+                  duration: reduceMotion ? 0 : 0.2,
+                  ease: "easeOut",
+                }}
+              >
+                {currentEntries.map(
+                  (entry: { text?: string; date?: string }, index: number) => (
+                    <div
+                      key={index}
+                      className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 sm:gap-4 py-3 first:pt-0 divider-subtle last:border-b-0"
+                    >
+                      <p className="font-ibm-plex text-sm text-primary leading-relaxed">
+                        {parseHtmlToReact(entry.text || "")}
+                      </p>
+                      <span className="font-mono text-xs text-secondary/50 whitespace-nowrap shrink-0">
+                        {entry.date || ""}
+                      </span>
+                    </div>
+                  ),
+                )}
+              </motion.div>
+            </AnimatePresence>
+          </div>
         </div>
       </div>
     </section>
