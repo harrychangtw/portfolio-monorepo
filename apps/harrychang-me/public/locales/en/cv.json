@@ -161,6 +161,12 @@
           "meta": "",
           "date": "February 2026",
           "description": "Chi-Wei Chang, et al. — ISCSLP 2026; earlier version presented at EACL 2026 SRW"
+        },
+        {
+          "title": "Identically Trained Language Models Break on Different Jailbreaks",
+          "meta": "",
+          "date": "October 2026",
+          "description": "Chi-Wei Chang, et al. — arXiv preprint (arXiv:2610.34074)"
         }
       ]
     },
