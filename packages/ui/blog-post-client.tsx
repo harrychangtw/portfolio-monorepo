@@ -10,6 +10,7 @@ import TextSkeleton from "@portfolio/ui/text-skeleton";
 
 import { ImageContainer } from "@portfolio/ui/image-container";
 import { CompareSlider } from "@portfolio/ui/compare-slider";
+import { MarkdownChart } from "@portfolio/ui/charts/markdown-chart";
 import type { PostMetadata } from "@portfolio/lib/lib/markdown";
 import NextUpCard from "@portfolio/ui/next-up-card";
 import { MetaList } from "@portfolio/ui/meta-list";
@@ -167,6 +168,17 @@ export default function BlogPostClient({
   const renderHtml = (html: string) =>
     parse(html, {
       replace: (domNode) => {
+        if (
+          domNode instanceof Element &&
+          domNode.attribs?.class === "markdown-chart"
+        ) {
+          return (
+            <MarkdownChart
+              name={domNode.attribs["data-chart"]}
+              lang={post.slug.endsWith("_zh-tw") ? "zh-TW" : "en"}
+            />
+          );
+        }
         if (
           domNode instanceof Element &&
           domNode.attribs &&

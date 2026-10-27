@@ -19,6 +19,7 @@ const ThemeSwitcher = dynamic(() => import("@portfolio/ui/theme-switcher"), {
 });
 import { ImageContainer } from "@portfolio/ui/image-container";
 import { CompareSlider } from "@portfolio/ui/compare-slider";
+import { MarkdownChart } from "@portfolio/ui/charts/markdown-chart";
 import type { ProjectMetadata } from "@portfolio/lib/lib/markdown";
 import NextUpCard from "@portfolio/ui/next-up-card";
 import NavigationLink from "@portfolio/ui/navigation-link";
@@ -303,6 +304,19 @@ export default function ProjectPostClient({
                   ) : (
                     parse(project.contentHtml, {
                       replace: (domNode) => {
+                        if (
+                          domNode instanceof Element &&
+                          domNode.attribs?.class === "markdown-chart"
+                        ) {
+                          return (
+                            <MarkdownChart
+                              name={domNode.attribs["data-chart"]}
+                              lang={
+                                project.slug.endsWith("_zh-tw") ? "zh-TW" : "en"
+                              }
+                            />
+                          );
+                        }
                         if (
                           domNode instanceof Element &&
                           domNode.attribs &&
