@@ -7,11 +7,16 @@ imageUrl: "images/optimized/projects/2025_07_04_fortress_system/titlecard.webp"
 year: "2025"
 date: "2025-07-04"
 role: "第一作者"
-pinned: 1
+pinned: 2
 featured: true
 locked: false
 tooltip: "發表於 TMLR 的第一作者研究：一個無需訓練的高速 LLM 安全系統。"
 technologies: [PyTorch, ChromaDB, HF Transformers]
+links:
+  - label: "論文（TMLR）"
+    url: "https://openreview.net/pdf?id=lCn7RT9DGq"
+  - label: "程式碼（GitHub）"
+    url: "https://github.com/harrychangtw/fortress"
 ---
 
 大型語言模型（LLM）的世界正處於不斷變動的狀態。隨著模型變得越來越強大，用來攻擊它們的方法也日益精進。對於開發者和研究人員來說，確保 LLM 的安全性就像一場永無止境的貓捉老鼠遊戲。現有的安全分類器通常需要耗費大量資源進行 fine-tuning，這種運算成本高昂的方法在面對層出不窮的新型攻擊手法時顯得脆弱，且需要昂貴且耗時的訓練週期。

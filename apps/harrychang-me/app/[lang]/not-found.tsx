@@ -25,10 +25,12 @@ const destinations = [
 
   // Projects
   { label: "Projects", path: "/#projects" },
+  { label: "CASTOR", path: "/projects/castor" },
   { label: "FORTRESS", path: "/projects/2025_10_12_fortress" },
   { label: "PATCH Dataset", path: "/projects/2025_05_18_patch_dataset" },
   { label: "SITCON 2025", path: "/projects/2025_03_08_sitcon_keynote" },
   { label: "SITCON 2026", path: "/projects/sitcon-2026" },
+  { label: "SITCON Camp 2026", path: "/projects/sitcon-camp-2026" },
   { label: "Portfolio", path: "/projects/2025_04_12_portfolio" },
   { label: "Chingshin RAG", path: "/projects/2024_09_23_chingshin_rag" },
   {
@@ -40,6 +42,7 @@ const destinations = [
   { label: "Powerplay Drama 2025", path: "/projects/2025_01_03_powerplay" },
   { label: "AAAI Video", path: "/projects/2025_01_05_aaai_video" },
   { label: "WSDC Journey", path: "/projects/2025_08_04_debate" },
+  { label: "Graduation MV", path: "/projects/menghua-graduation-mv" },
 
   // Gallery
   { label: "Gallery", path: "/#gallery" },
@@ -80,6 +83,9 @@ const destinations = [
 
   // Blog
   { label: "Blog", path: "/#blog" },
+  { label: "Almost Unwritten", path: "/blog/17-noticing" },
+  { label: "All C", path: "/blog/16-all-c" },
+  { label: "Into the Rain", path: "/blog/15-rain" },
   { label: "Pho", path: "/blog/14-pho" },
   { label: "Chingshin", path: "/blog/13-chingshin" },
   { label: "US Trip", path: "/blog/12-us-trip" },

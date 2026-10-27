@@ -897,6 +897,38 @@
       "imageUrl": "images/optimized/projects/2025_07_04_fortress_system/titlecard.webp"
     },
     {
+      "id": "project-castor-en-file",
+      "title": "CASTOR Twin Study",
+      "snippet": "CASTOR is a twin study of 150 safety-trained language models. It shows that which jailbreaks break a model depends far more on its pretraining run tha...",
+      "nodeType": "file",
+      "sourceType": "project",
+      "sourceSlug": "castor",
+      "locale": "en",
+      "url": "https://www.harrychang.me/projects/castor",
+      "date": "2026-10-22",
+      "tags": [],
+      "heading": null,
+      "parentId": "hub-project-en",
+      "tldr": "150-model twin study: jailbreaks follow the pretraining run",
+      "imageUrl": "images/optimized/projects/castor/titlecard.webp"
+    },
+    {
+      "id": "project-castor-zh-TW-file",
+      "title": "CASTOR Twin Study",
+      "snippet": "CASTOR 是一項針對 150 個經過安全訓練的語言模型所做的雙胞胎研究。結果顯示，哪些越獄提示能攻破模型，取決於它的預訓練過程遠多於預訓練資料；在單一 checkpoint 上找到的越獄，主要只代表那一次訓練。",
+      "nodeType": "file",
+      "sourceType": "project",
+      "sourceSlug": "castor",
+      "locale": "zh-TW",
+      "url": "https://www.harrychang.me/projects/castor",
+      "date": "2026-10-22",
+      "tags": [],
+      "heading": null,
+      "parentId": "hub-project-zh-TW",
+      "tldr": "150 個模型的雙胞胎研究：越獄弱點取決於預訓練過程",
+      "imageUrl": "images/optimized/projects/castor/titlecard.webp"
+    },
+    {
       "id": "project-menghua-graduation-mv-en-file",
       "title": "夢華: Graduation Song MV",
       "snippet": "Sole cinematographer and editor for 夢華, the official graduation song MV for Chingshin's Class of 2026, shot and cut in under a month and screened at t...",
@@ -3790,7 +3822,7 @@
     {
       "id": "post-17-noticing-en-sec-18",
       "title": "What Did You Almost Not Write Down? - Acknowledgments",
-      "snippet": "cknowledgments  - Title image: *Cabinet of Curiosities (Lo Scarabattolo)* by Domenico Remps, 1690s, Museo dell'Opificio delle Pietre Dure, Florence, P...",
+      "snippet": "cknowledgments  - Title image: _Cabinet of Curiosities (Lo Scarabattolo)_ by Domenico Remps, 1690s, Museo dell'Opificio delle Pietre Dure, Florence, P...",
       "nodeType": "section",
       "sourceType": "post",
       "sourceSlug": "17-noticing",
@@ -10617,6 +10649,204 @@
       "imageUrl": "images/optimized/projects/2025_07_04_fortress_system/titlecard.webp"
     },
     {
+      "id": "project-castor-en-sec-0",
+      "title": "CASTOR Twin Study",
+      "snippet": "When an evaluation reveals that a model is vulnerable to a specific jailbreak, the typical assumption is that we've learned something structural about...",
+      "nodeType": "section",
+      "sourceType": "project",
+      "sourceSlug": "castor",
+      "locale": "en",
+      "url": "https://www.harrychang.me/projects/castor",
+      "date": "2026-10-22",
+      "tags": [],
+      "heading": null,
+      "parentId": "project-castor-en-file",
+      "tldr": "150-model twin study: jailbreaks follow the pretraining run",
+      "imageUrl": "images/optimized/projects/castor/titlecard.webp"
+    },
+    {
+      "id": "project-castor-en-sec-1",
+      "title": "CASTOR Twin Study - Experiment Design",
+      "snippet": "xperiment Design  To separate the effects of pretraining data from the pretraining run itself, we adopted a twin-study methodology. We started with 1B...",
+      "nodeType": "section",
+      "sourceType": "project",
+      "sourceSlug": "castor",
+      "locale": "en",
+      "url": "https://www.harrychang.me/projects/castor",
+      "date": "2026-10-22",
+      "tags": [],
+      "heading": "Experiment Design",
+      "parentId": "project-castor-en-file",
+      "tldr": "150 models from 25 recipes, compared as twins",
+      "imageUrl": "images/optimized/projects/castor/titlecard.webp",
+      "anchorId": "experiment-design"
+    },
+    {
+      "id": "project-castor-en-sec-2",
+      "title": "CASTOR Twin Study - How much does the run matter?",
+      "snippet": "ow much does the run matter?  Averaged across 25 data recipes, MZ twins have vulnerability profiles that correlate at **0.984**, meaning they break on...",
+      "nodeType": "section",
+      "sourceType": "project",
+      "sourceSlug": "castor",
+      "locale": "en",
+      "url": "https://www.harrychang.me/projects/castor",
+      "date": "2026-10-22",
+      "tags": [],
+      "heading": "How much does the run matter?",
+      "parentId": "project-castor-en-file",
+      "tldr": "Correlation 0.984 for twins, 0.811 across reruns",
+      "imageUrl": "images/optimized/projects/castor/titlecard.webp",
+      "anchorId": "how-much-does-the-run-matter"
+    },
+    {
+      "id": "project-castor-en-sec-3",
+      "title": "CASTOR Twin Study - Implications for red-teaming",
+      "snippet": "mplications for red-teaming  In practice, a red-teaming result is partly a result about one run. The best attack on one checkpoint stays the best afte...",
+      "nodeType": "section",
+      "sourceType": "project",
+      "sourceSlug": "castor",
+      "locale": "en",
+      "url": "https://www.harrychang.me/projects/castor",
+      "date": "2026-10-22",
+      "tags": [],
+      "heading": "Implications for red-teaming",
+      "parentId": "project-castor-en-file",
+      "tldr": "Best attacks rarely transfer; profiles fingerprint each run",
+      "imageUrl": "images/optimized/projects/castor/titlecard.webp",
+      "anchorId": "implications-for-red-teaming"
+    },
+    {
+      "id": "project-castor-en-sec-4",
+      "title": "CASTOR Twin Study - Beyond one checkpoint",
+      "snippet": "eyond one checkpoint  A jailbreak is usually read as a verdict on how a model was built, yet it is closer to a verdict on one particular run. Each run...",
+      "nodeType": "section",
+      "sourceType": "project",
+      "sourceSlug": "castor",
+      "locale": "en",
+      "url": "https://www.harrychang.me/projects/castor",
+      "date": "2026-10-22",
+      "tags": [],
+      "heading": "Beyond one checkpoint",
+      "parentId": "project-castor-en-file",
+      "tldr": "Data sets how often, the run decides where",
+      "imageUrl": "images/optimized/projects/castor/titlecard.webp",
+      "anchorId": "beyond-one-checkpoint"
+    },
+    {
+      "id": "project-castor-en-sec-5",
+      "title": "CASTOR Twin Study - Acknowledgments",
+      "snippet": "cknowledgments  This research was made possible by the computing resources of the National Center for High-Performance Computing (NCHC), National Inst...",
+      "nodeType": "section",
+      "sourceType": "project",
+      "sourceSlug": "castor",
+      "locale": "en",
+      "url": "https://www.harrychang.me/projects/castor",
+      "date": "2026-10-22",
+      "tags": [],
+      "heading": "Acknowledgments",
+      "parentId": "project-castor-en-file",
+      "tldr": "NCHC compute and Prof. Meng-Hsun Tsai's guidance",
+      "imageUrl": "images/optimized/projects/castor/titlecard.webp",
+      "anchorId": "acknowledgments"
+    },
+    {
+      "id": "project-castor-zh-TW-sec-0",
+      "title": "CASTOR Twin Study",
+      "snippet": "當評測發現某個模型會被特定的越獄（jailbreak）攻破時，我們通常會假設自己學到了關於它訓練方式的某種結構性事實：它的預訓練語料、對齊資料的組成，或是後訓練的排程。換一套配方，弱點就該跟著改變；配方完全相同，安全表現也應該維持一致。  這個假設忽略了預訓練本身的隨機性。在這項研究中，我們檢驗：用...",
+      "nodeType": "section",
+      "sourceType": "project",
+      "sourceSlug": "castor",
+      "locale": "zh-TW",
+      "url": "https://www.harrychang.me/projects/castor",
+      "date": "2026-10-22",
+      "tags": [],
+      "heading": null,
+      "parentId": "project-castor-zh-TW-file",
+      "tldr": "150 個模型的雙胞胎研究：越獄弱點取決於預訓練過程",
+      "imageUrl": "images/optimized/projects/castor/titlecard.webp"
+    },
+    {
+      "id": "project-castor-zh-TW-sec-1",
+      "title": "CASTOR Twin Study - 實驗設計",
+      "snippet": "驗設計  為了區分預訓練資料與預訓練過程本身的影響，我們採用雙胞胎研究的方法。我們從 Ai2 DataDecide 套件中的 1B 參數基礎模型出發：這些模型以 25 種資料配方預訓練，每種配方用三個隨機種子、在相同的 100B tokens 上訓練。我們再以 Tülu 3 作為安全配方，對這 75...",
+      "nodeType": "section",
+      "sourceType": "project",
+      "sourceSlug": "castor",
+      "locale": "zh-TW",
+      "url": "https://www.harrychang.me/projects/castor",
+      "date": "2026-10-22",
+      "tags": [],
+      "heading": "實驗設計",
+      "parentId": "project-castor-zh-TW-file",
+      "tldr": "25 種配方、150 個模型的雙胞胎比較",
+      "imageUrl": "images/optimized/projects/castor/titlecard.webp"
+    },
+    {
+      "id": "project-castor-zh-TW-sec-2",
+      "title": "CASTOR Twin Study - 預訓練過程有多重要？",
+      "snippet": "訓練過程有多重要？  在 25 種資料配方上平均，MZ 雙胞胎的脆弱度剖面相關係數為 **0.984**，代表它們幾乎被完全相同的提示攻破。換一個預訓練種子，相關係數就大幅降到 **0.811**；而整個換掉資料配方，也只再稍微降到 **0.779**。以相關係數來看，換一次預訓練對脆弱度剖面的影響...",
+      "nodeType": "section",
+      "sourceType": "project",
+      "sourceSlug": "castor",
+      "locale": "zh-TW",
+      "url": "https://www.harrychang.me/projects/castor",
+      "date": "2026-10-22",
+      "tags": [],
+      "heading": "預訓練過程有多重要？",
+      "parentId": "project-castor-zh-TW-file",
+      "tldr": "雙胞胎相關 0.984，同資料重訓僅 0.811",
+      "imageUrl": "images/optimized/projects/castor/titlecard.webp"
+    },
+    {
+      "id": "project-castor-zh-TW-sec-3",
+      "title": "CASTOR Twin Study - 對紅隊測試的意涵",
+      "snippet": "紅隊測試的意涵  實務上，一份紅隊測試結果有一部分只是關於某一次訓練的結果。在某個 checkpoint 上最有效的攻擊，換一個後訓練種子後仍是最有效的比例為 **67%**，但換一個預訓練種子後只剩 **27%**。因此，以相同資料重新訓練的模型可能需要重新進行紅隊測試，而評測結果也最好綜合多次訓...",
+      "nodeType": "section",
+      "sourceType": "project",
+      "sourceSlug": "castor",
+      "locale": "zh-TW",
+      "url": "https://www.harrychang.me/projects/castor",
+      "date": "2026-10-22",
+      "tags": [],
+      "heading": "對紅隊測試的意涵",
+      "parentId": "project-castor-zh-TW-file",
+      "tldr": "最強攻擊難以延續，回應可辨認訓練來源",
+      "imageUrl": "images/optimized/projects/castor/titlecard.webp"
+    },
+    {
+      "id": "project-castor-zh-TW-sec-4",
+      "title": "CASTOR Twin Study - 超越單一 checkpoint",
+      "snippet": "越單一 checkpoint  越獄通常被解讀為對模型「怎麼被做出來」的判決，但它其實更接近對某一次特定訓練的判決。每一次訓練都會形成自己的弱點，穩定到足以撐過新的安全訓練，也獨特到足以和兄弟模型區分開來。資料配方仍決定模型被攻破的頻率，但訓練過程決定它在哪裡被攻破。一個在某個 checkpoint...",
+      "nodeType": "section",
+      "sourceType": "project",
+      "sourceSlug": "castor",
+      "locale": "zh-TW",
+      "url": "https://www.harrychang.me/projects/castor",
+      "date": "2026-10-22",
+      "tags": [],
+      "heading": "超越單一 checkpoint",
+      "parentId": "project-castor-zh-TW-file",
+      "tldr": "資料決定多常被攻破，訓練決定在哪裡",
+      "imageUrl": "images/optimized/projects/castor/titlecard.webp",
+      "anchorId": "-checkpoint"
+    },
+    {
+      "id": "project-castor-zh-TW-sec-5",
+      "title": "CASTOR Twin Study - 致謝",
+      "snippet": "謝  本研究承蒙國家實驗研究院國家高速網路與計算中心（NCHC）提供計算資源。感謝國立陽明交通大學蔡孟勳教授作為共同作者給予的指導。",
+      "nodeType": "section",
+      "sourceType": "project",
+      "sourceSlug": "castor",
+      "locale": "zh-TW",
+      "url": "https://www.harrychang.me/projects/castor",
+      "date": "2026-10-22",
+      "tags": [],
+      "heading": "致謝",
+      "parentId": "project-castor-zh-TW-file",
+      "tldr": "感謝國網中心算力與蔡孟勳教授指導",
+      "imageUrl": "images/optimized/projects/castor/titlecard.webp"
+    },
+    {
       "id": "project-menghua-graduation-mv-en-sec-0",
       "title": "夢華: Graduation Song MV",
       "snippet": "![The full 4:43 video, screened at the Class of 2026 graduation ceremony](https://www.youtube.com/watch?v=vpzEcgt6bNY)",
@@ -12008,7 +12238,7 @@
     {
       "id": "locale-updates-zh-TW-0",
       "title": "Updates",
-      "snippet": "2026-08-21: [研究] 共同一作論文 PATCH 錄取於 ISCSLP 2026 2026-08-13: [活動] 回到靜心高中進行 20 分鐘特殊選才與升學經驗分享 2026-07-30: [活動] 於 AI WAVE SHOW 2026 的 AIGO 計畫成果發表會擔任校友分享 202...",
+      "snippet": "2026-10-25: [研究] 第一作者論文 CASTOR 發表於 arXiv：訓練方式完全相同的語言模型，會被不同的越獄攻破 2026-08-21: [研究] 共同一作論文 PATCH 錄取於 ISCSLP 2026 2026-08-13: [活動] 回到靜心高中進行 20 分鐘特殊選才與升學經...",
       "nodeType": "section",
       "sourceType": "locale",
       "sourceSlug": "updates",
@@ -12158,7 +12388,7 @@
     {
       "id": "locale-updates-en-0",
       "title": "Updates",
-      "snippet": "2026-08-21: [Research] Co-first-authored paper PATCH accepted to ISCSLP 2026 2026-08-13: [Activity] Returned to Chingshin Academy to give a 20-minute ...",
+      "snippet": "2026-10-25: [Research] Released my first-author paper CASTOR on arXiv: identically trained language models break on different jailbreaks 2026-08-21: [...",
       "nodeType": "section",
       "sourceType": "locale",
       "sourceSlug": "updates",
@@ -17143,6 +17373,72 @@
       "parentId": "project-2025_10_12_fortress-zh-TW-file",
       "imageUrl": "images/optimized/projects/2025_07_04_fortress_system/titlecard.webp",
       "mediaSource": "images/optimized/projects/2025_07_04_fortress_system/titlecard.webp"
+    },
+    {
+      "id": "project-castor-en-sec-1-img-0",
+      "title": "CASTOR's study design. Two pretraining seeds of one data rec",
+      "snippet": "",
+      "nodeType": "image",
+      "sourceType": "project",
+      "sourceSlug": "castor",
+      "locale": "en",
+      "url": "https://www.harrychang.me/projects/castor",
+      "date": "2026-10-22",
+      "tags": [],
+      "heading": "Experiment Design",
+      "parentId": "project-castor-en-sec-1",
+      "imageUrl": "images/optimized/projects/castor/castor_study_design.webp",
+      "mediaSource": "images/optimized/projects/castor/castor_study_design.webp",
+      "anchorId": "img-0"
+    },
+    {
+      "id": "project-castor-en-img-cover",
+      "title": "CASTOR Twin Study (cover)",
+      "snippet": "",
+      "nodeType": "image",
+      "sourceType": "project",
+      "sourceSlug": "castor",
+      "locale": "en",
+      "url": "https://www.harrychang.me/projects/castor",
+      "date": "2026-10-22",
+      "tags": [],
+      "heading": null,
+      "parentId": "project-castor-en-file",
+      "imageUrl": "images/optimized/projects/castor/titlecard.webp",
+      "mediaSource": "images/optimized/projects/castor/titlecard.webp"
+    },
+    {
+      "id": "project-castor-zh-TW-sec-1-img-0",
+      "title": "CASTOR 的研究設計。同一資料配方的兩個預訓練種子產生兩個基礎模型，每個基礎模型再以兩個後訓練種子接受相同的安全後訓",
+      "snippet": "",
+      "nodeType": "image",
+      "sourceType": "project",
+      "sourceSlug": "castor",
+      "locale": "zh-TW",
+      "url": "https://www.harrychang.me/projects/castor",
+      "date": "2026-10-22",
+      "tags": [],
+      "heading": "實驗設計",
+      "parentId": "project-castor-zh-TW-sec-1",
+      "imageUrl": "images/optimized/projects/castor/castor_study_design.webp",
+      "mediaSource": "images/optimized/projects/castor/castor_study_design.webp",
+      "anchorId": "img-0"
+    },
+    {
+      "id": "project-castor-zh-TW-img-cover",
+      "title": "CASTOR Twin Study (cover)",
+      "snippet": "",
+      "nodeType": "image",
+      "sourceType": "project",
+      "sourceSlug": "castor",
+      "locale": "zh-TW",
+      "url": "https://www.harrychang.me/projects/castor",
+      "date": "2026-10-22",
+      "tags": [],
+      "heading": null,
+      "parentId": "project-castor-zh-TW-file",
+      "imageUrl": "images/optimized/projects/castor/titlecard.webp",
+      "mediaSource": "images/optimized/projects/castor/titlecard.webp"
     },
     {
       "id": "project-menghua-graduation-mv-en-sec-3-img-0",
@@ -27961,6 +28257,102 @@
       "linkType": "structural"
     },
     {
+      "source": "project-castor-en-file",
+      "target": "project-castor-en-sec-0",
+      "weight": 1.0,
+      "linkType": "structural"
+    },
+    {
+      "source": "project-castor-en-file",
+      "target": "project-castor-en-sec-1",
+      "weight": 1.0,
+      "linkType": "structural"
+    },
+    {
+      "source": "project-castor-en-sec-1",
+      "target": "project-castor-en-sec-1-img-0",
+      "weight": 0.8,
+      "linkType": "structural"
+    },
+    {
+      "source": "project-castor-en-file",
+      "target": "project-castor-en-sec-2",
+      "weight": 1.0,
+      "linkType": "structural"
+    },
+    {
+      "source": "project-castor-en-file",
+      "target": "project-castor-en-sec-3",
+      "weight": 1.0,
+      "linkType": "structural"
+    },
+    {
+      "source": "project-castor-en-file",
+      "target": "project-castor-en-sec-4",
+      "weight": 1.0,
+      "linkType": "structural"
+    },
+    {
+      "source": "project-castor-en-file",
+      "target": "project-castor-en-sec-5",
+      "weight": 1.0,
+      "linkType": "structural"
+    },
+    {
+      "source": "project-castor-en-file",
+      "target": "project-castor-en-img-cover",
+      "weight": 0.8,
+      "linkType": "structural"
+    },
+    {
+      "source": "project-castor-zh-TW-file",
+      "target": "project-castor-zh-TW-sec-0",
+      "weight": 1.0,
+      "linkType": "structural"
+    },
+    {
+      "source": "project-castor-zh-TW-file",
+      "target": "project-castor-zh-TW-sec-1",
+      "weight": 1.0,
+      "linkType": "structural"
+    },
+    {
+      "source": "project-castor-zh-TW-sec-1",
+      "target": "project-castor-zh-TW-sec-1-img-0",
+      "weight": 0.8,
+      "linkType": "structural"
+    },
+    {
+      "source": "project-castor-zh-TW-file",
+      "target": "project-castor-zh-TW-sec-2",
+      "weight": 1.0,
+      "linkType": "structural"
+    },
+    {
+      "source": "project-castor-zh-TW-file",
+      "target": "project-castor-zh-TW-sec-3",
+      "weight": 1.0,
+      "linkType": "structural"
+    },
+    {
+      "source": "project-castor-zh-TW-file",
+      "target": "project-castor-zh-TW-sec-4",
+      "weight": 1.0,
+      "linkType": "structural"
+    },
+    {
+      "source": "project-castor-zh-TW-file",
+      "target": "project-castor-zh-TW-sec-5",
+      "weight": 1.0,
+      "linkType": "structural"
+    },
+    {
+      "source": "project-castor-zh-TW-file",
+      "target": "project-castor-zh-TW-img-cover",
+      "weight": 0.8,
+      "linkType": "structural"
+    },
+    {
       "source": "project-menghua-graduation-mv-en-file",
       "target": "project-menghua-graduation-mv-en-sec-0",
       "weight": 1.0,
@@ -30380,6 +30772,12 @@
     },
     {
       "source": "hub-project-en",
+      "target": "project-castor-en-file",
+      "weight": 1.0,
+      "linkType": "structural"
+    },
+    {
+      "source": "hub-project-en",
       "target": "project-menghua-graduation-mv-en-file",
       "weight": 1.0,
       "linkType": "structural"
@@ -30459,6 +30857,12 @@
     {
       "source": "hub-project-zh-TW",
       "target": "project-2025_10_12_fortress-zh-TW-file",
+      "weight": 1.0,
+      "linkType": "structural"
+    },
+    {
+      "source": "hub-project-zh-TW",
+      "target": "project-castor-zh-TW-file",
       "weight": 1.0,
       "linkType": "structural"
     },
@@ -32335,6 +32739,12 @@
       "linkType": "semantic"
     },
     {
+      "source": "project-castor-en-img-cover",
+      "target": "project-castor-zh-TW-img-cover",
+      "weight": 1.0,
+      "linkType": "semantic"
+    },
+    {
       "source": "project-sitcon-camp-2026-en-sec-1-img-1",
       "target": "project-sitcon-camp-2026-zh-TW-sec-1-img-1",
       "weight": 1.0,
@@ -33259,6 +33669,12 @@
       "linkType": "semantic"
     },
     {
+      "source": "project-castor-en-sec-1-img-0",
+      "target": "project-castor-zh-TW-sec-1-img-0",
+      "weight": 1.0,
+      "linkType": "semantic"
+    },
+    {
       "source": "gallery-2023_07_07_splash_of_red-en-img-cover",
       "target": "gallery-2023_07_07_splash_of_red-zh-TW-img-cover",
       "weight": 1.0,
@@ -34159,6 +34575,12 @@
       "linkType": "semantic"
     },
     {
+      "source": "locale-updates-zh-TW-0",
+      "target": "locale-updates-en-0",
+      "weight": 0.9802,
+      "linkType": "semantic"
+    },
+    {
       "source": "gallery-2023_07_07_splash_of_red-en-file",
       "target": "gallery-2023_07_07_splash_of_red-en-sec-0",
       "weight": 0.9801,
@@ -34249,6 +34671,12 @@
       "linkType": "semantic"
     },
     {
+      "source": "project-castor-en-file",
+      "target": "project-castor-en-sec-0",
+      "weight": 0.979,
+      "linkType": "semantic"
+    },
+    {
       "source": "post-13-chingshin-en-file",
       "target": "post-13-chingshin-en-sec-0",
       "weight": 0.9788,
@@ -34269,12 +34697,6 @@
     {
       "source": "post-2025_12_19_xpro1-en-file",
       "target": "post-2025_12_19_xpro1-en-sec-0-0",
-      "weight": 0.9782,
-      "linkType": "semantic"
-    },
-    {
-      "source": "locale-updates-zh-TW-0",
-      "target": "locale-updates-en-0",
       "weight": 0.9782,
       "linkType": "semantic"
     },
@@ -34543,6 +34965,12 @@
       "linkType": "semantic"
     },
     {
+      "source": "locale-about-zh-TW-0",
+      "target": "locale-about-en-0",
+      "weight": 0.9702,
+      "linkType": "semantic"
+    },
+    {
       "source": "project-2024_08_19_classics_reimagined-zh-TW-sec-2-2",
       "target": "project-2024_08_19_classics_reimagined-zh-TW-sec-2-2-1",
       "weight": 0.9701,
@@ -34603,9 +35031,9 @@
       "linkType": "semantic"
     },
     {
-      "source": "locale-about-zh-TW-0",
-      "target": "locale-about-en-0",
-      "weight": 0.969,
+      "source": "project-castor-zh-TW-file",
+      "target": "project-castor-zh-TW-sec-0",
+      "weight": 0.9689,
       "linkType": "semantic"
     },
     {
@@ -34861,6 +35289,12 @@
       "linkType": "semantic"
     },
     {
+      "source": "project-castor-zh-TW-sec-0",
+      "target": "project-castor-zh-TW-sec-4",
+      "weight": 0.9645,
+      "linkType": "semantic"
+    },
+    {
       "source": "project-2025_08_04_debate-zh-TW-sec-2",
       "target": "project-2025_08_04_debate-zh-TW-sec-2-1",
       "weight": 0.9644,
@@ -34875,6 +35309,12 @@
     {
       "source": "post-2026_02_10_synecdoche_truman-zh-TW-file",
       "target": "post-2026_02_10_synecdoche_truman-zh-TW-sec-0-3",
+      "weight": 0.9642,
+      "linkType": "semantic"
+    },
+    {
+      "source": "project-castor-en-sec-0",
+      "target": "project-castor-zh-TW-sec-0",
       "weight": 0.9642,
       "linkType": "semantic"
     },
@@ -35347,6 +35787,18 @@
       "linkType": "semantic"
     },
     {
+      "source": "project-castor-en-sec-5",
+      "target": "project-castor-zh-TW-sec-5",
+      "weight": 0.9563,
+      "linkType": "semantic"
+    },
+    {
+      "source": "project-castor-en-sec-0",
+      "target": "project-castor-en-sec-4",
+      "weight": 0.9563,
+      "linkType": "semantic"
+    },
+    {
       "source": "post-2025_12_22_aftersun_paris_texas-en-sec-0-5",
       "target": "post-2025_12_22_aftersun_paris_texas-en-sec-0-6",
       "weight": 0.9562,
@@ -35761,6 +36213,12 @@
       "linkType": "semantic"
     },
     {
+      "source": "project-castor-zh-TW-file",
+      "target": "project-castor-zh-TW-sec-4",
+      "weight": 0.952,
+      "linkType": "semantic"
+    },
+    {
       "source": "post-2025_12_14_affinity-zh-TW-sec-0-1",
       "target": "post-2025_12_14_affinity-zh-TW-sec-0-7",
       "weight": 0.952,
@@ -35848,6 +36306,12 @@
       "source": "project-2025_05_18_patch_dataset-en-file",
       "target": "project-2025_05_18_patch_dataset-zh-TW-sec-0",
       "weight": 0.9514,
+      "linkType": "semantic"
+    },
+    {
+      "source": "project-castor-en-sec-4",
+      "target": "project-castor-zh-TW-sec-4",
+      "weight": 0.9513,
       "linkType": "semantic"
     },
     {
@@ -36979,6 +37443,12 @@
       "linkType": "semantic"
     },
     {
+      "source": "project-castor-en-file",
+      "target": "project-castor-zh-TW-sec-0",
+      "weight": 0.9436,
+      "linkType": "semantic"
+    },
+    {
       "source": "gallery-2023_12_30_against_the_unknown-zh-TW-file",
       "target": "gallery-2023_12_30_against_the_unknown-en-sec-0",
       "weight": 0.9435,
@@ -37171,6 +37641,12 @@
       "linkType": "semantic"
     },
     {
+      "source": "project-castor-en-file",
+      "target": "project-castor-en-sec-4",
+      "weight": 0.9423,
+      "linkType": "semantic"
+    },
+    {
       "source": "post-2025_12_14_affinity-en-sec-0-0",
       "target": "post-2025_12_14_affinity-en-sec-0-5",
       "weight": 0.9422,
@@ -37185,6 +37661,18 @@
     {
       "source": "project-menghua-graduation-mv-zh-TW-file",
       "target": "project-menghua-graduation-mv-zh-TW-sec-3",
+      "weight": 0.9422,
+      "linkType": "semantic"
+    },
+    {
+      "source": "project-castor-en-file",
+      "target": "project-castor-zh-TW-file",
+      "weight": 0.9422,
+      "linkType": "semantic"
+    },
+    {
+      "source": "project-castor-en-sec-1",
+      "target": "project-castor-zh-TW-sec-1",
       "weight": 0.9422,
       "linkType": "semantic"
     },
@@ -37221,6 +37709,12 @@
     {
       "source": "post-2025_12_19_xpro1-en-sec-0-1",
       "target": "post-2025_12_19_xpro1-zh-TW-sec-0-1",
+      "weight": 0.942,
+      "linkType": "semantic"
+    },
+    {
+      "source": "project-castor-en-sec-0",
+      "target": "project-castor-zh-TW-sec-4",
       "weight": 0.942,
       "linkType": "semantic"
     },
@@ -37369,6 +37863,12 @@
       "linkType": "semantic"
     },
     {
+      "source": "project-castor-zh-TW-sec-0",
+      "target": "project-castor-zh-TW-sec-2",
+      "weight": 0.941,
+      "linkType": "semantic"
+    },
+    {
       "source": "project-menghua-graduation-mv-zh-TW-file",
       "target": "project-menghua-graduation-mv-zh-TW-sec-4",
       "weight": 0.9409,
@@ -37408,6 +37908,12 @@
       "source": "post-2025_12_22_aftersun_paris_texas-zh-TW-sec-0-5",
       "target": "post-2025_12_22_aftersun_paris_texas-zh-TW-sec-0-6",
       "weight": 0.9403,
+      "linkType": "semantic"
+    },
+    {
+      "source": "project-castor-zh-TW-file",
+      "target": "project-castor-en-sec-0",
+      "weight": 0.9402,
       "linkType": "semantic"
     },
     {
@@ -37696,6 +38202,12 @@
       "source": "post-10-lego-mount-en-sec-0-2",
       "target": "post-10-lego-mount-en-sec-0-7",
       "weight": 0.9386,
+      "linkType": "semantic"
+    },
+    {
+      "source": "project-castor-en-sec-4",
+      "target": "project-castor-zh-TW-sec-0",
+      "weight": 0.9385,
       "linkType": "semantic"
     },
     {
@@ -38419,6 +38931,12 @@
       "linkType": "semantic"
     },
     {
+      "source": "project-castor-en-sec-0",
+      "target": "project-castor-en-sec-3",
+      "weight": 0.934,
+      "linkType": "semantic"
+    },
+    {
       "source": "gallery-2024_04_06_city_of_tears-en-file",
       "target": "gallery-2024_04_06_city_of_tears-zh-TW-file",
       "weight": 0.934,
@@ -38725,6 +39243,12 @@
       "linkType": "semantic"
     },
     {
+      "source": "project-castor-en-sec-3",
+      "target": "project-castor-zh-TW-sec-3",
+      "weight": 0.9322,
+      "linkType": "semantic"
+    },
+    {
       "source": "project-2024_08_19_classics_reimagined-zh-TW-sec-2",
       "target": "project-2024_08_19_classics_reimagined-zh-TW-sec-2-2-0",
       "weight": 0.9321,
@@ -38917,6 +39441,12 @@
       "linkType": "semantic"
     },
     {
+      "source": "project-castor-zh-TW-sec-0",
+      "target": "project-castor-zh-TW-sec-3",
+      "weight": 0.9307,
+      "linkType": "semantic"
+    },
+    {
       "source": "post-2025_12_19_xpro1-en-sec-0-1",
       "target": "post-2025_12_19_xpro1-en-sec-0-4",
       "weight": 0.9306,
@@ -39037,6 +39567,12 @@
       "linkType": "semantic"
     },
     {
+      "source": "project-castor-en-file",
+      "target": "project-castor-zh-TW-sec-4",
+      "weight": 0.9298,
+      "linkType": "semantic"
+    },
+    {
       "source": "post-2026_02_10_synecdoche_truman-en-sec-0-1",
       "target": "post-2026_02_10_synecdoche_truman-en-sec-0-3",
       "weight": 0.9298,
@@ -39069,6 +39605,12 @@
     {
       "source": "project-menghua-graduation-mv-zh-TW-sec-2",
       "target": "project-menghua-graduation-mv-zh-TW-sec-4",
+      "weight": 0.9296,
+      "linkType": "semantic"
+    },
+    {
+      "source": "project-castor-en-sec-3",
+      "target": "project-castor-en-sec-4",
       "weight": 0.9296,
       "linkType": "semantic"
     },
@@ -39397,6 +39939,12 @@
       "linkType": "semantic"
     },
     {
+      "source": "project-castor-en-file",
+      "target": "project-castor-en-sec-3",
+      "weight": 0.928,
+      "linkType": "semantic"
+    },
+    {
       "source": "project-2025_03_08_sitcon_keynote-en-sec-1",
       "target": "project-2025_03_08_sitcon_keynote-zh-TW-sec-1",
       "weight": 0.928,
@@ -39465,6 +40013,12 @@
     {
       "source": "post-14-pho-en-sec-0",
       "target": "post-14-pho-en-sec-4",
+      "weight": 0.9275,
+      "linkType": "semantic"
+    },
+    {
+      "source": "project-castor-en-sec-2",
+      "target": "project-castor-en-sec-4",
       "weight": 0.9275,
       "linkType": "semantic"
     },
@@ -39634,6 +40188,12 @@
       "source": "project-2025_05_18_patch_dataset-en-sec-0-3",
       "target": "project-2025_05_18_patch_dataset-en-sec-0-3-2",
       "weight": 0.9263,
+      "linkType": "semantic"
+    },
+    {
+      "source": "project-castor-zh-TW-sec-2",
+      "target": "project-castor-zh-TW-sec-4",
+      "weight": 0.9261,
       "linkType": "semantic"
     },
     {
@@ -39993,6 +40553,12 @@
     {
       "source": "project-menghua-graduation-mv-en-sec-0",
       "target": "project-menghua-graduation-mv-en-sec-4",
+      "weight": 0.9243,
+      "linkType": "semantic"
+    },
+    {
+      "source": "project-castor-zh-TW-file",
+      "target": "project-castor-zh-TW-sec-3",
       "weight": 0.9243,
       "linkType": "semantic"
     },
@@ -40393,6 +40959,12 @@
       "linkType": "semantic"
     },
     {
+      "source": "project-castor-en-sec-2",
+      "target": "project-castor-zh-TW-sec-2",
+      "weight": 0.9217,
+      "linkType": "semantic"
+    },
+    {
       "source": "project-2025_01_03_powerplay-en-sec-0",
       "target": "project-2025_01_03_powerplay-en-sec-1",
       "weight": 0.9217,
@@ -40521,6 +41093,12 @@
     {
       "source": "post-10-lego-mount-en-sec-0-4",
       "target": "post-10-lego-mount-zh-TW-sec-0-4",
+      "weight": 0.9207,
+      "linkType": "semantic"
+    },
+    {
+      "source": "project-castor-en-sec-0",
+      "target": "project-castor-en-sec-2",
       "weight": 0.9207,
       "linkType": "semantic"
     },
@@ -40957,6 +41535,12 @@
       "linkType": "semantic"
     },
     {
+      "source": "project-castor-zh-TW-file",
+      "target": "project-castor-zh-TW-sec-2",
+      "weight": 0.9179,
+      "linkType": "semantic"
+    },
+    {
       "source": "project-2025_10_12_fortress-zh-TW-sec-0-3-0",
       "target": "project-2025_10_12_fortress-zh-TW-sec-0-3-3",
       "weight": 0.9178,
@@ -41155,6 +41739,12 @@
       "linkType": "semantic"
     },
     {
+      "source": "project-castor-zh-TW-sec-3",
+      "target": "project-castor-zh-TW-sec-4",
+      "weight": 0.9168,
+      "linkType": "semantic"
+    },
+    {
       "source": "post-9_m11d-zh-TW-sec-4",
       "target": "post-9_m11d-zh-TW-sec-6",
       "weight": 0.9168,
@@ -41266,6 +41856,12 @@
       "source": "project-2025_05_18_patch_dataset-en-sec-0-3",
       "target": "project-2025_05_18_patch_dataset-en-sec-0-3-3",
       "weight": 0.916,
+      "linkType": "semantic"
+    },
+    {
+      "source": "project-castor-en-sec-3",
+      "target": "project-castor-zh-TW-sec-0",
+      "weight": 0.9159,
       "linkType": "semantic"
     },
     {
@@ -41557,8 +42153,8 @@
       "linkType": "semantic"
     },
     {
-      "source": "post-17-noticing-en-sec-18",
-      "target": "post-17-noticing-zh-TW-sec-18",
+      "source": "project-castor-zh-TW-sec-2",
+      "target": "project-castor-zh-TW-sec-3",
       "weight": 0.914,
       "linkType": "semantic"
     },
@@ -41593,8 +42189,20 @@
       "linkType": "semantic"
     },
     {
+      "source": "project-castor-zh-TW-file",
+      "target": "project-castor-en-sec-4",
+      "weight": 0.9138,
+      "linkType": "semantic"
+    },
+    {
       "source": "post-13-chingshin-en-sec-3",
       "target": "post-13-chingshin-zh-TW-sec-3",
+      "weight": 0.9138,
+      "linkType": "semantic"
+    },
+    {
+      "source": "project-castor-zh-TW-file",
+      "target": "project-castor-en-sec-3",
       "weight": 0.9138,
       "linkType": "semantic"
     },
@@ -41685,6 +42293,12 @@
     {
       "source": "gallery-2024_02_09_mortal_sparks-en-sec-0",
       "target": "gallery-2024_02_09_mortal_sparks-zh-TW-sec-0",
+      "weight": 0.9131,
+      "linkType": "semantic"
+    },
+    {
+      "source": "project-castor-en-sec-2",
+      "target": "project-castor-en-sec-3",
       "weight": 0.9131,
       "linkType": "semantic"
     },
@@ -41875,6 +42489,12 @@
       "linkType": "semantic"
     },
     {
+      "source": "project-castor-en-file",
+      "target": "project-castor-en-sec-2",
+      "weight": 0.9118,
+      "linkType": "semantic"
+    },
+    {
       "source": "project-2024_10_09_vrc_2813b_nova-zh-TW-sec-3",
       "target": "project-2024_10_09_vrc_2813b_nova-zh-TW-sec-4",
       "weight": 0.9116,
@@ -41895,6 +42515,12 @@
     {
       "source": "project-2024_08_19_classics_reimagined-en-sec-5",
       "target": "project-2024_08_19_classics_reimagined-zh-TW-sec-5",
+      "weight": 0.9114,
+      "linkType": "semantic"
+    },
+    {
+      "source": "post-17-noticing-en-sec-18",
+      "target": "post-17-noticing-zh-TW-sec-18",
       "weight": 0.9114,
       "linkType": "semantic"
     },
@@ -42499,6 +43125,12 @@
       "linkType": "semantic"
     },
     {
+      "source": "project-castor-en-sec-0",
+      "target": "project-castor-en-sec-1",
+      "weight": 0.908,
+      "linkType": "semantic"
+    },
+    {
       "source": "post-14-pho-zh-TW-sec-2",
       "target": "post-14-pho-zh-TW-sec-5",
       "weight": 0.908,
@@ -43053,6 +43685,12 @@
     {
       "source": "post-12-us-trip-zh-TW-file",
       "target": "post-12-us-trip-zh-TW-sec-4",
+      "weight": 0.9041,
+      "linkType": "semantic"
+    },
+    {
+      "source": "project-castor-en-sec-3",
+      "target": "project-castor-zh-TW-sec-4",
       "weight": 0.9041,
       "linkType": "semantic"
     },
@@ -43695,6 +44333,12 @@
     {
       "source": "post-14-pho-zh-TW-sec-2",
       "target": "post-14-pho-zh-TW-sec-4",
+      "weight": 0.8994,
+      "linkType": "semantic"
+    },
+    {
+      "source": "project-castor-en-sec-1",
+      "target": "project-castor-en-sec-4",
       "weight": 0.8994,
       "linkType": "semantic"
     },
@@ -44347,6 +44991,12 @@
       "linkType": "semantic"
     },
     {
+      "source": "project-castor-zh-TW-sec-1",
+      "target": "project-castor-zh-TW-sec-2",
+      "weight": 0.895,
+      "linkType": "semantic"
+    },
+    {
       "source": "post-17-noticing-zh-TW-sec-13",
       "target": "post-17-noticing-zh-TW-sec-14",
       "weight": 0.895,
@@ -44871,6 +45521,12 @@
     {
       "source": "post-17-noticing-en-sec-2",
       "target": "post-17-noticing-en-sec-11",
+      "weight": 0.8911,
+      "linkType": "semantic"
+    },
+    {
+      "source": "project-castor-en-file",
+      "target": "project-castor-en-sec-1",
       "weight": 0.8911,
       "linkType": "semantic"
     },
@@ -45793,6 +46449,12 @@
       "linkType": "semantic"
     },
     {
+      "source": "project-castor-en-sec-1",
+      "target": "project-castor-en-sec-2",
+      "weight": 0.885,
+      "linkType": "semantic"
+    },
+    {
       "source": "project-2024_09_23_chingshin_rag-zh-TW-sec-1-3",
       "target": "project-2024_09_23_chingshin_rag-zh-TW-sec-1-4",
       "weight": 0.8849,
@@ -46011,6 +46673,12 @@
     {
       "source": "project-2025_05_18_patch_dataset-en-sec-0-7",
       "target": "project-2025_05_18_patch_dataset-en-sec-1",
+      "weight": 0.8826,
+      "linkType": "semantic"
+    },
+    {
+      "source": "project-castor-zh-TW-sec-1",
+      "target": "project-castor-zh-TW-sec-3",
       "weight": 0.8826,
       "linkType": "semantic"
     },
@@ -46294,6 +46962,12 @@
       "source": "post-14-pho-en-sec-2",
       "target": "post-14-pho-en-sec-4",
       "weight": 0.8805,
+      "linkType": "semantic"
+    },
+    {
+      "source": "project-castor-en-sec-2",
+      "target": "project-castor-zh-TW-sec-3",
+      "weight": 0.8804,
       "linkType": "semantic"
     },
     {
@@ -47983,6 +48657,12 @@
       "linkType": "semantic"
     },
     {
+      "source": "project-castor-en-sec-1",
+      "target": "project-castor-zh-TW-sec-2",
+      "weight": 0.8647,
+      "linkType": "semantic"
+    },
+    {
       "source": "post-17-noticing-en-sec-15",
       "target": "post-17-noticing-en-sec-17",
       "weight": 0.8647,
@@ -48667,6 +49347,12 @@
       "linkType": "semantic"
     },
     {
+      "source": "project-castor-en-sec-2",
+      "target": "project-castor-zh-TW-sec-1",
+      "weight": 0.8574,
+      "linkType": "semantic"
+    },
+    {
       "source": "project-2025_05_18_patch_dataset-zh-TW-sec-0-2",
       "target": "project-2025_05_18_patch_dataset-zh-TW-sec-0-6",
       "weight": 0.8574,
@@ -49111,6 +49797,12 @@
       "linkType": "semantic"
     },
     {
+      "source": "project-castor-en-sec-1",
+      "target": "project-castor-zh-TW-sec-3",
+      "weight": 0.852,
+      "linkType": "semantic"
+    },
+    {
       "source": "project-2025_10_12_fortress-zh-TW-sec-0-4-2",
       "target": "project-2025_10_12_fortress-zh-TW-sec-0-4-3",
       "weight": 0.852,
@@ -49179,6 +49871,12 @@
     {
       "source": "post-15-rain-zh-TW-file",
       "target": "post-15-rain-en-sec-1",
+      "weight": 0.8509,
+      "linkType": "semantic"
+    },
+    {
+      "source": "project-castor-zh-TW-sec-2",
+      "target": "project-castor-zh-TW-sec-5",
       "weight": 0.8509,
       "linkType": "semantic"
     },
@@ -49675,6 +50373,12 @@
       "linkType": "semantic"
     },
     {
+      "source": "project-castor-zh-TW-sec-1",
+      "target": "project-castor-zh-TW-sec-5",
+      "weight": 0.8417,
+      "linkType": "semantic"
+    },
+    {
       "source": "project-2025_05_18_patch_dataset-zh-TW-sec-1",
       "target": "project-2025_10_12_fortress-en-sec-1",
       "weight": 0.8415,
@@ -49933,6 +50637,18 @@
       "linkType": "semantic"
     },
     {
+      "source": "locale-cv-summary-zh-TW-0",
+      "target": "locale-updates-zh-TW-0",
+      "weight": 0.8362,
+      "linkType": "semantic"
+    },
+    {
+      "source": "project-castor-en-sec-1",
+      "target": "project-castor-en-sec-5",
+      "weight": 0.8361,
+      "linkType": "semantic"
+    },
+    {
       "source": "post-2025_12_22_aftersun_paris_texas-en-sec-1",
       "target": "post-2026_02_10_synecdoche_truman-en-sec-1",
       "weight": 0.836,
@@ -49993,12 +50709,6 @@
       "linkType": "semantic"
     },
     {
-      "source": "locale-cv-summary-zh-TW-0",
-      "target": "locale-updates-zh-TW-0",
-      "weight": 0.8344,
-      "linkType": "semantic"
-    },
-    {
       "source": "gallery-2026-us-trip-en-file",
       "target": "gallery-2026_02_08_italy_town-en-file",
       "weight": 0.8343,
@@ -50019,7 +50729,7 @@
     {
       "source": "post-16-all-c-en-sec-7",
       "target": "post-17-noticing-en-sec-18",
-      "weight": 0.8339,
+      "weight": 0.8338,
       "linkType": "semantic"
     },
     {
@@ -50173,6 +50883,12 @@
       "linkType": "semantic"
     },
     {
+      "source": "project-2025_05_18_patch_dataset-en-sec-1",
+      "target": "project-castor-en-sec-5",
+      "weight": 0.8293,
+      "linkType": "semantic"
+    },
+    {
       "source": "gallery-2024_02_09_mortal_sparks-zh-TW-file",
       "target": "gallery-2024_07_03_simple_in_a_complex_world-en-sec-0",
       "weight": 0.8292,
@@ -50206,6 +50922,12 @@
       "source": "project-2025_10_12_fortress-en-sec-0-4-2",
       "target": "project-2025_10_12_fortress-en-sec-0-6",
       "weight": 0.8286,
+      "linkType": "semantic"
+    },
+    {
+      "source": "locale-cv-summary-zh-TW-0",
+      "target": "locale-updates-en-0",
+      "weight": 0.8285,
       "linkType": "semantic"
     },
     {
@@ -50497,6 +51219,30 @@
       "linkType": "semantic"
     },
     {
+      "source": "project-2025_05_18_patch_dataset-en-img-cover",
+      "target": "project-castor-en-img-cover",
+      "weight": 0.8224,
+      "linkType": "semantic"
+    },
+    {
+      "source": "project-2025_05_18_patch_dataset-en-img-cover",
+      "target": "project-castor-zh-TW-img-cover",
+      "weight": 0.8224,
+      "linkType": "semantic"
+    },
+    {
+      "source": "project-2025_05_18_patch_dataset-zh-TW-img-cover",
+      "target": "project-castor-en-img-cover",
+      "weight": 0.8224,
+      "linkType": "semantic"
+    },
+    {
+      "source": "project-2025_05_18_patch_dataset-zh-TW-img-cover",
+      "target": "project-castor-zh-TW-img-cover",
+      "weight": 0.8224,
+      "linkType": "semantic"
+    },
+    {
       "source": "project-2024_10_09_vrc_2813b_nova-en-sec-4",
       "target": "project-2024_10_09_vrc_2813b_nova-zh-TW-sec-1-2",
       "weight": 0.8222,
@@ -50593,12 +51339,6 @@
       "linkType": "semantic"
     },
     {
-      "source": "locale-cv-summary-zh-TW-0",
-      "target": "locale-updates-en-0",
-      "weight": 0.8208,
-      "linkType": "semantic"
-    },
-    {
       "source": "project-sitcon-2026-en-sec-1-3",
       "target": "project-sitcon-2026-en-sec-2",
       "weight": 0.8206,
@@ -50608,6 +51348,12 @@
       "source": "locale-cv-education-zh-TW-0",
       "target": "locale-cv-leadership-en-0",
       "weight": 0.8205,
+      "linkType": "semantic"
+    },
+    {
+      "source": "project-2025_05_18_patch_dataset-en-sec-1",
+      "target": "project-castor-zh-TW-sec-5",
+      "weight": 0.8204,
       "linkType": "semantic"
     },
     {
@@ -50701,6 +51447,12 @@
       "linkType": "semantic"
     },
     {
+      "source": "post-13-chingshin-en-sec-5",
+      "target": "post-17-noticing-en-sec-18",
+      "weight": 0.819,
+      "linkType": "semantic"
+    },
+    {
       "source": "post-2025_12_12_blog_launch-zh-TW-sec-1",
       "target": "post-2025_12_19_xpro1-zh-TW-sec-1",
       "weight": 0.8187,
@@ -50725,12 +51477,6 @@
       "linkType": "semantic"
     },
     {
-      "source": "post-13-chingshin-en-sec-5",
-      "target": "post-17-noticing-en-sec-18",
-      "weight": 0.8184,
-      "linkType": "semantic"
-    },
-    {
       "source": "gallery-2023_10_12_lessons_from_the_light-en-file",
       "target": "gallery-2023_10_06_guided_by_the_tides-en-sec-0",
       "weight": 0.8182,
@@ -50749,12 +51495,6 @@
       "linkType": "semantic"
     },
     {
-      "source": "locale-cv-research-zh-TW-0",
-      "target": "locale-updates-zh-TW-0",
-      "weight": 0.8178,
-      "linkType": "semantic"
-    },
-    {
       "source": "post-14-pho-en-sec-6",
       "target": "post-15-rain-en-sec-5",
       "weight": 0.8178,
@@ -50767,9 +51507,9 @@
       "linkType": "semantic"
     },
     {
-      "source": "project-2024_09_23_chingshin_rag-en-sec-3",
-      "target": "project-2025_05_18_patch_dataset-en-sec-1",
-      "weight": 0.8174,
+      "source": "project-castor-en-sec-5",
+      "target": "project-castor-zh-TW-sec-1",
+      "weight": 0.8171,
       "linkType": "semantic"
     },
     {
@@ -50803,6 +51543,12 @@
       "linkType": "semantic"
     },
     {
+      "source": "project-2025_05_18_patch_dataset-zh-TW-sec-1",
+      "target": "project-castor-zh-TW-sec-5",
+      "weight": 0.8158,
+      "linkType": "semantic"
+    },
+    {
       "source": "post-13-chingshin-en-sec-3",
       "target": "post-13-chingshin-en-sec-5",
       "weight": 0.8158,
@@ -50812,6 +51558,12 @@
       "source": "post-13-chingshin-zh-TW-sec-3",
       "target": "post-13-chingshin-zh-TW-sec-5",
       "weight": 0.8157,
+      "linkType": "semantic"
+    },
+    {
+      "source": "locale-cv-research-zh-TW-0",
+      "target": "locale-updates-zh-TW-0",
+      "weight": 0.8153,
       "linkType": "semantic"
     },
     {
@@ -50869,12 +51621,6 @@
       "linkType": "semantic"
     },
     {
-      "source": "project-2025_05_18_patch_dataset-en-sec-0-6",
-      "target": "project-2025_05_18_patch_dataset-en-sec-1",
-      "weight": 0.8128,
-      "linkType": "semantic"
-    },
-    {
       "source": "post-13-chingshin-en-sec-5",
       "target": "post-15-rain-en-sec-5",
       "weight": 0.8127,
@@ -50926,6 +51672,12 @@
       "source": "project-2025_01_03_powerplay-en-sec-1-3",
       "target": "project-2025_01_03_powerplay-en-sec-2-3-2",
       "weight": 0.8114,
+      "linkType": "semantic"
+    },
+    {
+      "source": "locale-updates-zh-TW-0",
+      "target": "locale-cv-summary-en-0",
+      "weight": 0.8113,
       "linkType": "semantic"
     },
     {
@@ -50983,8 +51735,8 @@
       "linkType": "semantic"
     },
     {
-      "source": "post-17-noticing-en-sec-18",
-      "target": "post-2025_12_12_blog_launch-en-sec-1",
+      "source": "locale-cv-summary-en-0",
+      "target": "locale-updates-en-0",
       "weight": 0.8104,
       "linkType": "semantic"
     },
@@ -51001,12 +51753,6 @@
       "linkType": "semantic"
     },
     {
-      "source": "locale-updates-zh-TW-0",
-      "target": "locale-cv-summary-en-0",
-      "weight": 0.8102,
-      "linkType": "semantic"
-    },
-    {
       "source": "post-16-all-c-zh-TW-sec-7",
       "target": "post-2025_12_12_blog_launch-zh-TW-sec-1",
       "weight": 0.8102,
@@ -51016,6 +51762,12 @@
       "source": "project-2024_09_23_chingshin_rag-en-sec-1-1",
       "target": "project-2024_09_23_chingshin_rag-zh-TW-sec-1-3",
       "weight": 0.81,
+      "linkType": "semantic"
+    },
+    {
+      "source": "post-17-noticing-en-sec-18",
+      "target": "post-2025_12_12_blog_launch-en-sec-1",
+      "weight": 0.8099,
       "linkType": "semantic"
     },
     {
@@ -51067,6 +51819,12 @@
       "linkType": "semantic"
     },
     {
+      "source": "post-15-rain-en-sec-5",
+      "target": "post-17-noticing-en-sec-18",
+      "weight": 0.8092,
+      "linkType": "semantic"
+    },
+    {
       "source": "post-16-all-c-zh-TW-sec-7",
       "target": "post-17-noticing-zh-TW-sec-18",
       "weight": 0.8092,
@@ -51076,12 +51834,6 @@
       "source": "locale-cv-summary-zh-TW-0",
       "target": "locale-cv-publications-zh-TW-0",
       "weight": 0.8088,
-      "linkType": "semantic"
-    },
-    {
-      "source": "post-15-rain-en-sec-5",
-      "target": "post-17-noticing-en-sec-18",
-      "weight": 0.8086,
       "linkType": "semantic"
     },
     {
@@ -51115,9 +51867,9 @@
       "linkType": "semantic"
     },
     {
-      "source": "post-12-us-trip-en-sec-10",
-      "target": "post-17-noticing-en-sec-18",
-      "weight": 0.8075,
+      "source": "project-2025_10_12_fortress-en-sec-1",
+      "target": "project-castor-en-sec-5",
+      "weight": 0.8078,
       "linkType": "semantic"
     },
     {
@@ -51139,6 +51891,12 @@
       "linkType": "semantic"
     },
     {
+      "source": "post-12-us-trip-en-sec-10",
+      "target": "post-17-noticing-en-sec-18",
+      "weight": 0.8069,
+      "linkType": "semantic"
+    },
+    {
       "source": "gallery-2023_11_18_dusk_impressions-en-img-gal-1",
       "target": "gallery-2024_07_03_simple_in_a_complex_world-en-img-gal-6",
       "weight": 0.8066,
@@ -51159,6 +51917,12 @@
     {
       "source": "gallery-2023_11_18_dusk_impressions-zh-TW-img-gal-1",
       "target": "gallery-2024_07_03_simple_in_a_complex_world-zh-TW-img-gal-6",
+      "weight": 0.8066,
+      "linkType": "semantic"
+    },
+    {
+      "source": "project-2025_10_12_fortress-zh-TW-sec-1",
+      "target": "project-castor-zh-TW-sec-5",
       "weight": 0.8066,
       "linkType": "semantic"
     },
@@ -51277,15 +52041,21 @@
       "linkType": "semantic"
     },
     {
+      "source": "locale-cv-research-en-0",
+      "target": "locale-updates-en-0",
+      "weight": 0.805,
+      "linkType": "semantic"
+    },
+    {
       "source": "locale-cv-education-zh-TW-0",
       "target": "locale-cv-skills-zh-TW-0",
       "weight": 0.8046,
       "linkType": "semantic"
     },
     {
-      "source": "locale-cv-summary-en-0",
-      "target": "locale-updates-en-0",
-      "weight": 0.8044,
+      "source": "project-2024_09_23_chingshin_rag-en-sec-3",
+      "target": "project-2025_10_12_fortress-en-sec-1",
+      "weight": 0.8042,
       "linkType": "semantic"
     },
     {
@@ -51381,13 +52151,7 @@
     {
       "source": "post-14-pho-en-sec-6",
       "target": "post-17-noticing-en-sec-18",
-      "weight": 0.8022,
-      "linkType": "semantic"
-    },
-    {
-      "source": "project-2025_10_12_fortress-zh-TW-sec-0-4-2",
-      "target": "project-2025_10_12_fortress-zh-TW-sec-1",
-      "weight": 0.802,
+      "weight": 0.8023,
       "linkType": "semantic"
     },
     {
@@ -51589,12 +52353,6 @@
       "linkType": "semantic"
     },
     {
-      "source": "locale-cv-research-en-0",
-      "target": "locale-updates-en-0",
-      "weight": 0.7972,
-      "linkType": "semantic"
-    },
-    {
       "source": "post-14-pho-zh-TW-sec-6",
       "target": "post-2025_12_12_blog_launch-zh-TW-sec-1",
       "weight": 0.7971,
@@ -51724,12 +52482,6 @@
       "source": "post-9_m11d-en-sec-9",
       "target": "gallery-2026_02_08_italy_mountain-en-sec-0",
       "weight": 0.7946,
-      "linkType": "semantic"
-    },
-    {
-      "source": "project-2025_10_12_fortress-en-sec-0-4-2",
-      "target": "project-2025_10_12_fortress-en-sec-1",
-      "weight": 0.7945,
       "linkType": "semantic"
     },
     {
@@ -51943,12 +52695,6 @@
       "linkType": "semantic"
     },
     {
-      "source": "locale-updates-zh-TW-0",
-      "target": "locale-about-en-0",
-      "weight": 0.7897,
-      "linkType": "semantic"
-    },
-    {
       "source": "gallery-2023_12_30_against_the_unknown-zh-TW-file",
       "target": "gallery-2023_10_06_against_giants-zh-TW-sec-0",
       "weight": 0.7894,
@@ -51957,6 +52703,12 @@
     {
       "source": "post-2025_12_14_affinity-en-sec-0-3",
       "target": "post-2025_12_14_affinity-zh-TW-sec-1",
+      "weight": 0.789,
+      "linkType": "semantic"
+    },
+    {
+      "source": "locale-about-en-0",
+      "target": "locale-updates-en-0",
       "weight": 0.789,
       "linkType": "semantic"
     },
@@ -52075,9 +52827,9 @@
       "linkType": "semantic"
     },
     {
-      "source": "project-2025_10_12_fortress-en-sec-0-3-3",
-      "target": "project-2025_10_12_fortress-en-sec-1",
-      "weight": 0.7866,
+      "source": "locale-updates-zh-TW-0",
+      "target": "locale-about-en-0",
+      "weight": 0.7867,
       "linkType": "semantic"
     },
     {
@@ -52126,12 +52878,6 @@
       "source": "locale-cv-leadership-en-0",
       "target": "locale-cv-skills-en-0",
       "weight": 0.7859,
-      "linkType": "semantic"
-    },
-    {
-      "source": "locale-about-en-0",
-      "target": "locale-updates-en-0",
-      "weight": 0.7854,
       "linkType": "semantic"
     },
     {
@@ -52210,6 +52956,12 @@
       "source": "project-2024_08_19_classics_reimagined-zh-TW-sec-3-img-4",
       "target": "project-2024_08_19_classics_reimagined-zh-TW-sec-3-img-5",
       "weight": 0.7842,
+      "linkType": "semantic"
+    },
+    {
+      "source": "locale-cv-publications-zh-TW-0",
+      "target": "locale-updates-zh-TW-0",
+      "weight": 0.7841,
       "linkType": "semantic"
     },
     {
@@ -52321,12 +53073,6 @@
       "linkType": "semantic"
     },
     {
-      "source": "post-2025_12_24_ntu_cs_special_admission-en-sec-5",
-      "target": "project-2025_05_18_patch_dataset-zh-TW-sec-1",
-      "weight": 0.7815,
-      "linkType": "semantic"
-    },
-    {
       "source": "project-2025_10_12_fortress-en-sec-0-4-2",
       "target": "project-2025_10_12_fortress-zh-TW-sec-0-6",
       "weight": 0.7815,
@@ -52360,18 +53106,6 @@
       "source": "gallery-2026_02_08_italy_mountain-en-file",
       "target": "gallery-2026-us-trip-en-sec-0",
       "weight": 0.7806,
-      "linkType": "semantic"
-    },
-    {
-      "source": "locale-updates-zh-TW-0",
-      "target": "locale-cv-education-en-0",
-      "weight": 0.7805,
-      "linkType": "semantic"
-    },
-    {
-      "source": "locale-cv-education-en-0",
-      "target": "locale-updates-en-0",
-      "weight": 0.78,
       "linkType": "semantic"
     },
     {
@@ -52423,21 +53157,27 @@
       "linkType": "semantic"
     },
     {
+      "source": "locale-cv-education-en-0",
+      "target": "locale-updates-en-0",
+      "weight": 0.7787,
+      "linkType": "semantic"
+    },
+    {
       "source": "post-2025_12_14_affinity-en-sec-1",
       "target": "post-2025_12_14_affinity-zh-TW-sec-0-4",
       "weight": 0.7785,
       "linkType": "semantic"
     },
     {
-      "source": "locale-about-zh-TW-0",
-      "target": "locale-updates-zh-TW-0",
-      "weight": 0.7783,
-      "linkType": "semantic"
-    },
-    {
       "source": "locale-cv-skills-zh-TW-0",
       "target": "locale-cv-education-en-0",
       "weight": 0.7781,
+      "linkType": "semantic"
+    },
+    {
+      "source": "locale-about-zh-TW-0",
+      "target": "locale-updates-zh-TW-0",
+      "weight": 0.7777,
       "linkType": "semantic"
     },
     {
@@ -52471,9 +53211,9 @@
       "linkType": "semantic"
     },
     {
-      "source": "project-2025_04_12_portfolio-zh-TW-sec-0",
-      "target": "locale-about-zh-TW-0",
-      "weight": 0.7749,
+      "source": "locale-cv-publications-zh-TW-0",
+      "target": "locale-updates-en-0",
+      "weight": 0.7752,
       "linkType": "semantic"
     },
     {
@@ -52501,9 +53241,45 @@
       "linkType": "semantic"
     },
     {
+      "source": "project-2025_04_12_portfolio-zh-TW-sec-0",
+      "target": "locale-about-zh-TW-0",
+      "weight": 0.7741,
+      "linkType": "semantic"
+    },
+    {
       "source": "project-2024_10_09_vrc_2813b_nova-zh-TW-sec-4",
       "target": "project-2025_08_04_debate-zh-TW-sec-4",
       "weight": 0.774,
+      "linkType": "semantic"
+    },
+    {
+      "source": "project-2025_10_12_fortress-en-img-cover",
+      "target": "project-castor-en-img-cover",
+      "weight": 0.7733,
+      "linkType": "semantic"
+    },
+    {
+      "source": "project-2025_10_12_fortress-en-img-cover",
+      "target": "project-castor-zh-TW-img-cover",
+      "weight": 0.7733,
+      "linkType": "semantic"
+    },
+    {
+      "source": "project-2025_10_12_fortress-zh-TW-img-cover",
+      "target": "project-castor-en-img-cover",
+      "weight": 0.7733,
+      "linkType": "semantic"
+    },
+    {
+      "source": "project-2025_10_12_fortress-zh-TW-img-cover",
+      "target": "project-castor-zh-TW-img-cover",
+      "weight": 0.7733,
+      "linkType": "semantic"
+    },
+    {
+      "source": "locale-updates-zh-TW-0",
+      "target": "locale-cv-publications-en-0",
+      "weight": 0.7731,
       "linkType": "semantic"
     },
     {
@@ -52567,9 +53343,9 @@
       "linkType": "semantic"
     },
     {
-      "source": "locale-cv-publications-zh-TW-0",
-      "target": "locale-updates-zh-TW-0",
-      "weight": 0.7722,
+      "source": "locale-about-zh-TW-0",
+      "target": "locale-updates-en-0",
+      "weight": 0.772,
       "linkType": "semantic"
     },
     {
@@ -52609,9 +53385,9 @@
       "linkType": "semantic"
     },
     {
-      "source": "locale-about-zh-TW-0",
-      "target": "locale-updates-en-0",
-      "weight": 0.767,
+      "source": "project-2025_04_12_portfolio-en-sec-0",
+      "target": "locale-about-zh-TW-0",
+      "weight": 0.7673,
       "linkType": "semantic"
     },
     {
@@ -52640,8 +53416,8 @@
     },
     {
       "source": "project-2025_04_12_portfolio-en-sec-0",
-      "target": "locale-about-zh-TW-0",
-      "weight": 0.7662,
+      "target": "locale-about-en-0",
+      "weight": 0.7663,
       "linkType": "semantic"
     },
     {
@@ -52675,9 +53451,21 @@
       "linkType": "semantic"
     },
     {
+      "source": "project-2025_04_12_portfolio-zh-TW-sec-0",
+      "target": "locale-about-en-0",
+      "weight": 0.7653,
+      "linkType": "semantic"
+    },
+    {
       "source": "project-2025_04_12_portfolio-zh-TW-file",
       "target": "locale-cv-projects-en-0",
       "weight": 0.7645,
+      "linkType": "semantic"
+    },
+    {
+      "source": "locale-cv-education-en-0",
+      "target": "locale-cv-skills-en-0",
+      "weight": 0.7644,
       "linkType": "semantic"
     },
     {
@@ -52705,12 +53493,6 @@
       "linkType": "semantic"
     },
     {
-      "source": "project-2025_04_12_portfolio-en-sec-0",
-      "target": "locale-about-en-0",
-      "weight": 0.7635,
-      "linkType": "semantic"
-    },
-    {
       "source": "post-2025_12_13_sisyphus-en-img-cover",
       "target": "post-9_m11d-en-img-cover",
       "weight": 0.7631,
@@ -52732,12 +53514,6 @@
       "source": "post-2025_12_13_sisyphus-zh-TW-img-cover",
       "target": "post-9_m11d-zh-TW-img-cover",
       "weight": 0.7631,
-      "linkType": "semantic"
-    },
-    {
-      "source": "locale-cv-publications-zh-TW-0",
-      "target": "locale-updates-en-0",
-      "weight": 0.7628,
       "linkType": "semantic"
     },
     {
@@ -52792,12 +53568,6 @@
       "source": "gallery-2023_10_05_solitary_glow-zh-TW-img-gal-1",
       "target": "gallery-2024_04_06_city_of_tears-zh-TW-img-gal-0",
       "weight": 0.7617,
-      "linkType": "semantic"
-    },
-    {
-      "source": "project-2025_04_12_portfolio-zh-TW-sec-0",
-      "target": "locale-about-en-0",
-      "weight": 0.7616,
       "linkType": "semantic"
     },
     {
@@ -53059,6 +53829,12 @@
       "linkType": "semantic"
     },
     {
+      "source": "post-2025_12_24_ntu_cs_special_admission-en-sec-5",
+      "target": "project-castor-zh-TW-sec-5",
+      "weight": 0.7545,
+      "linkType": "semantic"
+    },
+    {
       "source": "post-13-chingshin-en-img-cover",
       "target": "post-2026_02_10_synecdoche_truman-en-img-cover",
       "weight": 0.7543,
@@ -53080,6 +53856,12 @@
       "source": "post-13-chingshin-zh-TW-img-cover",
       "target": "post-2026_02_10_synecdoche_truman-zh-TW-img-cover",
       "weight": 0.7543,
+      "linkType": "semantic"
+    },
+    {
+      "source": "project-2025_05_18_patch_dataset-en-sec-0-6",
+      "target": "project-2025_10_12_fortress-en-sec-0-4-2",
+      "weight": 0.754,
       "linkType": "semantic"
     },
     {
@@ -53128,6 +53910,12 @@
       "source": "post-11-portfolio-zh-TW-img-cover",
       "target": "post-17-noticing-zh-TW-img-cover",
       "weight": 0.7533,
+      "linkType": "semantic"
+    },
+    {
+      "source": "project-castor-en-sec-5",
+      "target": "project-sitcon-camp-2026-en-sec-5",
+      "weight": 0.7532,
       "linkType": "semantic"
     },
     {
@@ -53384,17 +54172,17 @@
     }
   ],
   "metadata": {
-    "generatedAt": "2026-10-26T14:41:55Z",
-    "nodeCount": 1401,
-    "edgeCount": 5089,
+    "generatedAt": "2026-10-27T04:10:07Z",
+    "nodeCount": 1419,
+    "edgeCount": 5171,
     "threshold": 0.75,
     "maxEdgesPerNode": 8,
     "model": "google/gemini-embedding-2-preview",
     "nodeTypeCounts": {
       "hub": 24,
-      "file": 100,
-      "section": 661,
-      "image": 571,
+      "file": 102,
+      "section": 673,
+      "image": 575,
       "video": 16,
       "tag": 29
     }

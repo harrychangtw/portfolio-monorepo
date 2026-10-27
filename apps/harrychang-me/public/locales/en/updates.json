@@ -1,6 +1,10 @@
 {
   "entries": [
     {
+      "date": "2026-10-25",
+      "text": "[Research] Released my first-author paper <a href=\"/projects/castor/\">CASTOR</a> on <a href=\"https://arxiv.org/abs/2610.34074\">arXiv</a>: identically trained language models break on different jailbreaks"
+    },
+    {
       "date": "2026-08-21",
       "text": "[Research] Co-first-authored paper PATCH accepted to ISCSLP 2026"
     },

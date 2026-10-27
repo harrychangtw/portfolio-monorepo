@@ -10,7 +10,7 @@ role: "講師、設計師與開發者"
 technologies: ["React", "TypeScript", "PyTorch", "FastAPI"]
 tooltip: "設計、開發並教授 SITCON Camp 2026 的 ML 課程。"
 featured: true
-pinned: 2
+pinned: 4
 ---
 
 ## 專案概覽

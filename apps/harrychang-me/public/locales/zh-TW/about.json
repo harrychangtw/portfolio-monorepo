@@ -6,7 +6,7 @@
     "llmResearcher": {
       "title": "LLM 研究員",
       "period": "2023 - Present",
-      "description": "於 <a href=\"https://cycraft.com\">CyCraft</a> 研究語言模型安全表徵，研究發表於 <a href=\"https://openreview.net/pdf?id=lCn7RT9DGq\">TMLR</a> 與 <a href=\"https://2026.eacl.org/program/srw-accepted/#:~:text=PATCH%20Dataset:%20Empowering%20Traditional%20Chinese%20Safety%20Classifiers%20for%20Lightweight%20LLM\">EACL SRW</a>。"
+      "description": "於 <a href=\"https://cycraft.com\">CyCraft</a> 研究語言模型安全表徵，並於 <a href=\"https://cerulean.works\">Cerulean Labs</a> 從事<a href=\"https://arxiv.org/abs/2610.34074\">預訓練</a>研究，過往研究發表於 <a href=\"https://openreview.net/pdf?id=lCn7RT9DGq\">TMLR</a> 與 <a href=\"https://2026.eacl.org/program/srw-accepted/#:~:text=PATCH%20Dataset:%20Empowering%20Traditional%20Chinese%20Safety%20Classifiers%20for%20Lightweight%20LLM\">EACL SRW</a>。"
     },
     "speaker": {
       "title": "講者與籌辦者",
@@ -16,7 +16,7 @@
     "developer": {
       "title": "開發者",
       "period": "2023 - Present",
-      "description": "從國科會<a href=\"https://genaistars.org.tw/2024/award/hackathon/28\">特優 RAG 系統</a>到<a href=\"projects/2025_04_12_portfolio\">個人網站</a>與企業營運現代化專案。"
+      "description": "從 LLM 評測基礎設施、國科會<a href=\"https://genaistars.org.tw/2024/award/hackathon/28\">特優 RAG 系統</a>到<a href=\"projects/2025_04_12_portfolio\">個人網站</a>與企業營運現代化專案。"
     },
     "debater": {
       "title": "辯手",

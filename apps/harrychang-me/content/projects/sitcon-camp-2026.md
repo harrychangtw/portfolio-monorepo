@@ -10,7 +10,7 @@ role: "Instructor, Designer & Developer"
 technologies: ["React", "TypeScript", "PyTorch", "FastAPI"]
 tooltip: "Designed, built and taught the ML course at SITCON Camp 2026."
 featured: true
-pinned: 2
+pinned: 4
 ---
 
 ## Project Overview
