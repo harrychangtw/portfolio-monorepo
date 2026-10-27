@@ -1,0 +1,631 @@
+/*
+ * Content charts, ported from cerulean-website. Series slots reuse the
+ * knowledge graph's node colors, so they follow its tokens in both themes.
+ * Slots are ordered post, gallery, tag, project: the first three pass the
+ * dataviz CVD and normal-vision checks for every pair against #0a0a0a and
+ * #f3f2f1. Slot 4 sits close to slot 3 (dark) and slot 1 (light protan), and
+ * slot 5 is the neutral locale ink, so charts past three series lean on mark
+ * shape and the data table. Light gallery orange is under 3:1, which the
+ * table also covers.
+ */
+.chart {
+  --chart-1: hsl(var(--graph-node-post));
+  --chart-2: hsl(var(--graph-node-gallery));
+  --chart-3: hsl(var(--graph-node-tag));
+  --chart-4: hsl(var(--graph-node-project));
+  --chart-5: hsl(var(--graph-node-locale));
+  --chart-paper: hsl(var(--background));
+  --chart-ink: hsl(var(--primary));
+  --chart-muted: hsl(var(--secondary));
+  --chart-rule: hsl(var(--border));
+  --chart-panel: color-mix(
+    in srgb,
+    hsl(var(--primary)) 4%,
+    hsl(var(--background))
+  );
+  --chart-panel-hover: color-mix(
+    in srgb,
+    hsl(var(--primary)) 7%,
+    hsl(var(--background))
+  );
+  --chart-surface: var(--chart-paper);
+  --chart-label-width: 13.5rem;
+  margin-block: 40px;
+  color: var(--chart-ink);
+  font: 400 14px/1.4 var(--font-body);
+}
+
+.chart-c1 {
+  --chart-color: var(--chart-1);
+}
+.chart-c2 {
+  --chart-color: var(--chart-2);
+}
+.chart-c3 {
+  --chart-color: var(--chart-3);
+}
+.chart-c4 {
+  --chart-color: var(--chart-4);
+}
+.chart-c5 {
+  --chart-color: var(--chart-5);
+}
+
+.chart-title {
+  font: 500 16px/1.4 var(--font-heading);
+}
+
+.chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 20px;
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+  color: var(--chart-muted);
+}
+
+.chart-legend li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+}
+
+.chart figcaption {
+  margin-top: 16px;
+  color: var(--chart-muted);
+}
+
+/* Marks: 10px, a 2px surface ring where they overlap, shape as a second channel. */
+.chart-mark {
+  position: absolute;
+  top: 50%;
+  box-sizing: border-box;
+  width: 10px;
+  height: 10px;
+  transform: translate(-50%, -50%);
+  border: 2px solid var(--chart-color);
+  border-radius: 50%;
+  background: var(--chart-color);
+  box-shadow: 0 0 0 2px var(--chart-surface);
+}
+
+.chart-ring {
+  background: var(--chart-surface);
+}
+
+.chart-square {
+  width: 9px;
+  height: 9px;
+  border-radius: 1px;
+}
+
+.chart-diamond {
+  width: 9px;
+  height: 9px;
+  border-radius: 1px;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.chart-triangle {
+  width: 12px;
+  height: 11px;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+}
+
+:is(.chart-legend, .chart-tip) .chart-mark {
+  position: static;
+  flex: none;
+  transform: none;
+}
+
+:is(.chart-legend, .chart-tip) .chart-diamond {
+  transform: rotate(45deg);
+}
+
+.chart-swatch-line {
+  flex: none;
+  width: 18px;
+  height: 0;
+  border-top: 2px solid var(--chart-color);
+}
+
+.chart-swatch-line.chart-dashed {
+  border-top-style: dashed;
+}
+
+/* Tooltips: shown on hover, focus or tap; values use text colors, not series colors. */
+.chart-tip {
+  position: absolute;
+  z-index: 2;
+  display: grid;
+  gap: 4px;
+  min-width: 200px;
+  padding: 10px 12px;
+  border: 1px solid var(--chart-rule);
+  border-radius: 4px;
+  background: hsl(var(--popover));
+  color: var(--chart-ink);
+  font: 400 14px/1.4 var(--font-body);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 120ms ease;
+}
+
+.chart-tip strong {
+  font-weight: 500;
+}
+
+.chart-tip-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--chart-muted);
+}
+
+.chart-tip-value {
+  margin-left: auto;
+  padding-left: 12px;
+  color: var(--chart-ink);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* Row charts (dot plots, bar charts): an HTML label beside each track. */
+.chart-rows {
+  margin-top: 20px;
+}
+
+.chart-row {
+  display: grid;
+  grid-template-columns: var(--chart-label-width) minmax(0, 1fr);
+  align-items: center;
+  gap: 16px;
+  min-height: 28px;
+  outline: none;
+}
+
+.chart-row-tagged {
+  background: var(--chart-panel);
+}
+.chart-row-tagged .chart-mark {
+  --chart-surface: var(--chart-panel);
+}
+
+.chart-row-label {
+  min-width: 0;
+  padding-left: 4px;
+  color: var(--chart-muted);
+}
+
+.chart-row:not(.chart-axis):is(:hover, :focus) .chart-row-label {
+  color: var(--chart-ink);
+}
+
+.chart-row-tag {
+  margin-left: 6px;
+  color: var(--chart-ink);
+  font-weight: 500;
+}
+
+.chart-track {
+  position: relative;
+  height: 28px;
+  margin-right: 12px;
+}
+
+.chart-row .chart-tip {
+  right: 0;
+  bottom: calc(100% + 4px);
+}
+
+.chart-row:is(:hover, :focus) .chart-tip {
+  opacity: 1;
+}
+
+.chart-grid {
+  position: absolute;
+  inset-block: 0;
+  width: 1px;
+  background: var(--chart-rule);
+}
+
+.chart-grid-zero {
+  background: var(--chart-muted);
+}
+
+.chart-band {
+  position: absolute;
+  inset-block: 0;
+  background: var(--chart-panel-hover);
+}
+
+.chart-axis .chart-track {
+  height: 20px;
+}
+
+.chart-tick {
+  position: absolute;
+  top: 2px;
+  transform: translateX(-50%);
+  color: var(--chart-muted);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.chart-axis-label {
+  min-height: 0;
+  color: var(--chart-muted);
+  font-size: 13px;
+}
+
+/* The data table behind every chart. */
+.chart-data {
+  margin-top: 12px;
+  color: var(--chart-muted);
+}
+
+.chart-data summary {
+  width: fit-content;
+  cursor: pointer;
+}
+
+.chart-data-scroll {
+  overflow-x: auto;
+}
+
+.chart-data table {
+  margin-top: 12px;
+  border-collapse: collapse;
+  color: var(--chart-ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.chart-data :is(th, td) {
+  padding: 6px 16px 6px 0;
+  border-bottom: 1px solid var(--chart-rule);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.chart-data th[scope="col"] {
+  font-weight: 500;
+}
+.chart-data th[scope="row"] {
+  font-weight: 400;
+}
+
+/* Dot plots. */
+.dot-row-dodge .chart-track {
+  height: 44px;
+}
+
+.dot-connector {
+  position: absolute;
+  top: 50%;
+  height: 1px;
+  background: var(--chart-muted);
+  opacity: 0.6;
+}
+
+.dot-interval {
+  position: absolute;
+  top: 50%;
+  height: 2px;
+  min-width: 1px;
+  margin-top: -1px;
+  background: var(--chart-color);
+  opacity: 0.45;
+}
+
+/* Bar charts: 6px bars, 2px gaps, only the data end rounded. */
+.bar-row .chart-track {
+  height: var(--bar-track);
+}
+.bar-row + .bar-row {
+  margin-top: 4px;
+}
+
+.bar-group {
+  position: absolute;
+  inset: 4px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+}
+
+.bar-slot {
+  position: relative;
+  height: 6px;
+}
+
+.bar {
+  position: absolute;
+  inset-block: 0;
+  min-width: 1px;
+  background: var(--chart-color);
+}
+
+.bar-positive {
+  border-radius: 0 3px 3px 0;
+}
+.bar-negative {
+  border-radius: 3px 0 0 3px;
+}
+
+/* Line charts. */
+.line-chart {
+  margin-top: 20px;
+}
+
+.line-y-label,
+.scatter-y-label,
+.scatter-x-label {
+  color: var(--chart-muted);
+  font-size: 13px;
+}
+
+.line-y-label {
+  margin-bottom: 8px;
+}
+
+.line-body,
+.scatter-body {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: 10px;
+}
+
+.line-y-ticks,
+.scatter-y-ticks {
+  position: relative;
+  min-width: 2.5em;
+}
+
+.line-y-ticks span,
+.scatter-y-ticks span {
+  position: absolute;
+  right: 0;
+  transform: translateY(50%);
+  color: var(--chart-muted);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.line-plot {
+  position: relative;
+  margin-right: 12px;
+  outline: none;
+  touch-action: pan-y;
+}
+
+.line-plot:focus-visible {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 4px;
+}
+
+.line-grid {
+  position: absolute;
+  inset-inline: 0;
+  height: 1px;
+  background: var(--chart-rule);
+}
+
+.line-grid-zero {
+  background: var(--chart-muted);
+}
+
+.line-marker {
+  position: absolute;
+  inset-block: 0;
+  border-left: 1px dashed var(--chart-muted);
+}
+
+.line-marker-label {
+  position: absolute;
+  top: 0;
+  right: 6px;
+  color: var(--chart-muted);
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.line-plot svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.line-plot polyline {
+  fill: none;
+  stroke: var(--chart-color);
+  stroke-width: 2px;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.line-plot .line-dashed {
+  stroke-dasharray: 6 4;
+}
+
+.line-crosshair {
+  position: absolute;
+  inset-block: 0;
+  width: 1px;
+  background: var(--chart-muted);
+  opacity: 0;
+}
+
+.line-point {
+  opacity: 0;
+}
+
+.line-tip {
+  top: 0;
+  transform: translateX(16px);
+}
+
+.line-tip.line-tip-left {
+  transform: translateX(calc(-100% - 16px));
+}
+
+.is-active :is(.line-crosshair, .line-point, .line-tip) {
+  opacity: 1;
+}
+
+.line-x-ticks,
+.scatter-x-ticks {
+  position: relative;
+  height: 22px;
+  margin-right: 12px;
+}
+
+.line-x-ticks span,
+.scatter-x-ticks span {
+  position: absolute;
+  top: 6px;
+  transform: translateX(-50%);
+  color: var(--chart-muted);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.line-chart .chart-axis-label {
+  margin-top: 4px;
+}
+
+/* Scatter plots: small multiples, three across. */
+.scatter-panels {
+  display: grid;
+  grid-template-columns: repeat(var(--scatter-columns), minmax(0, 1fr));
+  gap: 28px 24px;
+  margin-top: 20px;
+}
+
+.scatter-panel-title {
+  font-weight: 500;
+}
+
+.scatter-y-label {
+  margin-top: 4px;
+  margin-bottom: 8px;
+}
+
+.scatter-x-label {
+  margin-top: 4px;
+  text-align: center;
+}
+
+.scatter-plot {
+  position: relative;
+  aspect-ratio: 5 / 4;
+  margin-right: 8px;
+  border-bottom: 1px solid var(--chart-muted);
+  border-left: 1px solid var(--chart-muted);
+}
+
+.scatter-grid-y,
+.scatter-grid-x {
+  position: absolute;
+  background: var(--chart-rule);
+}
+
+.scatter-grid-y {
+  inset-inline: 0;
+  height: 1px;
+}
+
+.scatter-grid-x {
+  inset-block: 0;
+  width: 1px;
+}
+
+/* A 20px hit area around each 10px mark. */
+.scatter-point {
+  position: absolute;
+  z-index: 1;
+  width: 20px;
+  height: 20px;
+  transform: translate(-50%, 50%);
+  outline: none;
+}
+
+.scatter-point .chart-mark {
+  left: 50%;
+}
+.scatter-point:is(:hover, :focus-visible) {
+  z-index: 3;
+}
+
+.scatter-point:focus-visible .chart-mark {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 3px;
+}
+
+.scatter-point .chart-tip {
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.scatter-tip-start .chart-tip {
+  left: 0;
+  transform: none;
+}
+
+.scatter-tip-end .chart-tip {
+  right: 0;
+  left: auto;
+  transform: none;
+}
+
+.scatter-point:is(:hover, :focus-visible) .chart-tip {
+  opacity: 1;
+}
+
+@media (max-width: 700px) {
+  .scatter-panels {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .chart-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+
+  .chart-row:not(.chart-axis):not(.chart-axis-label) {
+    padding-top: 6px;
+  }
+
+  .chart-axis .chart-row-label,
+  .chart-axis-label .chart-row-label {
+    display: none;
+  }
+
+  .chart-track {
+    margin-inline: 8px;
+  }
+
+  .line-tip {
+    min-width: 170px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chart-tip {
+    transition: none;
+  }
+}

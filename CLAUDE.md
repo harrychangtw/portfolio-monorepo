@@ -100,6 +100,7 @@ Content stored in `content/`:
 - `content/gallery/[slug].md` or `[slug]_zh-tw.md`
 - `content/posts/YYYY_MM_DD_[slug].md` (Blog requires date prefix)
 - Custom fields: `pinned` (numeric sort), `locked`, `featured`. Tags used for blog instead of category.
+- **Data charts** (projects and posts): embed with `<div class="markdown-chart" data-chart="castor/recipe-gap"></div>` on its own line. Names are registered in `packages/ui/charts/markdown-chart.tsx`; the kit (`DotPlot`, `BarChart`, `LineChart`, `ScatterPlot`, shared `ChartFrame` + `charts.css`) is ported from cerulean-website with series colors taken from the graph tokens (`--graph-node-*`), and per-post data/wrappers live in `packages/ui/charts/<post>/` with en + zh-TW text.
 
 ### Image Optimization Pipeline
 
