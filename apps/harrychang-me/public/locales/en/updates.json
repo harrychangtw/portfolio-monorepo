@@ -1,6 +1,10 @@
 {
   "entries": [
     {
+      "date": "2026-10-30",
+      "text": "[Honored] Awarded NTU's <a href=\"https://www.aca.ntu.edu.tw/WebUPD/aca/AdmissionOfficeNews/115%E5%AD%B8%E5%B9%B4%E5%BA%A6%E5%82%85%E9%90%98%E7%8D%8E%E5%AD%B8%E9%87%91%E6%96%B0%E7%94%9F%E7%8D%B2%E7%8D%8E%E5%90%8D%E5%96%AE.pdf\">Fu Bell Scholarship</a>, as one of 17 incoming freshmen selected university-wide"
+    },
+    {
       "date": "2026-10-25",
       "text": "[Research] Released my first-author paper <a href=\"/projects/castor/\">CASTOR</a> on <a href=\"https://arxiv.org/abs/2610.34074\">arXiv</a>: identically trained language models break on different jailbreaks"
     },
