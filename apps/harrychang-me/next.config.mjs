@@ -32,6 +32,7 @@ const SOCIAL_REDIRECTS = [
 const SLIDE_DECKS = [
   'sitcon-camp-26-ml-course2',
   'xingan-26-alumni-talk',
+  'iscslp-26-patch',
 ]
 
 // /talk — one stable URL for whatever I am speaking about right now, handed
@@ -39,7 +40,7 @@ const SLIDE_DECKS = [
 // next talk lands; it stays a 307 rather than a 308 precisely because it
 // moves, since a permanent redirect would stick in the browser cache of
 // everyone who opened it during the previous talk.
-const CURRENT_TALK = '/slides/xingan-26-alumni-talk'
+const CURRENT_TALK = '/slides/iscslp-26-patch'
 
 // Conventional short paths people try by hand or paste into a reader. The
 // feeds themselves are static files in public/, written by
@@ -91,6 +92,17 @@ const nextConfig = {
           {
             key: 'X-Robots-Tag',
             value: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
+          },
+        ],
+      },
+      {
+        // Decks reached by link (/talk, QR codes) but kept out of search.
+        // Listed after the site-wide rule so this X-Robots-Tag wins.
+        source: '/slides/iscslp-26-patch/:path*',
+        headers: [
+          {
+            key: 'X-Robots-Tag',
+            value: 'noindex, nofollow',
           },
         ],
       },
