@@ -53,6 +53,7 @@ const exploreLinks = [
 
 const siteLinks = [
   { id: "about", name: "About", href: "/#about" },
+  { id: "updates", name: "Updates", href: "/#updates" },
   { id: "projects", name: "Projects", href: "/#projects" },
   { id: "gallery", name: "Gallery", href: "/#gallery" },
   { id: "blog", name: "Blog", href: "/blog" },
@@ -74,7 +75,7 @@ const getTranslationKey = (id: string) => {
     return `resources.${id}`;
   }
   if (siteLinks.some((l) => l.id === id)) {
-    const headerIds = ["about", "projects", "gallery", "blog"];
+    const headerIds = ["about", "updates", "projects", "gallery", "blog"];
     if (headerIds.includes(id)) return `header.${id}`;
     return `resources.${id}`;
   }

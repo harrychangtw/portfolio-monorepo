@@ -15,6 +15,7 @@ const ThemeSwitcher = dynamic(() => import("@portfolio/ui/theme-switcher"), {
 
 const NAV_ITEMS = [
   { id: "about", path: "/" },
+  { id: "updates", path: "/#updates" },
   { id: "projects", path: "/#projects" },
   { id: "gallery", path: "/#gallery" },
   { id: "blog", path: "/#blog" },

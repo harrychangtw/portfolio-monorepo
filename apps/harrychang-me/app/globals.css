@@ -447,6 +447,38 @@
     display: none;
   }
 
+  /* Updates rail: breaks out of .container to the full viewport so the cards
+     run off both edges. At rest the card boxes sit on the page's content edge
+     and, on desktop, are as wide as a two-column card in the grids below, so
+     their edges line up with the Projects/Gallery cards. */
+  .updates-rail {
+    --rail-pad: 1rem;
+    --rail-gutter: calc(max(0px, (100vw - 1800px) / 2) + 1rem);
+    --rail-content: calc(min(100vw, 1800px) - 2rem);
+    --rail-card: calc(var(--rail-content) * 0.8);
+    display: flex;
+    gap: var(--column-spacing);
+    margin-inline: calc(50% - 50vw);
+    padding-inline: var(--rail-gutter);
+    scroll-padding-inline: var(--rail-gutter);
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+  }
+  .updates-rail > * {
+    flex: 0 0 var(--rail-card);
+    padding: var(--rail-pad);
+    scroll-snap-align: start;
+  }
+  @media (min-width: 768px) {
+    .updates-rail {
+      --rail-pad: 1.25rem;
+      --rail-gutter: calc(max(0px, (100vw - 1800px) / 2) + 2rem);
+      --rail-content: calc(min(100vw, 1800px) - 4rem);
+      --rail-card: calc((var(--rail-content) - 2 * var(--column-spacing)) / 3);
+    }
+  }
+
   /* Editorial inline links: thin underline at body weight with a small ↗
      marker. The marker is an SVG mask, not the U+2197 glyph, because iOS
      renders that character as a color emoji. */
