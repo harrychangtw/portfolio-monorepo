@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { siteConfig, feedAlternates } from "@/config/site";
 import AboutSection from "@/components/main/about-section";
-import UpdatesSection from "@/components/main/updates-section";
 import ProjectsSection from "@portfolio/ui/projects-section";
 import GallerySection from "@portfolio/ui/gallery-section";
 import BlogSection from "@portfolio/ui/blog-section";
@@ -92,10 +91,9 @@ export default async function Home({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(profileSchema) }}
       />
       <AboutSection />
-      <UpdatesSection />
       <ProjectsSection initialItems={projectsItems} limit={9} showSeeAll />
       <GallerySection initialItems={galleryItems} limit={16} showSeeAll />
-      <BlogSection initialItems={blogPosts} limit={9} showSeeAll />
+      <BlogSection initialItems={blogPosts} limit={9} showSeeAll compact />
     </>
   );
 }

@@ -15,7 +15,6 @@ const ThemeSwitcher = dynamic(() => import("@portfolio/ui/theme-switcher"), {
 
 const NAV_ITEMS = [
   { id: "about", path: "/" },
-  { id: "updates", path: "/#updates" },
   { id: "projects", path: "/#projects" },
   { id: "gallery", path: "/#gallery" },
   { id: "blog", path: "/#blog" },
@@ -30,7 +29,6 @@ const LAB_HOSTNAMES = (() => {
 })();
 
 const SPECIAL_PAGES = [
-  { prefix: "/paper-reading", key: "paperReading" },
   { prefix: "/manifesto", key: "manifesto" },
   { prefix: "/uses", key: "uses" },
   { prefix: "/linktree", key: "links" },

@@ -313,18 +313,6 @@ export default function TypographyPageClient() {
               />
             </NavigationLink>
             <NavigationLink
-              href="/paper-reading"
-              className="block hover:opacity-90 transition-opacity"
-            >
-              <ImageContainer
-                src="/images/optimized/projects/og/og-image-reading.webp"
-                alt="Paper Reading"
-                aspectRatio={1200 / 630}
-                noInsetPadding={true}
-                sizes="(min-width: 768px) 25vw, 50vw"
-              />
-            </NavigationLink>
-            <NavigationLink
               href="/uses"
               className="block hover:opacity-90 transition-opacity"
             >

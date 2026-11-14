@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import NavigationLink from "@portfolio/ui/navigation-link";
 import { ImageContainer } from "@portfolio/ui/image-container";
+import MarqueeText from "@portfolio/ui/marquee-text";
 
 interface BlogCardProps {
   title: string;
@@ -15,6 +16,8 @@ interface BlogCardProps {
   index?: number;
   className?: string;
   locked?: boolean;
+  /** Homepage variant: image, title, one category line, like ProjectCard. */
+  compact?: boolean;
 }
 
 export default function BlogCard({
@@ -27,6 +30,7 @@ export default function BlogCard({
   index = 0,
   className,
   locked = false,
+  compact = false,
 }: BlogCardProps) {
   const formatDate = (dateStr: string) => {
     const d = new Date(dateStr);
@@ -38,6 +42,7 @@ export default function BlogCard({
   const displayTags = tags && tags.length > 0 ? tags : ["Blog"];
 
   const [isClient, setIsClient] = useState(false);
+  const [hovered, setHovered] = useState(false);
   const [timeLeft, setTimeLeft] = useState<number | null>(null);
 
   useEffect(() => {
@@ -106,6 +111,97 @@ export default function BlogCard({
         className: "block flex flex-col h-full",
       };
 
+  const imageBlock = (
+    <motion.div
+      className="relative overflow-hidden bg-muted mt-auto"
+      whileHover={
+        isEffectivelyLocked
+          ? undefined
+          : {
+              scale: 0.98,
+              transition: { duration: 0.2, ease: [0.4, 0, 0.6, 1] },
+            }
+      }
+    >
+      <ImageContainer
+        src={imageUrl}
+        alt={title}
+        priority={priority}
+        quality={70}
+        aspectRatio={1.5}
+        noInsetPadding={true}
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 500px"
+        imgClassName={
+          isEffectivelyLocked
+            ? "grayscale transition-all duration-700"
+            : "transition-all duration-700"
+        }
+      />
+
+      {/* Lock/Countdown Overlay mimicking 404 & Page Transition styles */}
+      <AnimatePresence>
+        {isEffectivelyLocked && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+            className="absolute inset-0 z-30 bg-background/80 flex flex-col items-center justify-center"
+          >
+            <div className="relative flex flex-col items-center justify-center w-[85%] h-[80%] max-w-[260px] max-h-[160px]">
+              {/* Corner Framelines */}
+              <div className="absolute top-0 left-0 w-4 h-4 border-t border-l border-foreground/40" />
+              <div className="absolute top-0 right-0 w-4 h-4 border-t border-r border-foreground/40" />
+              <div className="absolute bottom-0 left-0 w-4 h-4 border-b border-l border-foreground/40" />
+              <div className="absolute bottom-0 right-0 w-4 h-4 border-b border-r border-foreground/40" />
+
+              {/* Timer Readout */}
+              <div className="font-mono text-[13px] tracking-[0.2em] text-foreground tabular-nums mt-1 flex items-center">
+                {timeLeft === null ? (
+                  <span className="animate-pulse opacity-60 tracking-[0.3em]">
+                    COMPUTING
+                  </span>
+                ) : (
+                  formatCountdown(timeLeft)
+                )}
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
+  );
+
+  if (compact) {
+    // Text first: on a blog card the title is what people choose by, so it
+    // leads. It stays on one line (rows keep a single text height) and
+    // scrolls on hover when it doesn't fit.
+    return (
+      <div
+        className={`group relative flex flex-col pb-10 ${className || ""}`}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+      >
+        <Wrapper {...wrapperProps}>
+          <div className="pb-3">
+            <MarqueeText
+              as="h3"
+              title={title}
+              active={hovered}
+              className={`font-heading text-lg font-medium transition-colors duration-700 ${isEffectivelyLocked ? "text-primary/50" : "text-primary"}`}
+            >
+              {title}
+            </MarqueeText>
+            <p className="font-body text-secondary text-sm mt-0.5">
+              {displayTags.join(" • ")}
+            </p>
+          </div>
+          {imageBlock}
+        </Wrapper>
+      </div>
+    );
+  }
+
   return (
     <div
       className={`group relative flex flex-col h-full pb-12 ${className || ""}`}
@@ -145,64 +241,7 @@ export default function BlogCard({
           </div>
         </div>
 
-        <motion.div
-          className="relative overflow-hidden bg-muted mt-auto"
-          whileHover={
-            isEffectivelyLocked
-              ? undefined
-              : {
-                  scale: 0.98,
-                  transition: { duration: 0.2, ease: [0.4, 0, 0.6, 1] },
-                }
-          }
-        >
-          <ImageContainer
-            src={imageUrl}
-            alt={title}
-            priority={priority}
-            quality={70}
-            aspectRatio={1.5}
-            noInsetPadding={true}
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 500px"
-            imgClassName={
-              isEffectivelyLocked
-                ? "grayscale transition-all duration-700"
-                : "transition-all duration-700"
-            }
-          />
-
-          {/* Lock/Countdown Overlay mimicking 404 & Page Transition styles */}
-          <AnimatePresence>
-            {isEffectivelyLocked && (
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.5 }}
-                className="absolute inset-0 z-30 bg-background/80 flex flex-col items-center justify-center"
-              >
-                <div className="relative flex flex-col items-center justify-center w-[85%] h-[80%] max-w-[260px] max-h-[160px]">
-                  {/* Corner Framelines */}
-                  <div className="absolute top-0 left-0 w-4 h-4 border-t border-l border-foreground/40" />
-                  <div className="absolute top-0 right-0 w-4 h-4 border-t border-r border-foreground/40" />
-                  <div className="absolute bottom-0 left-0 w-4 h-4 border-b border-l border-foreground/40" />
-                  <div className="absolute bottom-0 right-0 w-4 h-4 border-b border-r border-foreground/40" />
-
-                  {/* Timer Readout */}
-                  <div className="font-mono text-[13px] tracking-[0.2em] text-foreground tabular-nums mt-1 flex items-center">
-                    {timeLeft === null ? (
-                      <span className="animate-pulse opacity-60 tracking-[0.3em]">
-                        COMPUTING
-                      </span>
-                    ) : (
-                      formatCountdown(timeLeft)
-                    )}
-                  </div>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </motion.div>
+        {imageBlock}
       </Wrapper>
     </div>
   );

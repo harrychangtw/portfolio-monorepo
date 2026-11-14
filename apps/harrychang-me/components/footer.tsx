@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useRef } from "react";
 import { motion } from "motion/react";
-import Image from "next/image";
 import dynamic from "next/dynamic";
 import { useIsMobile } from "@portfolio/lib/hooks/use-mobile";
 import { useLanguage } from "@portfolio/lib/contexts/language-context";
@@ -12,7 +11,8 @@ import NowPlayingCard from "@portfolio/ui/now-playing-card";
 import { usePathname } from "next/navigation";
 import { scrollToSection } from "@portfolio/lib/lib/scrolling";
 import NavigationLink from "@portfolio/ui/navigation-link";
-import GuestbookWidget from "@/components/guestbook-widget";
+import MarqueeText from "@portfolio/ui/marquee-text";
+import FooterBand from "@/components/footer-band";
 import { ArrowUpRight } from "lucide-react";
 
 const LanguageSwitcher = dynamic(
@@ -30,7 +30,6 @@ const connectLinks = [
   { id: "discord", name: "Discord", href: "/discord" },
   { id: "linkedin", name: "LinkedIn", href: "/linkedin" },
   { id: "github", name: "GitHub", href: "/github" },
-  { id: "telegram", name: "Telegram", href: "/telegram" },
   { id: "instagram", name: "Instagram", href: "/instagram" },
   { id: "medium", name: "Medium", href: "/medium" },
   // Two different things, deliberately adjacent: /cal is the read-only public
@@ -45,7 +44,6 @@ const exploreLinks = [
   { id: "letterboxd", name: "Letterboxd", href: "/letterboxd" },
   { id: "resume", name: "Resume", href: "/cv" },
   { id: "uses", name: "Uses", href: "/uses" },
-  { id: "reading", name: "Paper Reading List", href: "/paper-reading" },
   { id: "design", name: "Design System", href: "/design" },
   { id: "graph", name: "Knowledge Graph", href: "/graph" },
   // href is swapped to the zh-TW feed at render time; see
@@ -55,7 +53,6 @@ const exploreLinks = [
 
 const siteLinks = [
   { id: "about", name: "About", href: "/#about" },
-  { id: "updates", name: "Updates", href: "/#updates" },
   { id: "projects", name: "Projects", href: "/#projects" },
   { id: "gallery", name: "Gallery", href: "/#gallery" },
   { id: "blog", name: "Blog", href: "/blog" },
@@ -77,7 +74,7 @@ const getTranslationKey = (id: string) => {
     return `resources.${id}`;
   }
   if (siteLinks.some((l) => l.id === id)) {
-    const headerIds = ["about", "updates", "projects", "gallery", "blog"];
+    const headerIds = ["about", "projects", "gallery", "blog"];
     if (headerIds.includes(id)) return `header.${id}`;
     return `resources.${id}`;
   }
@@ -86,7 +83,7 @@ const getTranslationKey = (id: string) => {
 
 export default function Footer() {
   const isMobile = useIsMobile();
-  const { t, tHtml, language } = useLanguage();
+  const { t, language } = useLanguage();
   const pathname = usePathname();
   const [activeTooltipId, setActiveTooltipId] = useState<string | null>(null);
   const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 });
@@ -189,8 +186,16 @@ export default function Footer() {
 
     const linkContent = (
       <>
-        <span>{label}</span>
-        <ArrowUpRight className="w-4 h-4 text-secondary transition-all duration-300 group-hover:text-accent group-hover:translate-x-0.5" />
+        {/* One line, like the blog card titles: fades at the edge when it
+            doesn't fit and scrolls while the row is hovered. */}
+        <MarqueeText
+          active={activeTooltipId === link.id}
+          title={t(getTranslationKey(link.id))}
+          className="min-w-0 flex-1 mr-3"
+        >
+          {label}
+        </MarqueeText>
+        <ArrowUpRight className="shrink-0 w-4 h-4 text-secondary transition-all duration-300 group-hover:text-accent group-hover:translate-x-0.5" />
       </>
     );
 
@@ -230,95 +235,57 @@ export default function Footer() {
 
   return (
     <>
+      <FooterBand />
       <footer
         id="site-footer"
         ref={footerRef}
-        className="bg-card text-primary py-12 md:py-16 border-t border-border"
+        className="bg-card text-primary py-12 md:py-16"
       >
         <div className="container">
-          <div className="grid grid-cols-12 gap-y-10 md:gap-x-2 items-center">
-            {/* Column 1: Logo & Motto */}
-            <div className="col-span-12 md:col-span-6 md:pr-24 max-w-xl">
-              <NavigationLink
-                href={getHref("/")}
-                className="relative h-12 mb-6 block cursor-pointer group"
-                aria-label="Return to home page"
-              >
-                {/*
-                  Pre-sized WebP (3x the 48px display height). Not `priority`:
-                  the footer is never above the fold, and preloading the old
-                  1784px PNG put 52 KB on every page's critical path.
-                */}
-                <Image
-                  src="/chinese_name_icon.webp"
-                  alt="Harry Chang/Chi-Wei Chang 張祺煒 Logo"
-                  width={428}
-                  height={144}
-                  className="object-contain transition-opacity group-hover:opacity-80 footer-logo"
-                  unoptimized
-                  style={{ width: "auto", height: "48px" }}
-                />
-                <span className="sr-only">
-                  Harry Chang/Chi-Wei Chang 張祺煒
-                </span>
-              </NavigationLink>
-              <div className="font-ibm-plex text-base text-primary space-y-3">
-                <p>{t("footer.motto1")}</p>
-                <p>{tHtml("footer.motto2")}</p>
-              </div>
-              <div className="hidden md:flex items-center gap-6 mt-6">
-                <LanguageSwitcher />
-                <ThemeSwitcher />
-              </div>
-            </div>
-
-            {/* Link Columns */}
-            <div className="col-span-12 md:col-span-6 space-y-10">
-              <div className="w-full">
-                <h3 className="section-label mb-4">{t("footer.guestbook")}</h3>
-                <GuestbookWidget />
+          {/* The left half is pure negative space; links take the right. No
+              column gap, so Socials starts exactly on the midline, the same
+              line the guestbook box in the band above starts on. */}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-y-10">
+            <div className="md:col-start-7 md:col-span-6 grid grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-10">
+              <div>
+                <h3 className="section-label mb-4">
+                  {t("footer.socialContact")}
+                </h3>
+                <ul className="space-y-3">
+                  {connectLinks.map((link) => renderLink(link))}
+                </ul>
               </div>
 
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-10">
-                {/* Connect */}
-                <div className="col-span-1">
-                  <h3 className="section-label mb-4">
-                    {t("footer.socialContact")}
-                  </h3>
-                  <ul className="space-y-3">
-                    {connectLinks.map((link) => renderLink(link))}
-                  </ul>
-                </div>
+              <div>
+                <h3 className="section-label mb-4">
+                  {t("footer.personalResources")}
+                </h3>
+                <ul className="space-y-3">
+                  {localizedExploreLinks.map((link) => renderLink(link, true))}
+                </ul>
+              </div>
 
-                {/* Explore */}
-                <div className="col-span-1">
-                  <h3 className="section-label mb-4">
-                    {t("footer.personalResources")}
-                  </h3>
-                  <ul className="space-y-3">
-                    {localizedExploreLinks.map((link) =>
-                      renderLink(link, true),
-                    )}
-                  </ul>
-                </div>
-
-                {/* Site - Hidden on mobile, shown on md+ */}
-                <div className="col-span-2 md:col-span-1 hidden md:block">
-                  <h3 className="section-label mb-4">
-                    {t("footer.siteNavigation")}
-                  </h3>
-                  <ul className="space-y-3">
-                    {siteLinks.map((link) => renderLink(link))}
-                  </ul>
-                </div>
+              {/* Site map: hidden on mobile, where the header menu covers it */}
+              <div className="hidden md:block">
+                <h3 className="section-label mb-4">
+                  {t("footer.siteNavigation")}
+                </h3>
+                <ul className="space-y-3">
+                  {siteLinks.map((link) => renderLink(link))}
+                </ul>
               </div>
             </div>
           </div>
 
-          {/* Mobile Switches */}
-          <div className="flex md:hidden items-center gap-6 mt-10">
-            <LanguageSwitcher />
-            <ThemeSwitcher />
+          {/* Final row under everything */}
+          <div className="mt-12 pt-6 border-t border-border flex flex-wrap items-center justify-between gap-3">
+            <div className="flex items-center gap-6">
+              <LanguageSwitcher />
+              <ThemeSwitcher />
+            </div>
+            <span className="font-body text-sm text-secondary">
+              © {new Date().getFullYear()} Harry Chang
+            </span>
           </div>
         </div>
       </footer>

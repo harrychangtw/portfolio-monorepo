@@ -2,6 +2,7 @@
   "bio1": "我是張祺煒。我打造語言模型安全系統、拍一些當下看不到的照片，也為自己不全然相信的立場辯護。工具不斷更迭，好奇心始終如一。",
   "bio2": "現就讀<a href=\"blog/2025_12_24_ntu_cs_special_admission_zh-tw/\">臺大資工</a>大一。我在<a href=\"projects/2025_10_12_fortress_zh-tw/\">研究</a>、<a href=\"#gallery\">攝影</a>、<a href=\"projects/2025_08_04_debate_zh-tw\">辯論</a>與偶爾的<a href=\"projects/menghua-graduation-mv_zh-tw\">影片創作</a>之間穿梭，其間的種種，則<a href=\"/blog\">寫成文字</a>。看似涇渭分明，實則頁頁相連；想一眼看盡全貌，<a href=\"/graph\">這裡有張圖譜</a>。",
   "bio3": "",
+  "latest": "最新",
   "roles": {
     "llmResearcher": {
       "title": "LLM 研究員",

@@ -1497,26 +1497,6 @@ def main():
                     })
                     lnode["parentId"] = hub_id
 
-    # --- Reading List hub (no existing locale nodes, standalone) ---
-    for locale in ("en", "zh-TW"):
-        hub_id = f"hub-reading-{locale}"
-        title = _hub_title("reading", locale)
-        hub_nodes.append({
-            "id": hub_id,
-            "nodeType": "hub",
-            "title": title,
-            "snippet": title,
-            "sourceType": "locale",
-            "sourceSlug": "reading",
-            "locale": locale,
-            "url": f"{BASE_URL}/paper-reading",
-            "date": None,
-            "tags": [],
-            "heading": None,
-            "imageUrl": None,
-            "parentId": None,
-            "mediaSource": None,
-        })
 
     # --- Design System hub (no existing locale nodes, standalone) ---
     for locale in ("en", "zh-TW"):

@@ -18,6 +18,8 @@ interface BlogSectionProps {
   initialItems?: PostMetadata[];
   limit?: number;
   showSeeAll?: boolean;
+  /** Homepage cards: title + tags line, no date or tag chips. */
+  compact?: boolean;
 }
 
 export default function BlogSection({
@@ -27,6 +29,7 @@ export default function BlogSection({
   initialItems = [],
   limit,
   showSeeAll = false,
+  compact = false,
 }: BlogSectionProps = {}) {
   const { language, initialLanguage, t } = useLanguage();
   // initialItems is markdown the server loaded in `initialLanguage` — the
@@ -177,6 +180,7 @@ export default function BlogSection({
                   priority={index < 3}
                   index={index}
                   locked={post.locked}
+                  compact={compact}
                 />
               ))}
         </div>

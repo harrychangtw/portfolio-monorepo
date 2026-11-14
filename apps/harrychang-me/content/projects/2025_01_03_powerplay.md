@@ -9,7 +9,7 @@ date: "2025-01-05"
 role: "Filming, Editing, Photography"
 technologies: ["DaVinci Resolve", "Affinity Designer"]
 tooltip: "Produced the curtain call video for the annual school English drama."
-pinned: 10
+pinned: 11
 featured: true
 ---
 

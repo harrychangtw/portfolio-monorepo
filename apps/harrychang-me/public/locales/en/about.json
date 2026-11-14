@@ -2,6 +2,7 @@
   "bio1": "I'm Harry Chang. I build safety systems for language models, take photographs I don't look at until later, and argue for positions I'm not sure I believe in.",
   "bio2": "Now a freshman at <a href=\"blog/2025_12_24_ntu_cs_special_admission/\">NTU CSIE</a>. I work across <a href=\"projects/2025_10_12_fortress/\">research</a>, <a href=\"#gallery\">photography</a>, <a href=\"projects/2025_08_04_debate\">debate</a>, and the occasional <a href=\"projects/menghua-graduation-mv\">film</a>, whichever one the day needs, and <a href=\"/blog\">write</a>  about what happens in between.",
   "bio3": "None of it is as separate as it looks. Every page here connects to another; if you'd rather see the whole shape at once, <a href=\"/graph\">there's a graph for that</a>.",
+  "latest": "Latest",
   "roles": {
     "llmResearcher": {
       "title": "LLM Researcher",

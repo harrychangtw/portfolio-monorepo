@@ -45,7 +45,6 @@ function formatHubRoute(node: GraphNode): string {
   // Locale hub slugs that live as hash anchors on the homepage
   const hashMap: Record<string, string> = {
     about: "#about",
-    updates: "#updates",
   };
   if (node.sourceSlug in hashMap) {
     return `harrychang.me/${hashMap[node.sourceSlug]}`;

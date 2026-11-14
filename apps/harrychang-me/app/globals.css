@@ -447,13 +447,15 @@
     display: none;
   }
 
+  /* Editorial inline links: thin underline at body weight with a small ↗
+     marker. The marker is an SVG mask, not the U+2197 glyph, because iOS
+     renders that character as a color emoji. */
   .link-external {
     color: hsl(var(--primary));
     text-decoration: underline;
-    text-decoration-style: dashed;
-    text-decoration-color: hsl(var(--border));
-    text-underline-offset: 0.2em;
-    font-weight: 500;
+    text-decoration-thickness: 1px;
+    text-decoration-color: hsl(var(--secondary) / 0.5);
+    text-underline-offset: 0.22em;
     transition: text-decoration-color 0.2s ease-in-out;
     position: relative;
     white-space: nowrap;
@@ -465,14 +467,17 @@
   }
 
   .link-external::after {
-    content: "*";
-    display: inline;
-    vertical-align: super;
-    margin-left: 0.1em;
-    color: hsl(var(--accent));
-    font-family: var(--font-heading);
-    font-size: 0.8em;
-    font-weight: 800;
+    content: "";
+    display: inline-block;
+    width: 0.45em;
+    height: 0.45em;
+    margin-left: 0.15em;
+    vertical-align: 0.55em;
+    background-color: hsl(var(--accent));
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' fill='none' stroke='black' stroke-width='1.6'%3E%3Cpath d='M2 8 8 2M3 2h5v5'/%3E%3C/svg%3E")
+      center / contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' fill='none' stroke='black' stroke-width='1.6'%3E%3Cpath d='M2 8 8 2M3 2h5v5'/%3E%3C/svg%3E")
+      center / contain no-repeat;
   }
 
   /* Ensure prose content uses correct fonts */
@@ -499,9 +504,23 @@
   }
 }
 
+/* The root turns on ss01 for everything (Plex body text keeps it). Artific's
+   ss01 alternates are for headings only, so the heading font drops them
+   anywhere outside an h1–h6: nav, tooltips, buttons, labels. */
+:where(.font-heading, .section-label):not(
+  :is(h1, h2, h3, h4, h5, h6),
+  :is(h1, h2, h3, h4, h5, h6) *
+) {
+  font-feature-settings: normal;
+}
+
+/* The footer band's photo is a dark field with light beams; flip it in light mode so text on top keeps the theme's contrast. */
+.light .footer-band-image {
+  filter: invert(1);
+}
+
 /* Ensure native anchor/element.scrollIntoView land below sticky header */
 #about,
-#updates,
 #projects,
 #gallery {
   scroll-margin-top: var(--header-offset, 64px);
@@ -551,6 +570,40 @@ html.light {
   background-image: var(--gradient-primary);
   background-size: 200% 100%;
   animation: gradient-loop 2s linear infinite;
+}
+
+/* "Thinking" text: a faint highlight crosses the letters once, left to right,
+   when the element mounts. Key the element on its content to replay it. */
+.text-shimmer {
+  color: transparent;
+  background-image: linear-gradient(
+    90deg,
+    hsl(var(--primary) / 0.7) 0%,
+    hsl(var(--primary) / 0.7) 42%,
+    hsl(var(--primary)) 50%,
+    hsl(var(--primary) / 0.7) 58%,
+    hsl(var(--primary) / 0.7) 100%
+  );
+  background-size: 300% 100%;
+  background-position: 0% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: text-shimmer 2.2s ease-in-out 1;
+}
+
+@keyframes text-shimmer {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: 0% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .text-shimmer {
+    animation: none;
+  }
 }
 
 .loading-bar {

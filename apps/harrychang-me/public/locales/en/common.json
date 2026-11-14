@@ -36,7 +36,8 @@
     "placeholder5": "Spotted an issue? Have a question? Drop a line.",
     "placeholder6": "Thoughts, feedback, or just a hello.",
     "placeholder7": "Anonymous feedback welcome",
-    "focusedPlaceholder": "Type your message...",
+    "focusedPlaceholder": "Type your anonymous message...",
+    "sent": "Received. Thank you.",
     "error": "Failed to send. Please try again."
   },
   "theme": {

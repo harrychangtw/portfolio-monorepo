@@ -138,7 +138,7 @@ const parseHtmlToReact = (
   return parts.length > 0 ? <>{parts}</> : htmlString;
 };
 
-const DEFAULT_NAMESPACES = ["common", "about", "updates", "uses", "cv"];
+const DEFAULT_NAMESPACES = ["common", "about", "uses", "cv"];
 
 /**
  * The language of the server render, when the caller could not resolve one.

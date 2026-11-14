@@ -12,7 +12,6 @@ export const HUB_OG_IMAGES: Record<string, string> = {
   uses: "/images/og-image-uses.webp",
   linktree: "/images/og-image.webp",
   cv: "/images/og-image-resume.webp",
-  reading: "/images/og-image-reading.webp",
   design: "/images/og-image-design.webp",
 };
 
