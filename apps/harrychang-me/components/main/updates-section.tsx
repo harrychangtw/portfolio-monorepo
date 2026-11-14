@@ -96,7 +96,7 @@ export default function UpdatesSection() {
   return (
     <section
       id="updates"
-      className="py-12 md:py-16 border-b border-border overflow-x-clip"
+      className="py-8 md:py-10 border-b border-border overflow-x-clip"
     >
       <div className="container">
         <div className="flex justify-between items-center mb-4">
@@ -124,29 +124,26 @@ export default function UpdatesSection() {
           </div>
         </div>
 
-        {/* Edge fades sit at the viewport edges (the rail breaks out of the
-            container) and only show on a side that has more cards to reveal. */}
-        <div className="relative">
+        {/* Edge fades fill the gutters outside the container and only show on
+            a side that has more cards to reveal. */}
+        <div className="updates-rail-wrap">
           <div
             aria-hidden
-            className={`pointer-events-none absolute inset-y-0 left-[calc(50%-50vw)] z-10 w-[max(4rem,16vw)] bg-gradient-to-r from-background from-20% via-background/70 to-transparent transition-opacity duration-300 ${atStart ? "opacity-0" : "opacity-100"}`}
+            className={`updates-fade updates-fade-left ${atStart ? "opacity-0" : "opacity-100"}`}
           />
           <div
             aria-hidden
-            className={`pointer-events-none absolute inset-y-0 right-[calc(50%-50vw)] z-10 w-[max(4rem,16vw)] bg-gradient-to-l from-background from-20% via-background/70 to-transparent transition-opacity duration-300 ${atEnd ? "opacity-0" : "opacity-100"}`}
+            className={`updates-fade updates-fade-right ${atEnd ? "opacity-0" : "opacity-100"}`}
           />
           <div ref={setRail} className="updates-rail no-scrollbar">
             {updates.map((entry, index) => (
-              <article
-                key={index}
-                className="flex flex-col gap-3 rounded-lg bg-muted/40 hover:bg-muted/70 transition-colors"
-              >
-                <time className="font-mono text-xs text-secondary/60">
-                  {entry.date}
-                </time>
-                <p className="font-ibm-plex text-sm text-primary leading-relaxed line-clamp-4">
+              // Body text with the mono date underneath, like the Roles column in
+              // About.
+              <article key={index} className="flex flex-col gap-1">
+                <p className="font-ibm-plex text-sm text-primary leading-relaxed line-clamp-3">
                   {parseHtmlToReact(entry.text)}
                 </p>
+                <time className="label-mono mt-auto">{entry.date}</time>
               </article>
             ))}
           </div>

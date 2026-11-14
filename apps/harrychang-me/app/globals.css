@@ -447,15 +447,25 @@
     display: none;
   }
 
-  /* Updates rail: breaks out of .container to the full viewport so the cards
-     run off both edges. At rest the card boxes sit on the page's content edge
-     and, on desktop, are as wide as a two-column card in the grids below, so
-     their edges line up with the Projects/Gallery cards. */
-  .updates-rail {
-    --rail-pad: 1rem;
+  /* Updates rail: breaks out of .container to the full viewport so items run
+     off both edges (layout vars live on .updates-rail-wrap so the edge fades
+     can share them). Items are unboxed, a hairline over each, and at rest the
+     first one starts on the page's content edge. On desktop each is 4 of 12
+     columns wide, so item edges line up with the Projects/Gallery cards. */
+  .updates-rail-wrap {
     --rail-gutter: calc(max(0px, (100vw - 1800px) / 2) + 1rem);
     --rail-content: calc(min(100vw, 1800px) - 2rem);
-    --rail-card: calc(var(--rail-content) * 0.8);
+    --rail-card: calc(var(--rail-content) * 0.7);
+    position: relative;
+  }
+  @media (min-width: 768px) {
+    .updates-rail-wrap {
+      --rail-gutter: calc(max(0px, (100vw - 1800px) / 2) + 2rem);
+      --rail-content: calc(min(100vw, 1800px) - 4rem);
+      --rail-card: calc((var(--rail-content) - 2 * var(--column-spacing)) / 3);
+    }
+  }
+  .updates-rail {
     display: flex;
     gap: var(--column-spacing);
     margin-inline: calc(50% - 50vw);
@@ -467,16 +477,37 @@
   }
   .updates-rail > * {
     flex: 0 0 var(--rail-card);
-    padding: var(--rail-pad);
+    padding: 0.75rem 1.5rem 0 0;
+    border-top: 1px solid hsl(var(--border));
     scroll-snap-align: start;
   }
-  @media (min-width: 768px) {
-    .updates-rail {
-      --rail-pad: 1.25rem;
-      --rail-gutter: calc(max(0px, (100vw - 1800px) / 2) + 2rem);
-      --rail-content: calc(min(100vw, 1800px) - 4rem);
-      --rail-card: calc((var(--rail-content) - 2 * var(--column-spacing)) / 3);
-    }
+  /* Edge fades fill only the gutter between the viewport edge and the content
+     edge, so they dim cards scrolling out but never the ones in view. */
+  .updates-fade {
+    position: absolute;
+    inset-block: 0;
+    z-index: 10;
+    width: var(--rail-gutter);
+    pointer-events: none;
+    transition: opacity 0.3s;
+  }
+  .updates-fade-left {
+    left: calc(50% - 50vw);
+    background: linear-gradient(
+      to right,
+      hsl(var(--background)) 20%,
+      hsl(var(--background) / 0.7) 60%,
+      transparent
+    );
+  }
+  .updates-fade-right {
+    right: calc(50% - 50vw);
+    background: linear-gradient(
+      to left,
+      hsl(var(--background)) 20%,
+      hsl(var(--background) / 0.7) 60%,
+      transparent
+    );
   }
 
   /* Editorial inline links: thin underline at body weight with a small ↗
