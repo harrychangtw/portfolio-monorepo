@@ -6,6 +6,7 @@
 /cv
 /linktree
 /design
+/paper-reading
 /manifesto
 /projects/2025_04_12_portfolio
 /projects/2024_09_23_chingshin_rag

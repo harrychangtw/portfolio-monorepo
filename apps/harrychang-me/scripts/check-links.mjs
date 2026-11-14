@@ -205,7 +205,7 @@ const HTML_HREF_RE = /(?:href|src)\s*=\s*["'](\/[^"']+)["']/g;
 // String literals starting with `/` in TS/TSX/JSON. Restrict to URL-shaped
 // values to avoid noise: must look like a path segment, not something like
 // `/^regex$/` or division.
-const STRING_URL_RE = /["'`](\/(?:images|blog|projects|gallery|manifesto|uses|linktree|cv|design|lab|api)(?:\/[^"'`\s)<>]*)?)["'`]/g;
+const STRING_URL_RE = /["'`](\/(?:images|blog|projects|gallery|paper-reading|manifesto|uses|linktree|cv|design|lab|api)(?:\/[^"'`\s)<>]*)?)["'`]/g;
 
 function extractFromMarkdown(content) {
   const refs = [];

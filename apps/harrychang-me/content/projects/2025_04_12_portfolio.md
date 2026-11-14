@@ -76,6 +76,7 @@ The portfolio is designed to showcase a variety of work and thought, with key se
 - [**Gallery Section:**](/#gallery) A collection of images with dedicated pages, enhanced by a custom framing system for visual presentation.
 - [**Blog Section:**](/#blog) A series of articles and posts on various topics, ranging from reviews to random musings.
 - [**Manifesto Page:**](/manifesto) A dedicated space to express the core principles and philosophies that drive my work.
+- [**Paper Reading Section:**](/paper-reading) A dynamic list of academic papers I have studied.
 - [**Uses:**](/uses) A list of tools and technologies I use regularly.
 
 The source code for this site is available on [GitHub](https://github.com/Harrychangtw/portfolio-monorepo) under a CC BY-NC 4.0 license. All content, including text and images, is protected by copyright.

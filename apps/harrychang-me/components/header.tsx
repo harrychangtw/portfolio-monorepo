@@ -29,6 +29,7 @@ const LAB_HOSTNAMES = (() => {
 })();
 
 const SPECIAL_PAGES = [
+  { prefix: "/paper-reading", key: "paperReading" },
   { prefix: "/manifesto", key: "manifesto" },
   { prefix: "/uses", key: "uses" },
   { prefix: "/linktree", key: "links" },

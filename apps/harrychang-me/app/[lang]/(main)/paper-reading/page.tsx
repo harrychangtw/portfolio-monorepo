@@ -1,0 +1,58 @@
+import { Suspense } from "react";
+import {
+  fetchArxivPapers,
+  getManualPapers,
+  getArxivPaperIds,
+  getPrebuiltPapers,
+} from "@portfolio/lib/lib/arxiv";
+import { Paper } from "@portfolio/lib/types/paper";
+import PaperReadingPageClient from "@/components/main/paper-reading-page-client";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Paper Reading",
+  description:
+    "Papers I'm slowly working through. An annotated reading list of research in AI, machine learning, and the ideas worth sitting with.",
+  openGraph: {
+    title: "Paper Reading | Harry Chang 張祺煒",
+    description:
+      "Papers I'm slowly working through — research in AI, machine learning, and the ideas worth sitting with.",
+    images: [
+      {
+        url: "https://www.harrychang.me/images/og-image-reading.webp",
+        width: 1200,
+        height: 630,
+        alt: "Paper Reading | Harry Chang",
+      },
+    ],
+  },
+};
+
+// No `searchParams` access here — pagination is handled client-side from
+// `useSearchParams()` so this page can prerender as fully static HTML and
+// be served from the CDN edge cache (avoiding per-request server work).
+export default async function PaperReadingPage() {
+  // Try prebuilt cache first (build-time fetch)
+  let allPapers: Paper[] = getPrebuiltPapers();
+
+  // Fallback for local dev if cache missing
+  if (!allPapers.length) {
+    const arxivPaperIds = getArxivPaperIds();
+    const [arxivPapers, manualPapers] = await Promise.all([
+      fetchArxivPapers(arxivPaperIds),
+      getManualPapers(),
+    ]);
+    allPapers = [...arxivPapers, ...manualPapers].sort(
+      (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+    );
+  }
+
+  // Suspense boundary required because PaperReadingPageClient reads
+  // useSearchParams(); without it, Next 15 would deopt the route out of
+  // static rendering and the cache-rate fix would not land.
+  return (
+    <Suspense fallback={null}>
+      <PaperReadingPageClient papers={allPapers} />
+    </Suspense>
+  );
+}

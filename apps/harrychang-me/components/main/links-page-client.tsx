@@ -14,6 +14,7 @@ import {
   CalendarPlus,
   FileText,
   Music,
+  BookOpen,
   MessageCircle,
   Film,
   Lightbulb,
@@ -127,6 +128,11 @@ export default function LinksPageClient() {
       icon: <Palette className="w-5 h-5" />,
       label: t("resources.design"),
       href: "/design",
+    },
+    {
+      icon: <BookOpen className="w-5 h-5" />,
+      label: t("resources.reading"),
+      href: "/paper-reading",
     },
     {
       icon: <Wrench className="w-5 h-5" />,

@@ -1,6 +1,7 @@
 // Library utilities
 // Note: arxiv, email, markdown, and prisma are server-only modules (use Node.js fs/path)
 // Import them directly from their paths in server components/API routes only:
+// import { getArxivPaperIds } from '@portfolio/lib/lib/arxiv'
 // import { getAllProjectsMetadata } from '@portfolio/lib/lib/markdown'
 // import { prisma } from '@portfolio/lib/lib/prisma'
 // import { sendWaitlistConfirmationEmail } from '@portfolio/lib/lib/email'
