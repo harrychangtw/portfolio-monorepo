@@ -97,6 +97,14 @@ export function ImageContainer({
   const restrictPortrait = isPortrait && restrictPortraitWidth;
   const portraitMaxWidth = `${(aspectRatio / targetRatio) * 100}%`;
 
+  // Framed portraits keep the full body width on desktop instead of narrowing:
+  // the box becomes 3:2 like its landscape neighbours and the photo, at the
+  // same height it had when narrowed, sits object-contain'd between white
+  // side margins. Unframed portraits have no white to pad with, so they keep
+  // the max-width narrowing.
+  const letterboxPortrait = restrictPortrait && !noInsetPadding;
+  const narrowPortrait = restrictPortrait && noInsetPadding;
+
   if (isPortrait) {
     // Portrait images span the full width on mobile and are narrowed to the
     // target ratio on desktop. That used to branch on isMobile(), which is
@@ -120,7 +128,7 @@ export function ImageContainer({
       <div className="w-full">
         <div
           className={`relative w-full ${noInsetPadding ? "" : "bg-white"} ${
-            restrictPortrait ? "mx-auto md:max-w-[var(--portrait-max-w)]" : ""
+            narrowPortrait ? "mx-auto md:max-w-[var(--portrait-max-w)]" : ""
           }`}
           style={
             {
@@ -128,17 +136,26 @@ export function ImageContainer({
               paddingBottom: insetPadding,
               paddingLeft: insetPadding,
               paddingRight: insetPadding,
-              ...(restrictPortrait
+              ...(narrowPortrait
                 ? { "--portrait-max-w": portraitMaxWidth }
                 : {}),
             } as React.CSSProperties
           }
         >
           <div
-            className="relative w-full overflow-hidden"
-            style={{
-              paddingBottom: containerPadding,
-            }}
+            className={`relative w-full overflow-hidden ${
+              letterboxPortrait
+                ? "pb-[var(--ratio-pad)] md:pb-[var(--ratio-pad-md)]"
+                : ""
+            }`}
+            style={
+              (letterboxPortrait
+                ? {
+                    "--ratio-pad": containerPadding,
+                    "--ratio-pad-md": `${(1 / targetRatio) * 100}%`,
+                  }
+                : { paddingBottom: containerPadding }) as React.CSSProperties
+            }
           >
             {!noInsetPadding && containerClass && (
               <div
