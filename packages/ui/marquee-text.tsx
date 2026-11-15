@@ -9,8 +9,8 @@ const MARQUEE_HOLD = 1200; // ms resting at the start of each loop
 /**
  * One-line text that, when `active` and too long to fit, scrolls left the way
  * Apple Music scrolls song titles: rest, glide until a trailing copy reaches
- * the start, repeat. Text that fits never moves; truncated text fades out at
- * the right edge instead of ending in an ellipsis.
+ * the start, repeat. Text that fits never moves; overflowing text is clipped
+ * at the container edges.
  */
 export default function MarqueeText({
   children,
@@ -97,18 +97,11 @@ export default function MarqueeText({
     return () => anim.cancel();
   }, [playing]);
 
-  const fade = playing
-    ? "linear-gradient(to right, transparent, black 16px, black calc(100% - 24px), transparent)"
-    : overflowing
-      ? "linear-gradient(to right, black calc(100% - 32px), transparent)"
-      : undefined;
-
   return (
     <Tag
       ref={boxRef as React.RefObject<never>}
       title={overflowing ? title : undefined}
       className={`block overflow-hidden whitespace-nowrap ${className || ""}`}
-      style={fade ? { maskImage: fade, WebkitMaskImage: fade } : undefined}
     >
       <span ref={trackRef} className="inline-block will-change-transform">
         <span ref={textRef} className="inline-block">

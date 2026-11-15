@@ -60,7 +60,6 @@ const siteLinks = [
   { id: "privacy", name: "Privacy", href: "/privacy" },
   { id: "manifesto", name: "Manifesto", href: "/manifesto" },
   { id: "source", name: "Source Code", href: "/readme" },
-  { id: "issues", name: "Report an Issue", href: "/issues" },
 ];
 
 // Helper to get translation key based on link type
