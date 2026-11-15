@@ -15,12 +15,15 @@ const MARQUEE_HOLD = 1200; // ms resting at the start of each loop
 export default function MarqueeText({
   children,
   active,
+  autoOnMobile = false,
   className,
   as: Tag = "span",
   title,
 }: {
   children: React.ReactNode;
   active: boolean;
+  /** Start after the normal hold when centered in a touch viewport. */
+  autoOnMobile?: boolean;
   className?: string;
   /** Element for the clipping box; "h3" for card titles. */
   as?: "span" | "div" | "h3";
@@ -31,7 +34,36 @@ export default function MarqueeText({
   const textRef = useRef<HTMLSpanElement>(null);
   const trackRef = useRef<HTMLSpanElement>(null);
   const [overflowing, setOverflowing] = useState(false);
-  const playing = active && overflowing;
+  const [centeredOnMobile, setCenteredOnMobile] = useState(false);
+  const playing = (active || centeredOnMobile) && overflowing;
+
+  useEffect(() => {
+    const box = boxRef.current;
+    if (!autoOnMobile || !overflowing || !box) return;
+    const query = window.matchMedia("(max-width: 767px) and (hover: none)");
+    let observer: IntersectionObserver | undefined;
+    const update = () => {
+      observer?.disconnect();
+      setCenteredOnMobile(false);
+      if (!query.matches) return;
+      observer = new IntersectionObserver(
+        ([entry]) => setCenteredOnMobile(entry.isIntersecting),
+        {
+          rootMargin: `-${window.innerHeight * 0.3}px 0px -${window.innerHeight * 0.3}px 0px`,
+          threshold: 0,
+        },
+      );
+      observer.observe(box);
+    };
+    update();
+    query.addEventListener("change", update);
+    window.addEventListener("resize", update);
+    return () => {
+      observer?.disconnect();
+      query.removeEventListener("change", update);
+      window.removeEventListener("resize", update);
+    };
+  }, [autoOnMobile, overflowing]);
 
   useEffect(() => {
     const box = boxRef.current;

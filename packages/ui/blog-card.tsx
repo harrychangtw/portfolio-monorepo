@@ -188,6 +188,7 @@ export default function BlogCard({
               as="h3"
               title={title}
               active={hovered}
+              autoOnMobile
               className={`font-heading text-lg font-medium transition-colors duration-700 ${isEffectivelyLocked ? "text-primary/50" : "text-primary"}`}
             >
               {title}

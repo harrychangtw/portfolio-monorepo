@@ -510,6 +510,28 @@
     );
   }
 
+  /* Mobile pages through three updates at a time in a full-width stack. */
+  @media (max-width: 767px) {
+    .updates-rail {
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-inline: 0;
+      padding-inline: 0;
+      overflow-x: visible;
+      scroll-snap-type: none;
+    }
+    .updates-rail > * {
+      flex: none;
+      min-width: 0;
+      padding: 0.75rem 0 0;
+      overflow-wrap: anywhere;
+    }
+    .updates-rail > [data-mobile-hidden="true"],
+    .updates-fade {
+      display: none;
+    }
+  }
+
   /* Editorial inline links: thin underline at body weight with a small ↗
      marker. The marker is an SVG mask, not the U+2197 glyph, because iOS
      renders that character as a color emoji. */
