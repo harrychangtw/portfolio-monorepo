@@ -1524,5 +1524,44 @@
       "致謝": "Remps 沒有標籤的珍奇櫃作為封面"
     },
     "tldr": "日記第六百天：三十七件差點沒寫下的小事"
+  },
+  "post/18-keep/en": {
+    "title": "Still on the Menu: On Light, and the Things It Lands On",
+    "locale": "en",
+    "sections": {
+      "October 2025": "Saizeriya focaccia beats the real thing in Florence",
+      "December 2025": "Saturday breakfasts at Egg Bun with Mom",
+      "January 2026": "School light, LEGO alleys, and Lake Como mornings",
+      "February 2026": "Grandfather's rooftop garden and trees he won't see grown",
+      "May 2026": "Detour into an hour-long talk with the debate teacher",
+      "June 2026": "Hong Kong rainstorm, 7-Eleven bet, and mahjong",
+      "July 2026": "Giving the X-Pro1 to Clement in the rain",
+      "August 2026": "Broken Kurzgesagt mug and where my English came from",
+      "October 2026": "Moomin sticker shot wide open, and a bombed calculus final",
+      "November 2026": "Quiet bike ride to Sushiro, no camera",
+      "Keep": "What changed in a year, and what to keep",
+      "Acknowledgments": "Krøyer's Hip, Hip, Hurrah! as the title image"
+    },
+    "tldr": "A year of ordinary photos and the light on them",
+    "shortName": "Still on the Menu"
+  },
+  "post/18-keep/zh-TW": {
+    "title": "還在菜單上：關於光，和它落下的地方",
+    "locale": "zh-TW",
+    "sections": {
+      "2025 年 10 月": "薩莉亞的佛卡夏，比佛羅倫斯的道地版更好吃",
+      "2025 年 12 月": "每個星期六，和媽媽在 Egg Bun 吃早餐",
+      "2026 年 1 月": "高中五樓的光、LEGO 小巷與科莫湖的早晨",
+      "2026 年 2 月": "阿公的屋頂花園，和他等不到長成的樹",
+      "2026 年 5 月": "翹掉舞蹈課，和辯論老師聊了一個半小時",
+      "2026 年 6 月": "香港暴雨天，7-Eleven 宵夜配迷你麻將",
+      "2026 年 7 月": "大雨中把 X-Pro1 送給 Clement",
+      "2026 年 8 月": "摔破用了六年的 Kurzgesagt 馬克杯",
+      "2026 年 10 月": "嚕嚕米祖先貼紙，和考炸的微積分期末考",
+      "2026 年 11 月": "騎車去壽司郎的安靜夜晚，沒帶相機",
+      "留著": "一年間改變的事物，和想留下的部分",
+      "致謝": "封面採用 Krøyer 的《Hip, Hip, Hurrah!》"
+    },
+    "tldr": "一年來平凡的照片，和落在上面的光"
   }
 }
