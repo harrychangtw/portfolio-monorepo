@@ -44,9 +44,6 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-// Server actions and the database sit in Hong Kong, next to the audience.
-export const preferredRegion = "hkg1";
-
 export default function RootLayout({
   children,
 }: {
