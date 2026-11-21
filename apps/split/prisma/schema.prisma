@@ -1,0 +1,75 @@
+// Tables live in their own Postgres schema ("split") on the portfolio's
+// database, so these migrations never touch the portfolio's tables. The URL
+// gets `schema=split` appended in prisma.config.ts and lib/db.ts.
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("SPLIT_DATABASE_URL")
+}
+
+model Ledger {
+  id             String    @id @default(cuid())
+  slug           String    @unique
+  name           String
+  currency       String
+  // sha256 of the admin key; the raw key only lives in the admin's link/cookie.
+  adminKeyHash   String
+  // Kept in plain text so the admin can always re-copy the contributor link.
+  contributorKey String
+  createdAt      DateTime  @default(now())
+  members        Member[]
+  expenses       Expense[]
+}
+
+model Member {
+  id       String  @id @default(cuid())
+  ledgerId String
+  ledger   Ledger  @relation(fields: [ledgerId], references: [id], onDelete: Cascade)
+  name     String
+  position Int
+  // How to pay this person: [{ type, id, account }] — see lib/pay-methods.ts.
+  payMethods Json    @default("[]")
+  paid     Expense[] @relation("payer")
+  shares   Share[]
+
+  @@index([ledgerId])
+}
+
+model Expense {
+  id        String   @id @default(cuid())
+  ledgerId  String
+  ledger    Ledger   @relation(fields: [ledgerId], references: [id], onDelete: Cascade)
+  // "expense" or "settlement" (a payment from payer to the single share holder)
+  kind      String   @default("expense")
+  title     String
+  // Minor units of `currency` (whole units for TWD/JPY, cents for USD).
+  amount    Int
+  currency  String
+  // 1 unit of `currency` in the ledger's base currency.
+  rate      Float    @default(1)
+  // "even" or "custom" — only used to reopen the edit form the same way.
+  splitMode String   @default("even")
+  payerId   String
+  payer     Member   @relation("payer", fields: [payerId], references: [id], onDelete: Restrict)
+  date      DateTime
+  createdAt DateTime @default(now())
+  shares    Share[]
+
+  @@index([ledgerId, date])
+}
+
+model Share {
+  expenseId String
+  expense   Expense @relation(fields: [expenseId], references: [id], onDelete: Cascade)
+  memberId  String
+  member    Member  @relation(fields: [memberId], references: [id], onDelete: Restrict)
+  // Minor units of the expense's currency; shares sum to the expense amount.
+  amount    Int
+
+  @@id([expenseId, memberId])
+}

@@ -1,0 +1,262 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* The portfolio's tokens, trimmed to the five this tool uses. */
+@layer base {
+  :root {
+    --background: 0 0% 4%;
+    --foreground: 0 0% 100%;
+    --primary: 0 0% 100%;
+    --secondary: 0 0% 53%;
+    --muted: 0 0% 12%;
+    --card: 0 0% 7%;
+    --border: 0 0% 15%;
+    --accent: 68 100% 48%;
+    --positive: 145 60% 52%;
+    --negative: 0 80% 64%;
+    --ring: 0 0% 53%;
+    color-scheme: dark;
+  }
+
+  .light {
+    --background: 24 10% 95%;
+    --foreground: 0 0% 4%;
+    --primary: 0 0% 10%;
+    --secondary: 0 0% 45%;
+    --muted: 0 0% 90%;
+    --card: 0 0% 100%;
+    --border: 0 0% 88%;
+    --accent: 223 100% 50%;
+    --positive: 145 70% 32%;
+    --negative: 0 72% 46%;
+    --ring: 0 0% 60%;
+    color-scheme: light;
+  }
+
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--primary));
+    font-feature-settings: "ss01" 1;
+  }
+
+  ::selection {
+    background: hsl(var(--accent) / 0.3);
+  }
+
+  :focus-visible {
+    outline: 1px solid hsl(var(--accent));
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  /* The one container: a quiet raised surface, no outline. */
+  .card {
+    @apply rounded-2xl bg-card px-5 py-5 sm:px-6;
+  }
+
+  .section-label {
+    @apply font-heading text-sm uppercase tracking-wider text-secondary;
+    font-feature-settings: normal;
+  }
+
+  /* Spelled out as a feature, since body's ss01 setting would override
+     font-variant-numeric. */
+  .num {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings:
+      "ss01" 1,
+      "tnum" 1;
+  }
+
+  /* Underlined text button: the one interactive style used everywhere. */
+  .link {
+    @apply text-secondary underline decoration-dashed decoration-border underline-offset-4 transition-colors hover:text-primary hover:decoration-secondary disabled:pointer-events-none disabled:opacity-40;
+  }
+
+  .button {
+    @apply inline-flex h-10 items-center justify-center gap-2 rounded-full bg-primary px-5 text-sm font-medium text-background transition-opacity hover:opacity-85 disabled:opacity-40;
+  }
+
+  /* Inputs and selects share one box so their underlines always line up. */
+  /* Secondary action (Cancel): same pill as .button, outlined and grey. */
+  .button-ghost {
+    @apply inline-flex h-10 items-center justify-center rounded-full border px-5 text-sm text-secondary transition-colors hover:border-secondary hover:text-primary disabled:opacity-40;
+  }
+
+  .field {
+    @apply block h-11 w-full appearance-none rounded-none border-0 border-b bg-transparent px-0 py-0 text-base leading-[2.75rem] text-primary placeholder:text-secondary focus:border-primary focus:outline-none focus:ring-0;
+  }
+
+  /* One underline holding a value and its trailing unit (amount + currency). */
+  .field-row {
+    @apply flex items-center gap-3 border-b focus-within:border-primary;
+  }
+
+  .field-row > * {
+    @apply border-b-0;
+  }
+
+  .field-label {
+    @apply mb-1 block text-xs uppercase tracking-wider text-secondary;
+  }
+
+  .chip {
+    @apply inline-flex h-8 items-center rounded-full border px-3 text-sm text-secondary transition-colors hover:text-primary;
+  }
+
+  .chip[data-on="true"] {
+    @apply border-primary text-primary;
+  }
+
+  .sheet {
+    @apply m-0 mt-auto max-h-[92dvh] w-full max-w-none overflow-y-auto rounded-t-2xl border-t bg-card p-0 text-primary sm:m-auto sm:max-w-lg sm:rounded-2xl sm:border;
+  }
+
+  .sheet::backdrop {
+    background: hsl(0 0% 0% / 0.55);
+    backdrop-filter: blur(2px);
+  }
+
+  .sheet[open] {
+    animation: sheet-in 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+}
+
+@keyframes sheet-in {
+  from {
+    transform: translateY(24px);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sheet[open] {
+    animation: none;
+  }
+}
+
+/* Native date/number inputs: keep them in the theme. */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.5);
+}
+input[type="number"]::-webkit-inner-spin-button {
+  display: none;
+}
+textarea.field {
+  height: auto;
+  padding-block: 0.5rem;
+  line-height: 1.5;
+}
+
+.field::placeholder {
+  opacity: 0.6;
+}
+
+/* Rolling digits (components/rolling-text.tsx). */
+.roll-in-up,
+.roll-in-down,
+.roll-out-up,
+.roll-out-down {
+  animation-duration: 350ms;
+  animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+  animation-fill-mode: both;
+}
+.roll-in-up {
+  animation-name: roll-in-up;
+}
+.roll-out-up {
+  animation-name: roll-out-up;
+}
+.roll-in-down {
+  animation-name: roll-in-down;
+}
+.roll-out-down {
+  animation-name: roll-out-down;
+}
+@keyframes roll-in-up {
+  from {
+    transform: translateY(0.55em);
+    opacity: 0;
+  }
+}
+@keyframes roll-out-up {
+  to {
+    transform: translateY(-0.55em);
+    opacity: 0;
+  }
+}
+@keyframes roll-in-down {
+  from {
+    transform: translateY(-0.55em);
+    opacity: 0;
+  }
+}
+@keyframes roll-out-down {
+  to {
+    transform: translateY(0.55em);
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .roll-in-up,
+  .roll-in-down {
+    animation: none;
+  }
+  .roll-out-up,
+  .roll-out-down {
+    display: none;
+  }
+}
+
+/* SmoothLabel's text swap. */
+.label-fade {
+  animation: label-fade 220ms ease-out both;
+}
+@keyframes label-fade {
+  from {
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .label-fade {
+    animation: none;
+  }
+}
+
+/* PayTo rows: a soft press state over the muted panel. */
+.copy-row:hover {
+  background-color: hsl(var(--background) / 0.35);
+}
+.copy-row:active {
+  background-color: hsl(var(--background) / 0.6);
+}
+
+/* A gentle no: used when the split doesn't add up. */
+.shake {
+  animation: shake 380ms cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+@keyframes shake {
+  20%,
+  60% {
+    transform: translateX(-5px);
+  }
+  40%,
+  80% {
+    transform: translateX(5px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .shake {
+    animation: none;
+  }
+}

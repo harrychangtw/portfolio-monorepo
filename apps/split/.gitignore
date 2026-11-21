@@ -1,0 +1,7 @@
+# Private fonts, fetched at build time (scripts/fetch-fonts.mjs)
+public/fonts/**
+# Prisma client, generated on install
+lib/generated/
+next-env.d.ts
+tsconfig.tsbuildinfo
+.next/
