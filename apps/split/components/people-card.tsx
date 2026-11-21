@@ -172,8 +172,11 @@ function AddMemberForm({ ctx }: { ctx: LedgerContext }) {
 
 const EMPTY: PayMethod = { type: "Bank", id: "", account: "" };
 
-// The type always has a value (it's a picker), so a row is blank without the rest.
+// Nothing worth saving yet (no qualifier or account).
 const isEmpty = (m: PayMethod) => !m.id && !m.account;
+// Untouched: still the default blank row. A row whose type was changed counts
+// as touched, so picking PayPal on the blank row sticks instead of resetting.
+const isUntouched = (m: PayMethod) => isEmpty(m) && m.type === EMPTY.type;
 
 /**
  * One underline per method: Type ⌄  [qualifier]  account. Each type asks only
@@ -188,7 +191,7 @@ function MethodsEditor({ initial }: { initial: PayMethod[] }) {
   // mid-edit doesn't vanish under the cursor.
   const update = (next: PayMethod[]) => {
     const kept = [...next];
-    while (kept.length && isEmpty(kept[kept.length - 1])) kept.pop();
+    while (kept.length && isUntouched(kept[kept.length - 1])) kept.pop();
     setRows(kept.length < 6 ? [...kept, EMPTY] : kept);
   };
   const set = (i: number, patch: Partial<PayMethod>) =>
@@ -205,7 +208,7 @@ function MethodsEditor({ initial }: { initial: PayMethod[] }) {
       {rows.map((r, i) => {
         const spec = specFor(r.type);
         const q = spec.qualifier;
-        const last = i === rows.length - 1 && isEmpty(r);
+        const last = i === rows.length - 1 && isUntouched(r);
         return (
           <span key={i} className="field-row">
             <Select
