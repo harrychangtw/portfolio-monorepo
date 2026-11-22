@@ -40,6 +40,9 @@
 
   html {
     -webkit-tap-highlight-color: transparent;
+    /* Reserve the scrollbar's width on both sides, so a visible scrollbar
+       doesn't pull the centered column off-center. */
+    scrollbar-gutter: stable both-edges;
   }
 
   body {
@@ -119,7 +122,7 @@
   }
 
   .sheet {
-    @apply m-0 mt-auto max-h-[92dvh] w-full max-w-none overflow-y-auto rounded-t-2xl border-t bg-card p-0 text-primary sm:m-auto sm:max-w-lg sm:rounded-2xl sm:border;
+    @apply m-0 mt-auto max-h-[92dvh] w-full max-w-none overflow-y-auto [scrollbar-gutter:stable_both-edges] rounded-t-2xl border-t bg-card p-0 text-primary sm:m-auto sm:max-w-lg sm:rounded-2xl sm:border;
   }
 
   .sheet::backdrop {
