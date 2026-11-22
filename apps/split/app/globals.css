@@ -46,6 +46,9 @@
   }
 
   body {
+    /* Nothing should be wider than the screen; if something ever is, clip
+       it rather than let the phone zoom the page out. */
+    overflow-x: clip;
     background-color: hsl(var(--background));
     color: hsl(var(--primary));
     font-feature-settings: "ss01" 1;

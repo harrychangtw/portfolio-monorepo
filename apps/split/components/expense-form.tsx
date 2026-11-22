@@ -402,7 +402,10 @@ function DateText({ defaultValue }: { defaultValue: string }) {
         });
 
   return (
-    <label className="relative shrink-0 cursor-pointer font-heading text-lg text-secondary transition-colors hover:text-primary focus-within:text-primary">
+    // overflow-hidden: iOS won't shrink a date input below its own minimum
+    // width, so the invisible overlay stuck out past the card's right edge
+    // and widened the whole page.
+    <label className="relative shrink-0 cursor-pointer overflow-hidden font-heading text-lg text-secondary transition-colors hover:text-primary focus-within:text-primary">
       {shown}
       <input
         type="date"
@@ -412,7 +415,7 @@ function DateText({ defaultValue }: { defaultValue: string }) {
         onClick={(ev) => ev.currentTarget.showPicker?.()}
         aria-label="Date"
         required
-        className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
+        className="absolute inset-0 h-full w-full min-w-0 cursor-pointer appearance-none opacity-0"
       />
     </label>
   );
