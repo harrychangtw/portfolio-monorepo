@@ -18,9 +18,10 @@ model Ledger {
   name           String
   currency       String
   // sha256 of the admin key; the raw key only lives in the admin's link/cookie.
-  adminKeyHash   String
+  // Links are looked up by any of slug / contributorKey / adminKeyHash.
+  adminKeyHash   String    @unique
   // Kept in plain text so the admin can always re-copy the contributor link.
-  contributorKey String
+  contributorKey String    @unique
   createdAt      DateTime  @default(now())
   members        Member[]
   expenses       Expense[]

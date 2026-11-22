@@ -1,14 +1,14 @@
 import Link from "next/link";
 import { db } from "@/lib/db";
-import { storedSlugs } from "@/lib/access";
+import { storedLinks } from "@/lib/access";
 import { CreateForm } from "@/components/create-form";
 import { ThemeToggle } from "@/components/theme-toggle";
 
 export default async function Home() {
-  const slugs = await storedSlugs();
-  const ledgers = slugs.length
+  const held = await storedLinks();
+  const ledgers = held.size
     ? await db.ledger.findMany({
-        where: { slug: { in: slugs } },
+        where: { slug: { in: [...held.keys()] } },
         orderBy: { createdAt: "desc" },
         select: {
           slug: true,
@@ -36,7 +36,7 @@ export default async function Home() {
             {ledgers.map((l) => (
               <li key={l.slug} className="group">
                 <Link
-                  href={`/g/${l.slug}`}
+                  href={`/${held.get(l.slug)}`}
                   className="group flex items-baseline justify-between border-b py-3 group-last:border-b-0"
                 >
                   <span className="transition-colors group-hover:text-accent">

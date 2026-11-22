@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { convert } from "@/lib/money";
+import { amount, convert } from "@/lib/money";
 import { Money } from "@/components/money";
 import { Sheet } from "@/components/sheet";
 import { ExpenseForm } from "@/components/expense-form";
@@ -22,6 +22,7 @@ export function EntryList({
   ctx: LedgerContext;
   expenses: ExpenseRow[];
 }) {
+  const [open, setOpen] = useState<string | null>(null);
   const [editing, setEditing] = useState<ExpenseRow | null>(null);
   const canEdit = ctx.role === "admin";
 
@@ -54,12 +55,19 @@ export function EntryList({
             {d.rows.map((e) => (
               <li key={e.id}>
                 <button
-                  className="w-full py-2 text-left disabled:cursor-default"
-                  disabled={!canEdit}
-                  onClick={() => setEditing(e)}
+                  className="w-full py-2 text-left"
+                  aria-expanded={open === e.id}
+                  onClick={() => setOpen(open === e.id ? null : e.id)}
                 >
                   <Entry ctx={ctx} e={e} />
                 </button>
+                {open === e.id && (
+                  <Shares
+                    ctx={ctx}
+                    e={e}
+                    onEdit={canEdit ? () => setEditing(e) : undefined}
+                  />
+                )}
               </li>
             ))}
           </ul>
@@ -125,5 +133,66 @@ function Entry({ ctx, e }: { ctx: LedgerContext; e: ExpenseRow }) {
         )}
       </div>
     </>
+  );
+}
+
+/** Who's in an entry and for how much, in the entry's own currency. */
+function Shares({
+  ctx,
+  e,
+  onEdit,
+}: {
+  ctx: LedgerContext;
+  e: ExpenseRow;
+  onEdit?: () => void;
+}) {
+  const settlement = e.kind === "settlement";
+  return (
+    <div className="pb-4 pt-1 text-sm">
+      <table className="num w-full">
+        <thead>
+          <tr className="text-xs text-secondary">
+            <th className="py-1 text-left font-normal">
+              Person · {e.currency}
+            </th>
+            <th className="py-1 text-right font-normal">Paid</th>
+            <th className="py-1 text-right font-normal">
+              {settlement ? "Received" : "Share"}
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {ctx.members
+            .filter(
+              (m) =>
+                m.id === e.payerId || e.shares.some((s) => s.memberId === m.id),
+            )
+            .map((m) => {
+              const share = e.shares.find((s) => s.memberId === m.id);
+              return (
+                <tr key={m.id}>
+                  <td className="max-w-0 truncate py-1 pr-3">{m.name}</td>
+                  <td className="w-24 py-1 text-right">
+                    {m.id === e.payerId ? amount(e.amount, e.currency) : "—"}
+                  </td>
+                  <td className="w-24 py-1 text-right">
+                    {share ? amount(share.amount, e.currency) : "—"}
+                  </td>
+                </tr>
+              );
+            })}
+        </tbody>
+      </table>
+      {e.currency !== ctx.currency && (
+        <p className="num mt-2 text-xs text-secondary">
+          1 {e.currency} = {e.rate} {ctx.currency}
+        </p>
+      )}
+      {onEdit && (
+        <button className="link mt-3 text-xs" onClick={onEdit}>
+          Edit
+        </button>
+      )}
+    </div>
   );
 }

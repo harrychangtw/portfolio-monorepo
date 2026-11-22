@@ -7,6 +7,8 @@ import { db } from "@/lib/db";
 import {
   hashKey,
   randomToken,
+  RANK,
+  resolveLink,
   roleForKey,
   storedKey,
   storeKey,
@@ -18,20 +20,20 @@ import { parseMethods } from "@/lib/pay-methods";
 
 export type FormState = { error?: string; done?: number };
 
-const RANK: Record<Role, number> = { viewer: 0, contributor: 1, admin: 2 };
 const str = (v: FormDataEntryValue | null) =>
   typeof v === "string" ? v.trim() : "";
 
 class Refusal extends Error {}
 
-/** Loads the ledger and checks this browser's key grants at least `need`. */
-async function authorize(slug: string, need: Exclude<Role, "viewer">) {
-  const ledger = await db.ledger.findUnique({
-    where: { slug },
+/** Loads the ledger and checks the page's link grants at least `need`. */
+async function authorize(token: string, need: Exclude<Role, "viewer">) {
+  const link = await resolveLink(token);
+  if (!link) throw new Refusal("This ledger no longer exists.");
+  const { role } = link;
+  const ledger = await db.ledger.findUniqueOrThrow({
+    where: { id: link.ledger.id },
     include: { members: { orderBy: { position: "asc" } } },
   });
-  if (!ledger) throw new Refusal("This ledger no longer exists.");
-  const role = roleForKey(await storedKey(slug), ledger);
   if (RANK[role] < RANK[need])
     throw new Refusal(
       need === "admin"
@@ -42,17 +44,14 @@ async function authorize(slug: string, need: Exclude<Role, "viewer">) {
 }
 
 /** Runs a mutation, turning refusals into a form error and revalidating. */
-async function mutate(
-  slug: string,
-  run: () => Promise<void>,
-): Promise<FormState> {
+async function mutate(run: () => Promise<void>): Promise<FormState> {
   try {
     await run();
   } catch (e) {
     if (e instanceof Refusal) return { error: e.message };
     throw e;
   }
-  revalidatePath(`/g/${slug}`);
+  revalidatePath("/[token]", "page");
   return { done: Date.now() };
 }
 
@@ -81,32 +80,34 @@ export async function createLedger(
   if (new Set(names.map((n) => n.toLowerCase())).size !== names.length)
     return { error: "Each person needs a different name." };
 
-  const slug = randomToken(9);
-  const adminKey = randomToken(18);
+  // 6 random bytes is 8 URL characters: short enough to paste, far too many
+  // to guess. The owner's link gets twice that.
+  const slug = randomToken(6);
+  const adminKey = randomToken(12);
   await db.ledger.create({
     data: {
       slug,
       name,
       currency,
       adminKeyHash: hashKey(adminKey),
-      contributorKey: randomToken(18),
+      contributorKey: randomToken(6),
       members: {
         create: names.map((n, position) => ({ name: n, position })),
       },
     },
   });
   await storeKey(slug, adminKey);
-  redirect(`/g/${slug}?new=1`);
+  redirect(`/${adminKey}?new=1`);
 }
 
 export async function saveExpense(
-  slug: string,
+  token: string,
   _: FormState,
   form: FormData,
 ): Promise<FormState> {
-  return mutate(slug, async () => {
+  return mutate(async () => {
     const id = str(form.get("id"));
-    const { ledger } = await authorize(slug, id ? "admin" : "contributor");
+    const { ledger } = await authorize(token, id ? "admin" : "contributor");
     const memberIds = new Set(ledger.members.map((m) => m.id));
 
     const title =
@@ -170,22 +171,22 @@ export async function saveExpense(
   });
 }
 
-export async function deleteExpense(slug: string, id: string) {
-  return mutate(slug, async () => {
-    const { ledger } = await authorize(slug, "admin");
+export async function deleteExpense(token: string, id: string) {
+  return mutate(async () => {
+    const { ledger } = await authorize(token, "admin");
     await db.expense.deleteMany({ where: { id, ledgerId: ledger.id } });
   });
 }
 
 /** A payment is an entry: `from` pays, and `to` holds the whole share. */
 export async function recordPayment(
-  slug: string,
+  token: string,
   from: string,
   to: string,
   amount: number,
 ) {
-  return mutate(slug, async () => {
-    const { ledger } = await authorize(slug, "admin");
+  return mutate(async () => {
+    const { ledger } = await authorize(token, "admin");
     const ids = new Set(ledger.members.map((m) => m.id));
     if (!ids.has(from) || !ids.has(to) || from === to)
       throw new Refusal("Unknown people.");
@@ -208,12 +209,12 @@ export async function recordPayment(
 
 /** Contributors may set transfer details; only the owner renames people. */
 export async function saveMember(
-  slug: string,
+  token: string,
   _: FormState,
   form: FormData,
 ): Promise<FormState> {
-  return mutate(slug, async () => {
-    const { ledger, role } = await authorize(slug, "contributor");
+  return mutate(async () => {
+    const { ledger, role } = await authorize(token, "contributor");
     const id = str(form.get("id"));
     const member = ledger.members.find((m) => m.id === id);
     if (!member) throw new Refusal("Unknown person.");
@@ -237,12 +238,12 @@ export async function saveMember(
 }
 
 export async function addMember(
-  slug: string,
+  token: string,
   _: FormState,
   form: FormData,
 ): Promise<FormState> {
-  return mutate(slug, async () => {
-    const { ledger } = await authorize(slug, "admin");
+  return mutate(async () => {
+    const { ledger } = await authorize(token, "admin");
     const name = str(form.get("name")).slice(0, 40);
     if (!name) throw new Refusal("Enter a name.");
     if (ledger.members.length >= 16)
@@ -259,9 +260,9 @@ export async function addMember(
   });
 }
 
-export async function removeMember(slug: string, id: string) {
-  return mutate(slug, async () => {
-    const { ledger } = await authorize(slug, "admin");
+export async function removeMember(token: string, id: string) {
+  return mutate(async () => {
+    const { ledger } = await authorize(token, "admin");
     const used = await db.expense.count({
       where: {
         ledgerId: ledger.id,
@@ -275,12 +276,13 @@ export async function removeMember(slug: string, id: string) {
 
 /** Deletes the ledger and everything in it. The owner types its name to confirm. */
 export async function deleteLedger(
-  slug: string,
+  token: string,
   _: FormState,
   form: FormData,
 ): Promise<FormState> {
+  let ledger;
   try {
-    const { ledger } = await authorize(slug, "admin");
+    ({ ledger } = await authorize(token, "admin"));
     if (str(form.get("confirm")) !== ledger.name)
       return { error: "Type the ledger's name to confirm." };
     await db.ledger.delete({ where: { id: ledger.id } });
@@ -288,6 +290,20 @@ export async function deleteLedger(
     if (e instanceof Refusal) return { error: e.message };
     throw e;
   }
-  (await cookies()).delete(`split_${slug}`);
+  (await cookies()).delete(`split_${ledger.slug}`);
   redirect("/");
+}
+
+/**
+ * Remembers this browser opened the ledger, for the home page's list. Never
+ * trades a stronger link for a weaker one (the owner opening the view link).
+ */
+export async function remember(token: string) {
+  const link = await resolveLink(token);
+  if (!link) return;
+  const { slug } = link.ledger;
+  const held = await storedKey(slug);
+  if (held === token) return;
+  if (held && RANK[roleForKey(held, link.ledger)] > RANK[link.role]) return;
+  await storeKey(slug, token);
 }
