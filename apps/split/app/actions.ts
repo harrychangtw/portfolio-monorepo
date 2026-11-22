@@ -285,7 +285,12 @@ export async function deleteLedger(
     ({ ledger } = await authorize(token, "admin"));
     if (str(form.get("confirm")) !== ledger.name)
       return { error: "Type the ledger's name to confirm." };
-    await db.ledger.delete({ where: { id: ledger.id } });
+    // Entries go first: their shares and payers reference people with
+    // onDelete: Restrict, so a single cascading ledger delete trips the FK.
+    await db.$transaction([
+      db.expense.deleteMany({ where: { ledgerId: ledger.id } }),
+      db.ledger.delete({ where: { id: ledger.id } }),
+    ]);
   } catch (e) {
     if (e instanceof Refusal) return { error: e.message };
     throw e;
