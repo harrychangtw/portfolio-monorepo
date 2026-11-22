@@ -105,8 +105,10 @@
     @apply flex items-center gap-3 border-b focus-within:border-primary;
   }
 
+  /* min-w-0: an input's default width is ~20 characters, which at the
+     amount's 4xl size is wider than a phone and widened the whole page. */
   .field-row > * {
-    @apply border-b-0;
+    @apply min-w-0 border-b-0;
   }
 
   .field-label {
