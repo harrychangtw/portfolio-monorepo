@@ -6,6 +6,7 @@ import {
   getNextPost,
 } from "@portfolio/lib/lib/markdown";
 import BlogPostClient from "@portfolio/ui/blog-post-client";
+import { ImageLightbox } from "@portfolio/ui/image-lightbox";
 import {
   languageFromParams,
   localizedSlug,
@@ -195,13 +196,19 @@ export default async function BlogPostPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       <HashAnchorPulse />
-      <BlogPostClient
-        initialPost={post}
-        nextPost={nextPost}
-        localGraphSlot={
-          <GraphNextUp sourceType="post" basePath="blog" nextItem={nextPost} />
-        }
-      />
+      <ImageLightbox>
+        <BlogPostClient
+          initialPost={post}
+          nextPost={nextPost}
+          localGraphSlot={
+            <GraphNextUp
+              sourceType="post"
+              basePath="blog"
+              nextItem={nextPost}
+            />
+          }
+        />
+      </ImageLightbox>
     </>
   );
 }

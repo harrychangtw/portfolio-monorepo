@@ -6,6 +6,7 @@ import {
   getNextProject,
 } from "@portfolio/lib/lib/markdown";
 import ProjectPostClient from "@portfolio/ui/project-post-client";
+import { ImageLightbox } from "@portfolio/ui/image-lightbox";
 import {
   languageFromParams,
   localizedSlug,
@@ -226,17 +227,19 @@ export default async function ProjectPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       <HashAnchorPulse />
-      <ProjectPostClient
-        initialProject={project}
-        nextProject={nextProject}
-        localGraphSlot={
-          <GraphNextUp
-            sourceType="project"
-            basePath="projects"
-            nextItem={nextProject}
-          />
-        }
-      />
+      <ImageLightbox>
+        <ProjectPostClient
+          initialProject={project}
+          nextProject={nextProject}
+          localGraphSlot={
+            <GraphNextUp
+              sourceType="project"
+              basePath="projects"
+              nextItem={nextProject}
+            />
+          }
+        />
+      </ImageLightbox>
     </>
   );
 }
