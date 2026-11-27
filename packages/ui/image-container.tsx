@@ -3,6 +3,8 @@
 import { useState, useRef } from "react";
 import Image from "next/image";
 import { useIsMobile } from "@portfolio/lib/hooks/use-mobile";
+import { useLanguage } from "@portfolio/lib/contexts/language-context";
+import { useImageLightbox } from "./image-lightbox";
 import { ImageLoadingSkeleton } from "./image-loading-skeleton";
 import { useIntersectionObserver } from "@portfolio/lib/hooks/use-intersection-observer";
 
@@ -19,6 +21,9 @@ interface ImageContainerProps {
   restrictPortraitWidth?: boolean; // Added: Toggle desktop portrait centering (default true)
   /** Skip responsive-variant thumbnail derivation (for images not in the optimization pipeline). */
   rawImage?: boolean;
+  /** Join the enclosing ImageLightbox collection. False for images inside
+   * links (e.g. Next Up cards), where an overlay trigger would block the link. */
+  lightbox?: boolean;
 }
 
 export function ImageContainer({
@@ -33,7 +38,10 @@ export function ImageContainer({
   imgClassName,
   restrictPortraitWidth = true,
   rawImage = false,
+  lightbox = true,
 }: ImageContainerProps) {
+  const openLightbox = useImageLightbox();
+  const { language } = useLanguage();
   const containerRef = useRef<HTMLElement>(null);
   const isVisible = useIntersectionObserver({
     elementRef: containerRef as React.RefObject<Element>,
@@ -161,6 +169,25 @@ export function ImageContainer({
               <div
                 className={`absolute inset-0 z-20 pointer-events-none ${containerClass}`}
               ></div>
+            )}
+
+            {/* Lightbox trigger — a transparent overlay so the whole image is
+                clickable. Carries the collection data the scope reads at open
+                time; absent outside an ImageLightbox or when opted out. */}
+            {openLightbox && lightbox && !isVideo && fullSrc && (
+              <button
+                type="button"
+                className="absolute inset-0 z-30 cursor-zoom-in bg-transparent border-0 p-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-current"
+                aria-label={`${language === "zh-TW" ? "檢視圖片" : "View image"}: ${alt}`}
+                aria-haspopup="dialog"
+                data-lightbox-src={fullSrc}
+                data-lightbox-alt={alt}
+                data-lightbox-caption={caption}
+                onClick={(event) => {
+                  event.stopPropagation();
+                  openLightbox(event.currentTarget);
+                }}
+              />
             )}
 
             {/* Blurred thumbnail placeholder — fades out once full image is ready */}

@@ -83,6 +83,8 @@ export default function NextUpCard({
               aspectRatio={1.5}
               rawImage={rawImage}
               sizes="(min-width: 768px) 144px, 96px"
+              // The card is a link; a lightbox overlay would block its click.
+              lightbox={false}
             />
           </div>
         )}

@@ -6,6 +6,7 @@ import {
   getNextGalleryItem,
 } from "@portfolio/lib/lib/markdown";
 import GalleryPostClient from "@portfolio/ui/gallery-post-client";
+import { ImageLightbox } from "@portfolio/ui/image-lightbox";
 import {
   languageFromParams,
   localizedSlug,
@@ -215,17 +216,19 @@ export default async function GalleryItemPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       <HashAnchorPulse />
-      <GalleryPostClient
-        initialItem={item}
-        nextItem={nextItem}
-        localGraphSlot={
-          <GraphNextUp
-            sourceType="gallery"
-            basePath="gallery"
-            nextItem={nextItem}
-          />
-        }
-      />
+      <ImageLightbox>
+        <GalleryPostClient
+          initialItem={item}
+          nextItem={nextItem}
+          localGraphSlot={
+            <GraphNextUp
+              sourceType="gallery"
+              basePath="gallery"
+              nextItem={nextItem}
+            />
+          }
+        />
+      </ImageLightbox>
     </>
   );
 }
